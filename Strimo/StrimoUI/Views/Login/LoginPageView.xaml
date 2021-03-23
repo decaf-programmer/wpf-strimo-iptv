@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <StackPanel Width="543"  >
-            <Image Source="" Height="59" />
+            <Image Source="/StrimoUI;component/Resources/logo.png" Height="59" />
             <TextBlock Text="s t r i m o" FontSize="68" TextAlignment="Center"
                        Foreground="{DynamicResource Gray_100}" Margin="0,0,0,143" />
             <TextBox x:Name="Username" Text="Username" Style="{DynamicResource HoverInput}"
