@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoUI", "StrimoUI\StrimoUI.csproj", "{EDBDBD80-F2EB-4364-B0C8-399C508ADA49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDBDBD80-F2EB-4364-B0C8-399C508ADA49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDBDBD80-F2EB-4364-B0C8-399C508ADA49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDBDBD80-F2EB-4364-B0C8-399C508ADA49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDBDBD80-F2EB-4364-B0C8-399C508ADA49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D250CA3-339A-484F-A51B-7EAE610FFF6E}
+	EndGlobalSection
+EndGlobal
