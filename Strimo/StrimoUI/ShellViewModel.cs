@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using StrimoUI.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,14 @@ namespace StrimoUI
     public class ShellViewModel:Conductor<Screen>.Collection.OneActive
     {
         private readonly IEventAggregator eventAggregator;
+        private readonly LoginConductorViewModel loginConductorViewModel;
 
-        public ShellViewModel(IEventAggregator _eventAggregaotr)
+        public ShellViewModel(IEventAggregator _eventAggregaotr, LoginConductorViewModel _loginConductorViewModel)
         {
             eventAggregator = _eventAggregaotr;
+            loginConductorViewModel = _loginConductorViewModel;
             
-            Items.AddRange(new Screen[] { });
+            Items.AddRange(new Screen[] { loginConductorViewModel });
         }
 
         protected override void OnActivate()
@@ -23,7 +26,7 @@ namespace StrimoUI
             base.OnActivate();
 
             eventAggregator.Subscribe(this);
-            //ActivateItem();
+            ActivateItem(loginConductorViewModel);
         }
 
         protected override void OnDeactivate(bool close)

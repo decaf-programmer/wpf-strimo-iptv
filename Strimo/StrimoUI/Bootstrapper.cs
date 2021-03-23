@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using StrimoUI.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace StrimoUI
             simpleContainer.Singleton<IEventAggregator, EventAggregator>();
 
             simpleContainer.PerRequest<ShellViewModel>();
+            simpleContainer.PerRequest<LoginConductorViewModel>();
+            simpleContainer.PerRequest<LoginPageViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
