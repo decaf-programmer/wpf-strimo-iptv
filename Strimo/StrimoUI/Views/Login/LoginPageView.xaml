@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="StrimoUI.Views.Login.LoginPageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StrimoUI.Views.Login"
+             mc:Ignorable="d">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Width="543"  >
+            <Image Source="/StrimoUI;component/Resources/logo.png" Height="59" />
+            <TextBlock Text="s t r i m o" FontSize="68" TextAlignment="Center"
+                       Foreground="{DynamicResource Gray_100}" Margin="0,0,0,143" />
+            <TextBox x:Name="Username" Text="Username" Style="{DynamicResource HoverInput}"
+                     Background="{DynamicResource Black_300}" Foreground="{DynamicResource Gray_100}"
+                     FontSize="30" Padding="5,10" Margin="0,0,0,16" 
+                     GotFocus="UsernameGotFocus" LostFocus="UsernameLostFocus" />
+            <TextBox x:Name="Password" Text="Password" Style="{DynamicResource HoverInput}"
+                     Background="{DynamicResource Black_300}" Foreground="{DynamicResource Gray_100}"
+                     FontSize="30" Padding="5,10" Margin="0,0,0,240"
+                     GotFocus="PasswordGotFocus" LostFocus="PasswordLostFocus" />
+            <Button x:Name="Login" Content="LOG IN" Style="{DynamicResource HoverButton}" Height="59" FontSize="30"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
