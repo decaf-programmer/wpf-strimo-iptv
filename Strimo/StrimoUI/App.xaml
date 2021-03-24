@@ -1,7 +1,8 @@
 ﻿<Application x:Class="StrimoUI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:StrimoUI">
+             xmlns:local="clr-namespace:StrimoUI"
+             xmlns:alert="clr-namespace:StrimoUI.Dialogs.AlertDialog">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,6 +13,9 @@
                 <ResourceDictionary Source="Styles/ControlStyle.xaml" />
                 <ResourceDictionary Source="Styles/WindowStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">
+                <alert:AlertDialogView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
