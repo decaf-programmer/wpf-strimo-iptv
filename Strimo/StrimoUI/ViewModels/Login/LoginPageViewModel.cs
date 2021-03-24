@@ -4,6 +4,8 @@ using StrimoLibrary.Models;
 using StrimoLibrary.Services;
 using StrimoUI.Dialogs.AlertDialog;
 using StrimoUI.Dialogs.References;
+using StrimoUI.Globals;
+using StrimoUI.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -120,8 +122,8 @@ namespace StrimoUI.ViewModels.Login
                             authUserModel.allowed_output_formats.Add(format);
                         }
 
-                        //GlobalVars.currentUserModel = authUserModel;
-                        //_eventAggregator.PublishOnUIThread(new AuthSuccessMessage());
+                        GlobalVars.currentUserModel = authUserModel;
+                        eventAggregator.PublishOnUIThread(new AuthSuccessMessage());
                     }
                 }
             }

@@ -32,6 +32,8 @@ namespace StrimoUI
             simpleContainer.PerRequest<LoginConductorViewModel>();
             simpleContainer.PerRequest<LoginPageViewModel>();
             simpleContainer.PerRequest<AlertDialogViewModel>();
+            simpleContainer.PerRequest<LoadAccountViewModel>();
+
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

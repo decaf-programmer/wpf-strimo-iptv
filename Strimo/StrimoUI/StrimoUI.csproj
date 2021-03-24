@@ -99,12 +99,18 @@
     </Compile>
     <Compile Include="Dialogs\References\IDialogService.cs" />
     <Compile Include="Dialogs\References\IDialogWindow.cs" />
+    <Compile Include="Globals\GlobalVars.cs" />
+    <Compile Include="Messages\AuthSuccessMessage.cs" />
     <Compile Include="ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModels\Login\LoadAccountViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginConductorViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginPageViewModel.cs" />
+    <Compile Include="Views\Login\LoadAccountView.xaml.cs">
+      <DependentUpon>LoadAccountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login\LoginConductorView.xaml.cs">
       <DependentUpon>LoginConductorView.xaml</DependentUpon>
     </Compile>
@@ -162,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\LoadAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -330,5 +340,6 @@
       <Name>StrimoLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
