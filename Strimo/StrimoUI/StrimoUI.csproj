@@ -101,13 +101,24 @@
     <Compile Include="Dialogs\References\IDialogWindow.cs" />
     <Compile Include="Globals\GlobalVars.cs" />
     <Compile Include="Messages\AuthSuccessMessage.cs" />
+    <Compile Include="Messages\LoadedAccountMessage.cs" />
+    <Compile Include="Messages\LoginPageMessage.cs" />
     <Compile Include="ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModels\Content\ContentConductorViewModel.cs" />
+    <Compile Include="ViewModels\Content\HomeViewModel.cs" />
     <Compile Include="ViewModels\Login\LoadAccountViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginConductorViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\Login\SelectAccountViewModel.cs" />
+    <Compile Include="Views\Content\ContentConductorView.xaml.cs">
+      <DependentUpon>ContentConductorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Content\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login\LoadAccountView.xaml.cs">
       <DependentUpon>LoadAccountView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +127,9 @@
     </Compile>
     <Compile Include="Views\Login\LoginPageView.xaml.cs">
       <DependentUpon>LoginPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\SelectAccountView.xaml.cs">
+      <DependentUpon>SelectAccountView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +185,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Content\ContentConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Content\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Login\LoadAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -180,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login\LoginPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\SelectAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

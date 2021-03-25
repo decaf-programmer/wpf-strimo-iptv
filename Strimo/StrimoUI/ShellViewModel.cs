@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using StrimoUI.Messages;
+using StrimoUI.ViewModels.Content;
 using StrimoUI.ViewModels.Login;
 using System;
 using System.Collections.Generic;
@@ -8,17 +10,24 @@ using System.Threading.Tasks;
 
 namespace StrimoUI
 {
-    public class ShellViewModel:Conductor<Screen>.Collection.OneActive
+    public class ShellViewModel:Conductor<Screen>.Collection.OneActive, IHandle<LoadedAccountMessage>
     {
         private readonly IEventAggregator eventAggregator;
         private readonly LoginConductorViewModel loginConductorViewModel;
+        private readonly ContentConductorViewModel contentConductorViewModel;
 
-        public ShellViewModel(IEventAggregator _eventAggregaotr, LoginConductorViewModel _loginConductorViewModel)
+        public ShellViewModel(IEventAggregator _eventAggregaotr, LoginConductorViewModel _loginConductorViewModel, ContentConductorViewModel _contentConductorViewModel)
         {
             eventAggregator = _eventAggregaotr;
             loginConductorViewModel = _loginConductorViewModel;
+            contentConductorViewModel = _contentConductorViewModel;
             
-            Items.AddRange(new Screen[] { loginConductorViewModel });
+            Items.AddRange(new Screen[] { loginConductorViewModel, contentConductorViewModel });
+        }
+
+        public void Handle(LoadedAccountMessage message)
+        {
+            ActivateItem(contentConductorViewModel);
         }
 
         protected override void OnActivate()

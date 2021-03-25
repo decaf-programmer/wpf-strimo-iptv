@@ -11,20 +11,17 @@ namespace StrimoUI.ViewModels.Login
     public class LoginConductorViewModel:Conductor<Screen>.Collection.OneActive, IHandle<AuthSuccessMessage>
     {
         private readonly IEventAggregator eventAggregator;
-        private readonly LoginPageViewModel loginPageViewModel;
-        private readonly LoadAccountViewModel loadAccountViewModel;
+        private readonly LoginPageViewModel loginPageVM;
+        private readonly LoadAccountViewModel loadAccountVM;
+        private readonly SelectAccountViewModel selectAccountVM;
 
-        public LoginConductorViewModel(IEventAggregator _eventAggregator, LoginPageViewModel _loginPageViewModel, LoadAccountViewModel _loadAccountViewModel)
+        public LoginConductorViewModel(IEventAggregator _eventAggregator, LoginPageViewModel _loginPageVM, LoadAccountViewModel _loadAccountVM, SelectAccountViewModel _selectAccountVM)
         {
             eventAggregator = _eventAggregator;
-            loginPageViewModel = _loginPageViewModel;
-            loadAccountViewModel = _loadAccountViewModel;
-            Items.AddRange(new Screen[] { loginPageViewModel, loadAccountViewModel });
-        }
-
-        public void Handle(AuthSuccessMessage message)
-        {
-            ActivateItem(loadAccountViewModel);
+            loginPageVM = _loginPageVM;
+            loadAccountVM = _loadAccountVM;
+            selectAccountVM = _selectAccountVM;
+            Items.AddRange(new Screen[] { loginPageVM, loadAccountVM, selectAccountVM });
         }
 
         protected override void OnActivate()
@@ -32,12 +29,17 @@ namespace StrimoUI.ViewModels.Login
             base.OnActivate();
             eventAggregator.Subscribe(this);
 
-            ActivateItem(loginPageViewModel);
+            ActivateItem(loginPageVM);
         }
 
         protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
+        }
+
+        public void Handle(AuthSuccessMessage message)
+        {
+            ActivateItem(loadAccountVM);
         }
     }
 }

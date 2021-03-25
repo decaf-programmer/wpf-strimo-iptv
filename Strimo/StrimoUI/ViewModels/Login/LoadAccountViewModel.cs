@@ -2,6 +2,7 @@
 using StrimoLibrary.Models;
 using StrimoLibrary.Services;
 using StrimoUI.Globals;
+using StrimoUI.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,16 +34,28 @@ namespace StrimoUI.ViewModels.Login
             }
         }
 
+        public string username = null;
+        public string password = null;
+
         public LoadAccountViewModel(IEventAggregator _eventAggregator)
         {
             eventAggregator = _eventAggregator;
+
+            
+            
         }
 
         protected override async void OnActivate()
         {
             base.OnActivate();
 
-            await DownloadData();
+            if (GlobalVars.currentUserModel != null)
+            {
+                username = GlobalVars.currentUserModel.username;
+                password = GlobalVars.currentUserModel.password;
+                await DownloadData();
+                eventAggregator.PublishOnUIThread(new LoadedAccountMessage());
+            } 
         }
         
 
@@ -59,9 +72,7 @@ namespace StrimoUI.ViewModels.Login
             Progress<int> progress = new Progress<int>();
             progress.ProgressChanged += ReportProgress;
 
-            UserModel authenticatedUser = GlobalVars.currentUserModel;
-            string username = authenticatedUser.username;
-            string password = authenticatedUser.password;
+            
 
             List<string> categoryActions = new List<string>();
             categoryActions.Add("get_live_categories");

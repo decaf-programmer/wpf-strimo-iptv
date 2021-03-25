@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using StrimoUI.Dialogs.AlertDialog;
 using StrimoUI.Dialogs.References;
+using StrimoUI.ViewModels.Content;
 using StrimoUI.ViewModels.Login;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,9 @@ namespace StrimoUI
             simpleContainer.PerRequest<LoginPageViewModel>();
             simpleContainer.PerRequest<AlertDialogViewModel>();
             simpleContainer.PerRequest<LoadAccountViewModel>();
-
+            simpleContainer.PerRequest<SelectAccountViewModel>();
+            simpleContainer.PerRequest<ContentConductorViewModel>();
+            simpleContainer.PerRequest<HomeViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)
