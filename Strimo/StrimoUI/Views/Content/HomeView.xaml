@@ -28,105 +28,71 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Grid.Triggers>
-            <Grid Height="120" VerticalAlignment="Top" Margin="0 32 0 0">
-                <TextBlock Grid.Row="1" Grid.Column ="0" Margin="82,82,0,0" Text="S T R I M O" Foreground="#808182"
-                           FontSize="25" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="155"/>
+                <RowDefinition Height="884*" />
+                <RowDefinition Height="41" />
+            </Grid.RowDefinitions>
+            <!--Make the Top Log-->
+            <Grid  VerticalAlignment="Top" Margin="0 32 0 0" Grid.Row="0">
+                <TextBlock Margin="82,82,0,0" Text="S T R I M O" Foreground="#808182"
+                           FontSize="25" Background="Transparent" HorizontalAlignment="Left" 
+                           VerticalAlignment="Center">
                     <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-90" Color="#808182" />
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-90" 
+                                          Color="#808182" />
                     </TextBlock.Effect>
                 </TextBlock>
-                <Image Source="/StrimoUI;component/Resources/brand_logo.png" Width="50.55" VerticalAlignment="Center"/>
+                <Image Source="/StrimoUI;component/Resources/brand_logo.png" Width="50.55" 
+                       VerticalAlignment="Center"/>
             </Grid>
-            <ListView x:Name="MenuListView" Background="Transparent" BorderBrush="Transparent" 
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center">
-                <ListViewItem HorizontalAlignment="Left" Margin="0 0 0 16" MouseEnter="ListViewItem_MouseEnter" 
-                              MouseLeave="ListViewItem_MouseLeave" x:Name="HomeListViewItem">
-                    <StackPanel Orientation="Horizontal" Width="280">
-                        <Image Source="/StrimoUI;component/Resources/home.png" Stretch="None" 
-                                Margin="22 0 0 0" Width="25" Height="22" x:Name="HomeImage"/>
-                        <TextBlock x:Name="HomeText" Text="H O M E" Margin="22,0,0,0" FontSize="20" 
-                                Foreground="#808182" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem HorizontalAlignment="Left" Margin="0 0 0 16" MouseEnter="ListViewItem_MouseEnter" 
-                              MouseLeave="ListViewItem_MouseLeave" x:Name="LiveListViewItem">
-                    <StackPanel Orientation="Horizontal" Width="280">
-                        <Image Source="/StrimoUI;component/Resources/monitor.png" Stretch="None" Margin="22,0,0,0" Width="25" Height="22" x:Name="LiveImage"/>
-                        <TextBlock x:Name="LiveText" Text="L I V E  T V" Margin="22,0,0,0" FontSize="20" 
-                                   Foreground="#808182" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,16" MouseEnter="ListViewItem_MouseEnter" 
-                              MouseLeave="ListViewItem_MouseLeave" x:Name="MovieListViewItem">
-                    <StackPanel Orientation="Horizontal" Width="280">
-                        <Image Source="/StrimoUI;component/Resources/movie.png" Stretch="None" Margin="22,0,0,0" x:Name="MovieImage"/>
-                        <TextBlock x:Name="MovieText" Text="M O V I E S" Margin="22 0 0 0" FontSize="20" 
-                                   Foreground="#808182" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,16" MouseEnter="ListViewItem_MouseEnter" 
-                              MouseLeave="ListViewItem_MouseLeave" x:Name="SerieListViewItem">
-                    <StackPanel Orientation="Horizontal" Width="280">
-                        <Image Source="/StrimoUI;component/Resources/tv_series.png" Stretch="None" Margin="22,0,0,0" x:Name="SeriesImage"/>
-                        <TextBlock x:Name="SerieText" Text="T V  S E R I E S" Margin="22,0,0,0" FontSize="20" 
-                                   Foreground="#808182" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,16" MouseEnter="ListViewItem_MouseEnter" 
-                              MouseLeave="ListViewItem_MouseLeave" x:Name="RadioListViewItem">
-                    <StackPanel Orientation="Horizontal" Width="280">
-                        <Image Source="/StrimoUI;component/Resources/radio.png" Stretch="None" Margin="22,0,0,0" x:Name="RadioImage"/>
-                        <TextBlock x:Name="RadioText" Text="R A D I O" Margin="22,0,0,0" FontSize="20" 
-                                   Foreground="#808182" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,16" MouseEnter="ListViewItem_MouseEnter" 
-                              MouseLeave="ListViewItem_MouseLeave" x:Name="RecordingListViewItem">
-                    <StackPanel Orientation="Horizontal" Width="280">
-                        <Image Source="/StrimoUI;component/Resources/Record.png" Stretch="None" Margin="22,0,0,0" x:Name="RecordingImage"/>
-                        <TextBlock x:Name="RecordingText" Text="R E C O R D I N G S" Margin="22,0,0,0" 
-                                   FontSize="20" Foreground="#808182" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem HorizontalAlignment="Left" MouseEnter="ListViewItem_MouseEnter" 
-                              MouseLeave="ListViewItem_MouseLeave" x:Name="FavoriteListViewItem">
-                    <StackPanel Orientation="Horizontal" Width="280">
-                        <Image Source="/StrimoUI;component/Resources/favorite.png" Stretch="None" Margin="22,0,0,0" x:Name="FavoriteImage"/>
-                        <TextBlock x:Name="FavoriteText" Text="F A V O U R I T E" Margin="22,0,0,0" 
-                                   FontSize="20" Foreground="#808182" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                    <Border x:Name="Bd"
-                                            Height="50"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            Background="{TemplateBinding Background}"
-                                            Padding="{TemplateBinding Padding}"
-                                            SnapsToDevicePixels="True">
-                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                          VerticalAlignment="{TemplateBinding VerticalAlignment}" />
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsMouseOver" Value="True" />
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="Background" TargetName="Bd" Value="#2F3136" />
-                                            <Setter Property="BorderBrush" TargetName="Bd" Value="#2F3136" />
-                                        </MultiTrigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
+
+            <!--Make the DropDownMenuList-->
+            <ItemsControl x:Name="NavigationList" ItemsSource="{Binding NavigationItems}" Grid.Row="1">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="200">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <StackPanel Orientation="Horizontal" Width="280">
+                                    <Image Source="{Binding NavigationItemIcon}" Stretch="None" Margin="22 0 0 0" x:Name="NavigationItemIcon" />
+                                    <TextBlock Text="{Binding NavigationItemTitle}"  Margin="22 0 0 0"
+                                               FontSize="20" Foreground="#808182" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ListView ItemsSource="{Binding NavigationItemSubItems}"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding NavigationItemSubItemTitle}" />
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                          
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!--Make the Responsive Settings/PowerButtons-->
+            <Grid Grid.Row="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                    </Grid>
+                    <Grid Grid.Column="1">
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

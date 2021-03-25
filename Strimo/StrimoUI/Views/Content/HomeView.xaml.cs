@@ -27,49 +27,49 @@ namespace StrimoUI.Views.Content
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            ListViewItem listViewItem = (ListViewItem)sender;
-            string nameListItem = (string)listViewItem.GetType().GetProperty("Name").GetValue(listViewItem, null);
-            switch (nameListItem)
-            {
-                case "HomeListViewItem":
-                    break;
-                case "LiveListViewItem":
-                    break;
-                case "MovieListViewItem":
-                    break;
-                case "SerieListViewItem":
-                    break;
-                case "RadioListViewItem":
-                    break;
-                case "RecordingListViewItem":
-                    break;
-                case "FavoriteListViewItem":
-                    break;
-            }
+            //ListViewItem listViewItem = (ListViewItem)sender;
+            //string nameListItem = (string)listViewItem.GetType().GetProperty("Name").GetValue(listViewItem, null);
+            //switch (nameListItem)
+            //{
+            //    case "HomeListViewItem":
+            //        break;
+            //    case "LiveListViewItem":
+            //        break;
+            //    case "MovieListViewItem":
+            //        break;
+            //    case "SerieListViewItem":
+            //        break;
+            //    case "RadioListViewItem":
+            //        break;
+            //    case "RecordingListViewItem":
+            //        break;
+            //    case "FavoriteListViewItem":
+            //        break;
+            //}
         }
 
         private void ListViewItem_MouseLeave(object sender, MouseEventArgs e)
         {
-            ListViewItem listViewItem = (ListViewItem)sender;
-            string nameListViewItem = (string)listViewItem.GetType().GetProperty("Name").GetValue(listViewItem, null);
+            //ListViewItem listViewItem = (ListViewItem)sender;
+            //string nameListViewItem = (string)listViewItem.GetType().GetProperty("Name").GetValue(listViewItem, null);
 
-            switch (nameListViewItem)
-            {
-                case "HomeListViewItem":
-                    break;
-                case "LiveListViewItem":
-                    break;
-                case "MovieListViewItem":
-                    break;
-                case "SerieListViewItem":
-                    break;
-                case "RadioListViewItem":
-                    break;
-                case "RecordingListViewItem":
-                    break;
-                case "FavoriteListViewItem":
-                    break;
-            }
+            //switch (nameListViewItem)
+            //{
+            //    case "HomeListViewItem":
+            //        break;
+            //    case "LiveListViewItem":
+            //        break;
+            //    case "MovieListViewItem":
+            //        break;
+            //    case "SerieListViewItem":
+            //        break;
+            //    case "RadioListViewItem":
+            //        break;
+            //    case "RecordingListViewItem":
+            //        break;
+            //    case "FavoriteListViewItem":
+            //        break;
+            //}
         }
     }
 }
