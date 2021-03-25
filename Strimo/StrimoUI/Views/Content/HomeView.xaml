@@ -48,17 +48,18 @@
             </Grid>
 
             <!--Make the DropDownMenuList-->
-            <ItemsControl x:Name="NavigationList" ItemsSource="{Binding NavigationItems}" Grid.Row="1">
+            <ItemsControl x:Name="NavigationList" ItemsSource="{Binding NavigationItems}" Grid.Row="1" VerticalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="200">
+                        <Grid Margin="0 0 0 16">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <StackPanel Orientation="Horizontal" Width="280">
-                                    <Image Source="{Binding NavigationItemIcon}" Stretch="None" Margin="22 0 0 0" x:Name="NavigationItemIcon" />
+                                    <Image x:Name="NavigationItemIcon" Source="{Binding NavigationItemIcon}" Stretch="None" 
+                                            Margin="22 0 0 0" Width="25" Height="22"/>
                                     <TextBlock Text="{Binding NavigationItemTitle}"  Margin="22 0 0 0"
                                                FontSize="20" Foreground="#808182" VerticalAlignment="Center" />
                                 </StackPanel>
@@ -73,7 +74,6 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                          
                             </Grid>
                         </Grid>
                     </DataTemplate>

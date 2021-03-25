@@ -32,7 +32,7 @@ namespace StrimoUI.ViewModels.Content
             NavigationItems.Add(new NavigationItemModel() { NavigationItemIcon = "favorite.png", NavigationItemTitle = "H o m e", NavigationItemSubItems = HomeNavigationItemSubItems });
             NavigationItems.Add(new NavigationItemModel() { NavigationItemIcon = "movie.png", NavigationItemTitle = "H o m e", NavigationItemSubItems = HomeNavigationItemSubItems });
             NavigationItems.Add(new NavigationItemModel() { NavigationItemIcon = "tv_series.png", NavigationItemTitle = "H o m e", NavigationItemSubItems = HomeNavigationItemSubItems });
-            NavigationItems.Add(new NavigationItemModel() { NavigationItemIcon = "Recording.png", NavigationItemTitle = "H o m e", NavigationItemSubItems = HomeNavigationItemSubItems });
+            NavigationItems.Add(new NavigationItemModel() { NavigationItemIcon = "record.png", NavigationItemTitle = "H o m e", NavigationItemSubItems = null });
 
 
         }
