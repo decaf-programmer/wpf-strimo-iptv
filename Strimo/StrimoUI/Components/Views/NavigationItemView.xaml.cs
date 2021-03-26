@@ -1,4 +1,5 @@
-﻿using StrimoUI.ViewModels.Content;
+﻿using StrimoLibrary.Models;
+using StrimoUI.ViewModels.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace StrimoUI.Views.Content
     /// </summary>
     public partial class NavigationItemView : UserControl
     {
-        public NavigationItemView(ItemMenu itemMenu)
+        public NavigationItemView(ItemMenuModel itemMenu)
         {
             InitializeComponent();
 

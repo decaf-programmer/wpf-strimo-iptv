@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StrimoUI.Views.Content"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080">
     <Grid>
         <Grid HorizontalAlignment="Left" x:Name="NavigationPanel" Width="82" Background="{DynamicResource Black_200}">
@@ -28,7 +29,12 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Grid.Triggers>
-            <Grid Height="120" VerticalAlignment="Top" Margin="0 32 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="155"/>
+                <RowDefinition Height="884*" />
+                <RowDefinition Height="41" />
+            </Grid.RowDefinitions>
+            <Grid VerticalAlignment="Top" Margin="0 32 0 0" Grid.Row="0" Height="120">
                 <TextBlock Grid.Row="1" Grid.Column ="0" Margin="82,82,0,0" Text="S T R I M O" Foreground="#808182"
                            FontSize="25" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock.Effect>
@@ -37,10 +43,18 @@
                 </TextBlock>
                 <Image Source="/StrimoUI;component/Resources/brand_logo.png" Width="50.55" VerticalAlignment="Center"/>
             </Grid>
-            <ScrollViewer HorizontalAlignment="Center" HorizontalScrollBarVisibility="Disabled"  
-                          VerticalAlignment="Center" VerticalScrollBarVisibility="Disabled">
-                <StackPanel x:Name="NavigationMenu" Margin="10"/>
-            </ScrollViewer>
+            <Grid Grid.Row="1" Background="Transparent">
+                <ItemsControl x:Name="NavigationItemsControl" ItemsSource="{Binding NavigationMenuItems}" VerticalAlignment="Center"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" BorderBrush="Transparent">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl cal:View.Model="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <Grid Grid.Row="2">
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

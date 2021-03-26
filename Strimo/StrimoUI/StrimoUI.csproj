@@ -109,8 +109,6 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ViewModels\Content\ContentConductorViewModel.cs" />
     <Compile Include="ViewModels\Content\HomeViewModel.cs" />
-    <Compile Include="ViewModels\Content\ItemMenu.cs" />
-    <Compile Include="ViewModels\Content\SubItem.cs" />
     <Compile Include="ViewModels\Login\LoadAccountViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginConductorViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginPageViewModel.cs" />
@@ -121,7 +119,7 @@
     <Compile Include="Views\Content\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Content\NavigationItemView.xaml.cs">
+    <Compile Include="Components\Views\NavigationItemView.xaml.cs">
       <DependentUpon>NavigationItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login\LoadAccountView.xaml.cs">
@@ -198,7 +196,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Content\NavigationItemView.xaml">
+    <Page Include="Components\Views\NavigationItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -375,6 +373,8 @@
       <Name>StrimoLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Components\ViewModels\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

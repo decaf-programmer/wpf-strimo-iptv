@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace StrimoUI.ViewModels.Content
+namespace StrimoLibrary.Models
 {
-    public class ItemMenu
+    public class ItemMenuModel
     {
-        public ItemMenu(string header, List<SubItem> subItems, string imageName)
+        public ItemMenuModel(string header, List<SubItemModel> subItems, string imageName)
         {
             Header = header;
             SubItems = subItems;
             ImageName = imageName;
         }
 
-        public ItemMenu(string header, UserControl screen, string imageName)
+        public ItemMenuModel(string header, UserControl screen, string imageName)
         {
             Header = header;
             Screen = screen;
@@ -25,7 +25,7 @@ namespace StrimoUI.ViewModels.Content
 
         public string Header { get; set; }
         public string ImageName { get; set; }
-        public List<SubItem> SubItems { get; set; }
+        public List<SubItemModel> SubItems { get; set; }
         public UserControl Screen { get; set; }
     }
 }

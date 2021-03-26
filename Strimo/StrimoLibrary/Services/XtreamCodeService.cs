@@ -130,6 +130,7 @@ namespace StrimoLibrary.Services
                 }
             } catch(WebException e)
             {
+                Console.WriteLine(e);
                 return "Error";
             }
         }
