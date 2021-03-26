@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StrimoUI.ViewModels.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,44 @@ namespace StrimoUI.Views.Content
         public HomeView()
         {
             InitializeComponent();
+
+            var homeMenuRegister = new List<SubItem>();
+            homeMenuRegister.Add(new SubItem("Customer"));
+            homeMenuRegister.Add(new SubItem("Providers"));
+
+            var item0 = new ItemMenu("Register", homeMenuRegister, "home.png");
+
+            var livetvMenuRegister = new List<SubItem>();
+            livetvMenuRegister.Add(new SubItem("Customer"));
+            livetvMenuRegister.Add(new SubItem("Providers"));
+
+            var item1 = new ItemMenu("Register", livetvMenuRegister, "home.png");
+
+            var movieMenuRegister = new List<SubItem>();
+            movieMenuRegister.Add(new SubItem("Customer"));
+            movieMenuRegister.Add(new SubItem("Providers"));
+
+            var item2 = new ItemMenu("Register", movieMenuRegister, "home.png");
+
+            var favoriteMenuRegister = new List<SubItem>();
+            favoriteMenuRegister.Add(new SubItem("Customer"));
+            favoriteMenuRegister.Add(new SubItem("Providers"));
+
+            var item3 = new ItemMenu("Register", favoriteMenuRegister, "home.png");
+
+            var recordMenuRegister = new List<SubItem>();
+            recordMenuRegister.Add(new SubItem("Customer"));
+            recordMenuRegister.Add(new SubItem("Providers"));
+
+            var item4 = new ItemMenu("Register", recordMenuRegister, "home.png");
+
+            var item5 = new ItemMenu("Dashboard", new UserControl(), "dashboard.png");
+
+            NavigationMenu.Children.Add(new NavigationItemView(item0));
+            NavigationMenu.Children.Add(new NavigationItemView(item1));
+            NavigationMenu.Children.Add(new NavigationItemView(item2));
+            NavigationMenu.Children.Add(new NavigationItemView(item3));
+            NavigationMenu.Children.Add(new NavigationItemView(item4));
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)

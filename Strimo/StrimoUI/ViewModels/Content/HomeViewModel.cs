@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace StrimoUI.ViewModels.Content
 {
@@ -13,6 +14,10 @@ namespace StrimoUI.ViewModels.Content
         public HomeViewModel(IEventAggregator _eventAggregator)
         {
             eventAggregator = _eventAggregator;
+
+            
+
+            
         }
 
 
