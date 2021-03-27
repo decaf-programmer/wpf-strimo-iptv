@@ -20,6 +20,7 @@ namespace StrimoUI.Dialogs.References
             }
             catch(Exception e)
             {
+                Console.WriteLine(e);
                 window.Close();
             }
             return viewModel.DialogResult;

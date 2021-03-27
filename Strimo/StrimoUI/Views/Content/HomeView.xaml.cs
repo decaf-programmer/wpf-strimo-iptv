@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StrimoLibrary.Models;
+using StrimoUI.ViewModels.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace StrimoUI.Views.Content
         public HomeView()
         {
             InitializeComponent();
+
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
