@@ -7,10 +7,18 @@
              xmlns:content="clr-namespace:StrimoUI.ViewModels.Content" 
              d:DataContext="{d:DesignInstance Type=content:NavigationItemViewModel}"
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
+    </UserControl.Resources>
     <Grid>
         <Image Source="{Binding ImageName}" Width="25" Height="22" Margin="0 0 0 22" />
-        <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" Padding="37 14" FontSize="15" Foreground="White" />
-        <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" IsExpanded="False" Width="210" HorizontalAlignment="Right" Background="{x:Null}" Foreground="White">
+        <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" 
+                     Visibility="{Binding ListViewItemVisible, Converter={StaticResource BoolToVisConverter}}"
+                     Padding="37 14" FontSize="15" Foreground="White" />
+        <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" 
+                  Visibility="{Binding ExpanderVisible, Converter={StaticResource BoolToVisConverter}}"
+                  IsExpanded="False" Width="210" HorizontalAlignment="Right" 
+                  Background="{x:Null}" Foreground="White">
             <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemTemplate>
                     <DataTemplate>
