@@ -5,15 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace StrimoLibrary.Models
+namespace StrimoUI.Models
 {
     public class SubItemModel
     {
-        public SubItemModel(string name, UserControl screen = null)
-        {
-            Name = name;
-            Screen = screen;
-        }
+
         public string Name { get; set; }
         public UserControl Screen { get; set; }
     }

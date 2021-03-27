@@ -1,6 +1,4 @@
-﻿using StrimoLibrary.Models;
-using StrimoUI.ViewModels.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,14 +20,9 @@ namespace StrimoUI.Views.Content
     /// </summary>
     public partial class NavigationItemView : UserControl
     {
-        public NavigationItemView(ItemMenuModel itemMenu)
+        public NavigationItemView()
         {
             InitializeComponent();
-
-            ExpanderMenu.Visibility = itemMenu.SubItems == null ? Visibility.Collapsed : Visibility.Visible;
-            ListViewItemMenu.Visibility = itemMenu.SubItems == null ? Visibility.Visible : Visibility.Collapsed;
-
-            this.DataContext = itemMenu;
         }
     }
 }

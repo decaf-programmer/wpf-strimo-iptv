@@ -45,8 +45,6 @@
   <ItemGroup>
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CategoryType.cs" />
-    <Compile Include="Models\ItemMenuModel.cs" />
-    <Compile Include="Models\SubItemModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WebsiteDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
