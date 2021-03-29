@@ -37,7 +37,7 @@ namespace StrimoUI
             simpleContainer.PerRequest<SelectAccountViewModel>();
             simpleContainer.PerRequest<ContentConductorViewModel>();
             simpleContainer.PerRequest<HomeViewModel>();
-
+            simpleContainer.PerRequest<NavigationItemViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

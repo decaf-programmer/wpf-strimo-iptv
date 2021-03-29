@@ -1,6 +1,7 @@
 ﻿using StrimoLibrary.Models;
 using StrimoUI.ViewModels.Content;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,7 @@ namespace StrimoUI.Views.Content
                     break;
             }
         }
+
 
         private void ListViewItem_MouseLeave(object sender, MouseEventArgs e)
         {

@@ -1,6 +1,7 @@
 ﻿
 using Caliburn.Micro;
 using StrimoLibrary.Models;
+using StrimoUI.Messages;
 using StrimoUI.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace StrimoUI.ViewModels.Content
@@ -31,6 +33,8 @@ namespace StrimoUI.ViewModels.Content
             }
         }
 
+        
+
         public HomeViewModel(IEventAggregator _eventAggregator)
         {
             eventAggregator = _eventAggregator;
@@ -45,8 +49,28 @@ namespace StrimoUI.ViewModels.Content
 
             NavigationMenuItems = new ObservableCollection<NavigationItemViewModel>() {
                new NavigationItemViewModel("H O M E", "home.png", null, new UserControl()),
-               new NavigationItemViewModel("L I V E", "live.png", liveSubItems, new UserControl())
+               new NavigationItemViewModel("L I V E", "monitor.png", liveSubItems, new UserControl()),
+               new NavigationItemViewModel("L I V E", "tv_series.png", liveSubItems, new UserControl())
              };
         }
+
+        public void NavigationMouseEnter()
+        {
+            foreach (NavigationItemViewModel item in NavigationMenuItems)
+            {
+                item.ExpanderVisible = item.SubItems == null ? false : true;
+                item.ListViewItemVisible = item.SubItems == null ? true : false;
+            }
+        }
+
+        public void NaivgationMouseLeave(){
+            foreach (NavigationItemViewModel item in NavigationMenuItems)
+            {
+                item.ExpanderVisible = false;
+                item.ListViewItemVisible = false;
+            }
+        }
+
+
     }
 }
