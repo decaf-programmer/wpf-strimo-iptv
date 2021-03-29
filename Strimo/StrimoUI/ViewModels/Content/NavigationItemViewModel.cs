@@ -1,10 +1,12 @@
 ﻿using Caliburn.Micro;
+using StrimoUI.Messages;
 using StrimoUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace StrimoUI.ViewModels.Content
@@ -29,7 +31,7 @@ namespace StrimoUI.ViewModels.Content
         private string _imageName;
         public string ImageName
         {
-            get { return _imageName; }
+            get { return $"/StrimoUI;component/Resources/{_imageName}"; }
             set
             {
                 if (_imageName == value)
@@ -100,16 +102,25 @@ namespace StrimoUI.ViewModels.Content
             }
         }
 
-
-
         public NavigationItemViewModel(string header, string imageName, List<SubItemModel> subItems, UserControl screen){
             Header = header;
             ImageName = imageName;
             SubItems = subItems;
             Screen = screen;
-
-            ExpanderVisible = SubItems == null ? false : true;
+            
             ListViewItemVisible = SubItems == null ? true : false;
+            ExpanderVisible = SubItems == null ? false : true;
+            
+        }
+
+        public void MenuHeaderShow(){
+            ListViewItemVisible = SubItems == null ? true : false;
+            ExpanderVisible = SubItems == null ? false : true;
+        }
+
+        public void MenuHeaderHide(){
+            ListViewItemVisible = false;
+            ExpanderVisible = false;
         }
     }
 }
