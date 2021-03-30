@@ -6,16 +6,21 @@
              xmlns:local="clr-namespace:StrimoUI.Views.Content" 
              xmlns:content="clr-namespace:StrimoUI.ViewModels.Content" 
              d:DataContext="{d:DesignInstance Type=content:NavigationItemViewModel}"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" >
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </UserControl.Resources>
-    <StackPanel Margin="0 0 0 16" HorizontalAlignment="Left">
-        <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16">
+    <StackPanel Margin="0 0 0 16" HorizontalAlignment="Left" >
+        <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16" 
+            cal:Message.Attach="[MouseEnter] = [NavigationMenuItemMouseEnter()]; [MouseLeave] = [NavigationMenuItemMouseLeave()]">
             <Image Source="{Binding ImageName}" Width="25" Height="22" Margin="30 0 0 0" />
             <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" 
                          Visibility="{Binding ListViewItemVisible, Converter={StaticResource BoolToVisConverter}}"
-                         FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" HorizontalContentAlignment="Center" Padding="20 0"/>
+                         FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" 
+                         HorizontalContentAlignment="Center" Padding="25 0"
+                         Foreground="{Binding TitleForegroundColor}"
+                         />
             <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" 
                       Visibility="{Binding ExpanderVisible, Converter={StaticResource BoolToVisConverter}}"
                       IsExpanded="False" Width="210" HorizontalAlignment="Right" 

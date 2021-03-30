@@ -7,8 +7,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080">
     <Grid>
-        <Grid HorizontalAlignment="Left" x:Name="NavigationPanel" Width="82" Background="{DynamicResource Black_200}"
-             cal:Message.Attach="[MouseEnter] = [NavigationMouseEnter()]" >
+        <Grid HorizontalAlignment="Left" x:Name="NavigationPanel" Width="82" Background="{DynamicResource Black_200}">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="24" Direction="0" ShadowDepth="5" RenderingBias="Quality"></DropShadowEffect>
             </Grid.Effect>
