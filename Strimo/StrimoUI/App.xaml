@@ -11,6 +11,7 @@
                 </ResourceDictionary>
                 <ResourceDictionary Source="Styles/ColorStyle.xaml" />
                 <ResourceDictionary Source="Styles/ControlStyle.xaml" />
+                <ResourceDictionary Source="Styles/CustomExpander.xaml" />
                 <ResourceDictionary Source="Styles/WindowStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type alert:AlertDialogViewModel}">

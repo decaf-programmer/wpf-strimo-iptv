@@ -19,13 +19,28 @@
                          Visibility="{Binding ListViewItemVisible, Converter={StaticResource BoolToVisConverter}}"
                          FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" 
                          HorizontalContentAlignment="Center" Padding="25 0"
-                         Foreground="{Binding TitleForegroundColor}"
-                         />
+                         Foreground="{Binding TitleForegroundColor}" />
             <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" 
                       Visibility="{Binding ExpanderVisible, Converter={StaticResource BoolToVisConverter}}"
                       IsExpanded="False" Width="210" HorizontalAlignment="Right" 
-                      Background="{x:Null}" Foreground="White">
-                <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                      Background="{x:Null}" Foreground="{Binding TitleForegroundColor}" 
+                      FontSize="20" Padding="25 0"
+                      Style="{DynamicResource ArrowlessExpanderTemplate}">
+                <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" 
+                          Background="Transparent" Foreground="White" BorderThickness="0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          Height="210">
+                    
+                    <ListView.ItemContainerStyle>
+                        <Style>
+                            <Style.Triggers>
+                                <Trigger Property="Control.IsMouseOver" Value="True">
+                                    <Setter Property="Control.Background" Value="Transparent" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=Name}" Padding="20 5" />

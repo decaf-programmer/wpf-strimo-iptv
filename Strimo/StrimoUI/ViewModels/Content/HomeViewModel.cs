@@ -49,8 +49,8 @@ namespace StrimoUI.ViewModels.Content
 
             NavigationMenuItems = new ObservableCollection<NavigationItemViewModel>() {
                new NavigationItemViewModel("H O M E", "home", null, new UserControl()),
-               new NavigationItemViewModel("L I V E", "monitor", liveSubItems, new UserControl()),
-               new NavigationItemViewModel("L I V E", "tv_series", liveSubItems, new UserControl())
+               new NavigationItemViewModel("L I V E  T V", "monitor", liveSubItems, new UserControl()),
+               new NavigationItemViewModel("M O V I E S", "movie", liveSubItems, new UserControl())
              };
         }
     }
