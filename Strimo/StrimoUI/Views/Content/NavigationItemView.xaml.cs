@@ -39,5 +39,10 @@ namespace StrimoUI.Views.Content
             Grid subMenuBar = (Grid)subMenu.Children[0];
             subMenuBar.Visibility = Visibility.Hidden;
         }
+
+        private void Expander_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
     }
 }

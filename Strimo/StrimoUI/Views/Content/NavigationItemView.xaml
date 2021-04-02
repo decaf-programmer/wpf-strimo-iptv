@@ -12,9 +12,9 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </UserControl.Resources>
     <StackPanel Margin="0 0 0 16" HorizontalAlignment="Left" >
-        <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16" 
+        <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16" VerticalAlignment="Top"
             cal:Message.Attach="[MouseEnter] = [NavigationMenuItemMouseEnter()]; [MouseLeave] = [NavigationMenuItemMouseLeave()]">
-            <Image Source="{Binding ImageName}" Width="25" Height="22" Margin="30 0 0 0" />
+            <Image x:Name="MenuIcon" Source="{Binding ImageName}" Width="25" Height="22" Margin="30 0 0 0" VerticalAlignment="Top"/>
             <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" 
                          Visibility="{Binding ListViewItemVisible, Converter={StaticResource BoolToVisConverter}}"
                          FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" 
@@ -25,7 +25,8 @@
                       IsExpanded="False" Width="210" HorizontalAlignment="Right" 
                       Background="{x:Null}" Foreground="{Binding TitleForegroundColor}" 
                       FontSize="20" Padding="25 0"
-                      Style="{DynamicResource ArrowlessExpanderTemplate}">
+                      Style="{DynamicResource ArrowlessExpanderTemplate}"
+                      PreviewMouseLeftButtonDown="Expander_PreviewMouseLeftButtonDown">
                 <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" 
                           Background="Transparent" Foreground="White" BorderThickness="0"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
