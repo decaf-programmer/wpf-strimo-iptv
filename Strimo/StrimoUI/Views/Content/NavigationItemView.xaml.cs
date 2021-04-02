@@ -26,5 +26,18 @@ namespace StrimoUI.Views.Content
             InitializeComponent();
         }
 
+        public void SubMenuMouseEnter(Object sender, MouseEventArgs e)
+        {
+            Grid subMenu = (Grid)sender;
+            Grid subMenuBar = (Grid)subMenu.Children[0];
+            subMenuBar.Visibility = Visibility.Visible;
+        }
+
+        public void SubMenuMouseLeave(Object sender, MouseEventArgs e)
+        {
+            Grid subMenu = (Grid)sender;
+            Grid subMenuBar = (Grid)subMenu.Children[0];
+            subMenuBar.Visibility = Visibility.Hidden;
+        }
     }
 }

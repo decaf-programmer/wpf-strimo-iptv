@@ -60,8 +60,6 @@
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter Property="Background" Value="Transparent"/>
                                                 <Setter Property="Foreground" Value="{DynamicResource White_200}"/>
-                                                <Setter Property="BorderBrush" Value="{DynamicResource White_200}"/>
-                                                <Setter Property="BorderThickness" Value="2 0 0 0" />
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -71,7 +69,16 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=Name}" Padding="20 5" />
+                            <Grid MouseEnter="SubMenuMouseEnter" MouseLeave="SubMenuMouseLeave">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Name="SubMenuItemBar" Background="{DynamicResource White_200}" Margin="0 10 0 8" Visibility="Hidden"/>
+                                <Grid Grid.Column="1" Margin="6 0">
+                                    <TextBlock Text="{Binding Path=Name}" Padding="0 5" />
+                                </Grid>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
