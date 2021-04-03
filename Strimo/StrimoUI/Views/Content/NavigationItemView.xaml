@@ -6,24 +6,80 @@
              xmlns:local="clr-namespace:StrimoUI.Views.Content" 
              xmlns:content="clr-namespace:StrimoUI.ViewModels.Content" 
              d:DataContext="{d:DesignInstance Type=content:NavigationItemViewModel}"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" >
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </UserControl.Resources>
-    <StackPanel Margin="0 0 0 16" HorizontalAlignment="Left">
-        <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16">
-            <Image Source="{Binding ImageName}" Width="25" Height="22" Margin="30 0 0 0" />
+    <StackPanel Margin="0 0 0 16" HorizontalAlignment="Left" >
+        <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16" VerticalAlignment="Top"
+            cal:Message.Attach="[MouseEnter] = [NavigationMenuItemMouseEnter()]; [MouseLeave] = [NavigationMenuItemMouseLeave()]">
+            <Image x:Name="MenuIcon" Source="{Binding ImageName}" Width="25" Height="22" Margin="30 0 0 0" VerticalAlignment="Top"/>
             <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" 
                          Visibility="{Binding ListViewItemVisible, Converter={StaticResource BoolToVisConverter}}"
-                         FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" HorizontalContentAlignment="Center" Padding="20 0"/>
+                         FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" 
+                         HorizontalContentAlignment="Center" Padding="25 0"
+                         Foreground="{Binding TitleForegroundColor}" />
             <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" 
                       Visibility="{Binding ExpanderVisible, Converter={StaticResource BoolToVisConverter}}"
                       IsExpanded="False" Width="210" HorizontalAlignment="Right" 
-                      Background="{x:Null}" Foreground="White">
-                <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                      Background="{x:Null}" Foreground="{Binding TitleForegroundColor}" 
+                      FontSize="20" Padding="25 0"
+                      Style="{DynamicResource ArrowlessExpanderTemplate}"
+                      PreviewMouseLeftButtonDown="Expander_PreviewMouseLeftButtonDown">
+                <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" 
+                          Background="Transparent" Foreground="White" BorderThickness="0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          Height="210">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="#808182" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="true">
+                                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                            </Trigger>
+                                            <MultiTrigger>
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true"/>
+                                                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}}"/>
+                                            </MultiTrigger>
+                                            <Trigger Property="IsEnabled" Value="false">
+                                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource White_200}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=Name}" Padding="20 5" />
+                            <Grid MouseEnter="SubMenuMouseEnter" MouseLeave="SubMenuMouseLeave">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Name="SubMenuItemBar" Background="{DynamicResource White_200}" Margin="0 10 0 8" Visibility="Hidden"/>
+                                <Grid Grid.Column="1" Margin="6 0">
+                                    <TextBlock Text="{Binding Path=Name}" Padding="0 5" />
+                                </Grid>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

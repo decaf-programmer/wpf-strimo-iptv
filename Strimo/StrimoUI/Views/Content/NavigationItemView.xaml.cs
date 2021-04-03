@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -23,6 +24,25 @@ namespace StrimoUI.Views.Content
         public NavigationItemView()
         {
             InitializeComponent();
+        }
+
+        public void SubMenuMouseEnter(Object sender, MouseEventArgs e)
+        {
+            Grid subMenu = (Grid)sender;
+            Grid subMenuBar = (Grid)subMenu.Children[0];
+            subMenuBar.Visibility = Visibility.Visible;
+        }
+
+        public void SubMenuMouseLeave(Object sender, MouseEventArgs e)
+        {
+            Grid subMenu = (Grid)sender;
+            Grid subMenuBar = (Grid)subMenu.Children[0];
+            subMenuBar.Visibility = Visibility.Hidden;
+        }
+
+        private void Expander_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
         }
     }
 }

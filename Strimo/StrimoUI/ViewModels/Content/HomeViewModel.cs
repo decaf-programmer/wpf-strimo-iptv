@@ -48,29 +48,10 @@ namespace StrimoUI.ViewModels.Content
             liveSubItems.Add(new SubItemModel() { Name = "Italy", Screen = new UserControl() });
 
             NavigationMenuItems = new ObservableCollection<NavigationItemViewModel>() {
-               new NavigationItemViewModel("H O M E", "home.png", null, new UserControl()),
-               new NavigationItemViewModel("L I V E", "monitor.png", liveSubItems, new UserControl()),
-               new NavigationItemViewModel("L I V E", "tv_series.png", liveSubItems, new UserControl())
+               new NavigationItemViewModel("H O M E", "home", null, new UserControl()),
+               new NavigationItemViewModel("L I V E  T V", "monitor", liveSubItems, new UserControl()),
+               new NavigationItemViewModel("M O V I E S", "movie", liveSubItems, new UserControl())
              };
         }
-
-        public void NavigationMouseEnter()
-        {
-            foreach (NavigationItemViewModel item in NavigationMenuItems)
-            {
-                item.ExpanderVisible = item.SubItems == null ? false : true;
-                item.ListViewItemVisible = item.SubItems == null ? true : false;
-            }
-        }
-
-        public void NaivgationMouseLeave(){
-            foreach (NavigationItemViewModel item in NavigationMenuItems)
-            {
-                item.ExpanderVisible = false;
-                item.ListViewItemVisible = false;
-            }
-        }
-
-
     }
 }
