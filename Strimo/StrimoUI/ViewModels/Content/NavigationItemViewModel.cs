@@ -172,13 +172,6 @@ namespace StrimoUI.ViewModels.Content
                 ImageName = $"{iconName.Split('_')[0]}";
                 TitleForegroundColor = ((SolidColorBrush)new BrushConverter().ConvertFrom("#808182"));
             }
-            
-
-           
-
         }
-
-
-        
     }
 }

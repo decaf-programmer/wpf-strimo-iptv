@@ -44,42 +44,23 @@ namespace StrimoLibrary.Services
 
         }
 
-        //public static async Task<List<List<CategoryModel>>> DownloadCategories(string username, string password, List<string> categoryActionTypes)
-        //{
-        //    List<Task<List<CategoryModel>>> categoryDownloadTasks = new List<Task<List<CategoryModel>>>();
-
-        //    foreach(string categoryActionType in categoryActionTypes)
-        //    {
-        //        categoryDownloadTasks.Add(ReadCategories(username, password, categoryActionType));
-        //    }
-
-        //    var categoriesListArray = await Task.WhenAll(categoryDownloadTasks);
-
-        //    //return new List<CategoryModel>(results);
-
-        //    List<List<CategoryModel>> categoriesLists = categoriesListArray.ToList();
-        //    return categoriesLists;
-        //}
-
-        public static async Task<List<List<CategoryModel>>> DownloadCategories(string username, string password, List<string> categoryActionTypes, IProgress<int> progress)
+        public static async Task<List<List<CategoryModel>>> DownloadAllCategories(string username, string password, List<string> categoryActionTypes, IProgress<int> progress)
         {
             List<List<CategoryModel>> categoryModels = new List<List<CategoryModel>>();
 
             int report = 0;
             foreach(string categoryActionType in categoryActionTypes)
             {
-                var results = await ReadCategories(username, password, categoryActionType);
+                var results = await ReadTypeCategories(username, password, categoryActionType);
                 categoryModels.Add(results);
 
                 report = (categoryModels.Count * 100) / categoryActionTypes.Count;
                 progress.Report(report);
             }
-
             return categoryModels;
-
         }
 
-        private static async Task<List<CategoryModel>> ReadCategories(string username, string password, string categoryAction)
+        private static async Task<List<CategoryModel>> ReadTypeCategories(string username, string password, string categoryAction)
         {
             var categoryRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action={categoryAction}";
 
@@ -113,7 +94,7 @@ namespace StrimoLibrary.Services
         }
 
 
-        public static string ReadCategory(string username, string password, string action)
+        public static string ReadCategoryByType(string username, string password, string action)
         {
             var request_url = $"{server_url}/player_api.php?username={username}&password={password}&action={action}";
 

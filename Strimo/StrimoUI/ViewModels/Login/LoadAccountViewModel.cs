@@ -72,14 +72,14 @@ namespace StrimoUI.ViewModels.Login
             Progress<int> progress = new Progress<int>();
             progress.ProgressChanged += ReportProgress;
 
-            
-
             List<string> categoryActions = new List<string>();
             categoryActions.Add("get_live_categories");
             categoryActions.Add("get_series_categories");
             categoryActions.Add("get_vod_categories");
 
-            List<List<CategoryModel>> categories = await XtreamCodeService.DownloadCategories(username, password, categoryActions, progress);
+            List<List<CategoryModel>> allCategories = await XtreamCodeService.DownloadAllCategories(username, password, categoryActions, progress);
+
+            
         }
 
         private void ReportProgress(object sender, int e)

@@ -35,8 +35,8 @@ namespace StrimoUI
             base.OnActivate();
 
             eventAggregator.Subscribe(this);
-            //ActivateItem(loginConductorViewModel);
-            ActivateItem(contentConductorViewModel);
+            ActivateItem(loginConductorViewModel);
+            //ActivateItem(contentConductorViewModel);
         }
 
         protected override void OnDeactivate(bool close)
