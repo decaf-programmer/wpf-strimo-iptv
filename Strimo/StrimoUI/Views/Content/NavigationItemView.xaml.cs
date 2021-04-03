@@ -40,9 +40,8 @@ namespace StrimoUI.Views.Content
             subMenuBar.Visibility = Visibility.Hidden;
         }
 
-        private void Expander_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
+
+
+       
     }
 }

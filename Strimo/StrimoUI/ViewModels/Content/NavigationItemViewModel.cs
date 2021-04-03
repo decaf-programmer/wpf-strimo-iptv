@@ -115,11 +115,29 @@ namespace StrimoUI.ViewModels.Content
                 NotifyOfPropertyChange(() => TitleForegroundColor);
             }
         }
+
+        private Boolean _isExpanded;
+        public Boolean IsExpanded
+        {
+            get
+            {
+                return _isExpanded;
+            }
+            set
+            {
+                _isExpanded = value;
+                NotifyOfPropertyChange(() => IsExpanded);
+            }
+        }
+
+
         public NavigationItemViewModel(string header, string imageName, List<SubItemModel> subItems, UserControl screen){
             Header = header;
             ImageName = imageName;
             SubItems = subItems;
             Screen = screen;
+
+            IsExpanded = false;
 
             ListViewItemVisible = SubItems == null ? true : false;
             ExpanderVisible = SubItems == null ? false : true;
@@ -140,17 +158,26 @@ namespace StrimoUI.ViewModels.Content
         public void NavigationMenuItemMouseEnter()
         {
             string iconName = extractIconStr(ImageName);
-            ImageName = $"{iconName}_active";
+            ImageName = $"{iconName.Split('_')[0]}_active";
             TitleForegroundColor = ((SolidColorBrush)new BrushConverter().ConvertFrom("#F5F5F5"));
+
+            
         }
 
         public void NavigationMenuItemMouseLeave()
         {
-            string iconName = extractIconStr(ImageName);
+            if (!IsExpanded)
+            {
+                string iconName = extractIconStr(ImageName);
+                ImageName = $"{iconName.Split('_')[0]}";
+                TitleForegroundColor = ((SolidColorBrush)new BrushConverter().ConvertFrom("#808182"));
+            }
             
-            ImageName = $"{iconName.Split('_')[0]}";
-            TitleForegroundColor = ((SolidColorBrush)new BrushConverter().ConvertFrom("#808182"));
+
+           
+
         }
+
 
         
     }
