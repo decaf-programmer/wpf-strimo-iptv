@@ -8,15 +8,13 @@
              d:DataContext="{d:DesignInstance Type=content:NavigationItemViewModel}"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" >
-    
-    
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"  />
     </UserControl.Resources>
     <StackPanel Margin="0 0 0 12" HorizontalAlignment="Left" >
         <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16" VerticalAlignment="Top"
-            cal:Message.Attach="[MouseEnter] = [NavigationMenuItemMouseEnter()]; [MouseLeave] = [NavigationMenuItemMouseLeave()]; [MouseDown] = [NavigationMenuItemMouseDown()]">
-            <Image x:Name="MenuIcon" Source="{Binding ImageName}" Width="25" Height="22" Margin="30 5 0 0" VerticalAlignment="Top"/>
+            cal:Message.Attach="[MouseEnter] = [NavigationMenuItemMouseEnter()]; [MouseLeave] = [NavigationMenuItemMouseLeave()]">
+            <Image x:Name="MenuIcon" Source="{Binding ImageName}" Width="25" Height="22" Margin="30 0 0 0" VerticalAlignment="Top"/>
             <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" 
                          Visibility="{Binding ListViewItemVisible, Converter={StaticResource BoolToVisConverter}}"
                          FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" 
