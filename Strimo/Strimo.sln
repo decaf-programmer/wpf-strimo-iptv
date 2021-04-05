@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoUI", "StrimoUI\StrimoUI.csproj", "{EDBDBD80-F2EB-4364-B0C8-399C508ADA49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoLibrary", "StrimoLibrary\StrimoLibrary.csproj", "{B6036171-9283-4B19-A17E-5205B6FA300C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoUILibrary", "StrimoLibrary\StrimoUILibrary.csproj", "{B6036171-9283-4B19-A17E-5205B6FA300C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

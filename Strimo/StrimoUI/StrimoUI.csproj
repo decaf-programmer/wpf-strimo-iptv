@@ -376,9 +376,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StrimoLibrary\StrimoLibrary.csproj">
+    <ProjectReference Include="..\StrimoLibrary\StrimoUILibrary.csproj">
       <Project>{b6036171-9283-4b19-a17e-5205b6fa300c}</Project>
-      <Name>StrimoLibrary</Name>
+      <Name>StrimoUILibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
