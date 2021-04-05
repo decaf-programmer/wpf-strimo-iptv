@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoUI", "StrimoUI\Strimo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoUILibrary", "StrimoLibrary\StrimoUILibrary.csproj", "{B6036171-9283-4B19-A17E-5205B6FA300C}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "StrimoLocalDB", "StrimoLocalDB\StrimoLocalDB.sqlproj", "{8205BC86-D28D-45C1-B654-FAE89F3C95D6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoLocalDBLibrary", "StrimoDBLibrary\StrimoLocalDBLibrary.csproj", "{8BE8B5AC-6735-40BF-B8D2-84403F88D7EE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrimoLocalDBManager", "StrimoDBManager\StrimoLocalDBManager.csproj", "{B25FEA69-87A0-43AC-B407-2B167DC9AF7A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,20 +21,6 @@ Global
 		{B6036171-9283-4B19-A17E-5205B6FA300C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6036171-9283-4B19-A17E-5205B6FA300C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6036171-9283-4B19-A17E-5205B6FA300C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8205BC86-D28D-45C1-B654-FAE89F3C95D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8205BC86-D28D-45C1-B654-FAE89F3C95D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8205BC86-D28D-45C1-B654-FAE89F3C95D6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{8205BC86-D28D-45C1-B654-FAE89F3C95D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8205BC86-D28D-45C1-B654-FAE89F3C95D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8205BC86-D28D-45C1-B654-FAE89F3C95D6}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{8BE8B5AC-6735-40BF-B8D2-84403F88D7EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BE8B5AC-6735-40BF-B8D2-84403F88D7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BE8B5AC-6735-40BF-B8D2-84403F88D7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BE8B5AC-6735-40BF-B8D2-84403F88D7EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B25FEA69-87A0-43AC-B407-2B167DC9AF7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B25FEA69-87A0-43AC-B407-2B167DC9AF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B25FEA69-87A0-43AC-B407-2B167DC9AF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B25FEA69-87A0-43AC-B407-2B167DC9AF7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
