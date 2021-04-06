@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,20 @@ namespace StrimoUI
         public ShellView()
         {
             InitializeComponent();
+        }
+
+        void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+
+            string msg = "Do you want to close the window?";
+            MessageBoxResult result = MessageBox.Show(msg, "Close Window", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            } else
+            {
+                
+            }
         }
     }
 }

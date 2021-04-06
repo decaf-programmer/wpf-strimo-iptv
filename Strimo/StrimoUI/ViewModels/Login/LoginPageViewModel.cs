@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using Newtonsoft.Json.Linq;
+using SQLite;
+using StrimoDBLibrary.Services;
 using StrimoLibrary.Models;
 using StrimoLibrary.Services;
 using StrimoUI.Dialogs.AlertDialog;
@@ -123,6 +125,16 @@ namespace StrimoUI.ViewModels.Login
                         }
 
                         GlobalVars.currentUserModel = authUserModel;
+
+                        DateTime currentDate = DateTime.Now;
+                        string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+                        DatabaseService.CreateDBFile();
+                        DatabaseService.CreateUserTable();
+                        DatabaseService.UpdateUser(authUserModel.username, authUserModel.password, 1, currentDateStr);
+
+                        
+
                         eventAggregator.PublishOnUIThread(new AuthSuccessMessage());
                     }
                 }
