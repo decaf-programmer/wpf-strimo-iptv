@@ -133,8 +133,6 @@ namespace StrimoUI.ViewModels.Login
                         DatabaseService.CreateUserTable();
                         DatabaseService.UpdateUser(authUserModel.username, authUserModel.password, 1, currentDateStr);
 
-                        
-
                         eventAggregator.PublishOnUIThread(new AuthSuccessMessage());
                     }
                 }
