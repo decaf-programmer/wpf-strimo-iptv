@@ -124,7 +124,7 @@ namespace StrimoUI.ViewModels.Login
                             authUserModel.allowed_output_formats.Add(format);
                         }
 
-                        GlobalVars.currentUserModel = authUserModel;
+                        GlobalVars.currentUser = authUserModel;
 
                         DateTime currentDate = DateTime.Now;
                         string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");

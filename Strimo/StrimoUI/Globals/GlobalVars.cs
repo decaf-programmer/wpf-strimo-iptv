@@ -9,6 +9,6 @@ namespace StrimoUI.Globals
 {
     public static class GlobalVars
     {
-        public static UserModel currentUserModel;
+        public static UserModel currentUser;
     }
 }

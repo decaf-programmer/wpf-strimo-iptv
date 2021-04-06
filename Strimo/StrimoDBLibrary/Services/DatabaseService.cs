@@ -100,7 +100,7 @@ namespace StrimoDBLibrary.Services
                     cmd.ExecuteNonQuery();
                 } else
                 {
-                    cmd.CommandText = $"Update User set lastLoginDate='{currentTime}' where username='{username}'";
+                    cmd.CommandText = $"Update User set username='{username}', password='{password}', loginStatus='{loginStatus}', lastLoginDate='{currentTime}' where username='{username}'";
                     cmd.ExecuteNonQuery();
                 }
             }

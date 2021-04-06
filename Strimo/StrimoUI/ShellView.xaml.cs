@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StrimoDBLibrary.Services;
+using StrimoUI.Globals;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -35,7 +37,14 @@ namespace StrimoUI
                 e.Cancel = true;
             } else
             {
-                
+                string currentUsername = GlobalVars.currentUser.username;
+                string currentPassword = GlobalVars.currentUser.password;
+
+
+                DateTime currentDate = DateTime.Now;
+                string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+                DatabaseService.UpdateUser(currentUsername, currentPassword, 0, currentDateStr);
             }
         }
     }

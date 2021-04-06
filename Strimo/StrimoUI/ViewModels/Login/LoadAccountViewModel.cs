@@ -49,10 +49,10 @@ namespace StrimoUI.ViewModels.Login
         {
             base.OnActivate();
 
-            if (GlobalVars.currentUserModel != null)
+            if (GlobalVars.currentUser != null)
             {
-                username = GlobalVars.currentUserModel.username;
-                password = GlobalVars.currentUserModel.password;
+                username = GlobalVars.currentUser.username;
+                password = GlobalVars.currentUser.password;
                 await DownloadData();
                 eventAggregator.PublishOnUIThread(new LoadedAccountMessage());
             } 
