@@ -12,5 +12,11 @@ namespace StrimoUI.Models
 
         public string Name { get; set; }
         public UserControl Screen { get; set; }
+
+
+        public string CategoryId { get; set; }
+        public int ParentId { get; set; }
+        public Enum CategoryType { get; set; }
+        
     }
 }

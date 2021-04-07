@@ -33,7 +33,7 @@ namespace StrimoUI.ViewModels.Login
             eventAggregator.Subscribe(this);
 
             List<UserDBModel> users = DatabaseService.GetLastUsers();
-            if (users != null)
+            if (users != null && users.Count != 0)
             {
                 ActivateItem(selectAccountVM);
             } else
