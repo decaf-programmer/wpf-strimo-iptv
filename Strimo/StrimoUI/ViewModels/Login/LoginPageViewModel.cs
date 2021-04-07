@@ -65,7 +65,6 @@ namespace StrimoUI.ViewModels.Login
 
         public void Login()
         {
-            string loginResponse = XtreamCodeService.Auth(Username, Password);
             if (Username.Equals("Username") || Password.Equals("Password"))
             {
                 openAlertDialog("WARNING", "YOU SHOULD INPUT USERNAME OR PASSWORD");

@@ -51,7 +51,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,0,0,16" cal:Message.Attach="[MouseDown] = [SelectAccount]">
+                        <Grid Margin="0,0,0,16" cal:Message.Attach="[MouseDown] = [SelectAccount($Source)]">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
@@ -61,7 +61,8 @@
                                 <Image Source="/StrimoUI;component/Resources/user.png" Width="119" Height="142" />
                             </Grid>
                             <Grid Grid.Row="1">
-                                <TextBlock Text="{Binding Path=username}" Foreground="{DynamicResource Gray_100}" FontSize="20" HorizontalAlignment="Center" Margin="0 16 0 0"/>
+                                <TextBlock x:Name="username" Text="{Binding Path=username}" Foreground="{DynamicResource Gray_100}" FontSize="20" HorizontalAlignment="Center" Margin="0 16 0 0"/>
+                                <TextBlock x:Name="password" Text="{Binding Path=password}" Visibility ="Hidden" Foreground="{DynamicResource Gray_100}" FontSize="20" HorizontalAlignment="Center" Margin="0 16 0 0"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>
