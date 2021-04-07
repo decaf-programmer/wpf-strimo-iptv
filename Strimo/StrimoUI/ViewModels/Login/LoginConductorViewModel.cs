@@ -1,4 +1,7 @@
 ﻿using Caliburn.Micro;
+using StrimoDBLibrary.Models;
+using StrimoDBLibrary.Services;
+using StrimoLibrary.Models;
 using StrimoUI.Messages;
 using System;
 using System.Collections.Generic;
@@ -29,7 +32,15 @@ namespace StrimoUI.ViewModels.Login
             base.OnActivate();
             eventAggregator.Subscribe(this);
 
-            ActivateItem(loginPageVM);
+            List<UserDBModel> users = DatabaseService.GetLastUsers();
+            if (users != null)
+            {
+                ActivateItem(selectAccountVM);
+            } else
+            {
+                ActivateItem(loginPageVM);
+            }
+
         }
 
         protected override void OnDeactivate(bool close)
@@ -40,6 +51,12 @@ namespace StrimoUI.ViewModels.Login
         public void Handle(AuthSuccessMessage message)
         {
             ActivateItem(loadAccountVM);
+        }
+
+        public UserModel getLastUsers()
+        {
+
+            return null;
         }
     }
 }

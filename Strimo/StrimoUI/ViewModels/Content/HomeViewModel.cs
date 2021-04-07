@@ -51,7 +51,7 @@ namespace StrimoUI.ViewModels.Content
                new NavigationItemViewModel("H O M E", "home", null, new UserControl()),
                new NavigationItemViewModel("L I V E  T V", "monitor", liveSubItems, new UserControl()),
                new NavigationItemViewModel("M O V I E S", "movie", liveSubItems, new UserControl())
-             };
+            };
         }
     }
 }

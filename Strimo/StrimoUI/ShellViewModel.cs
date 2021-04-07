@@ -1,4 +1,7 @@
 ﻿using Caliburn.Micro;
+using StrimoDBLibrary.Models;
+using StrimoDBLibrary.Services;
+using StrimoLibrary.Models;
 using StrimoUI.Messages;
 using StrimoUI.ViewModels.Content;
 using StrimoUI.ViewModels.Login;
@@ -36,7 +39,7 @@ namespace StrimoUI
 
             eventAggregator.Subscribe(this);
             ActivateItem(loginConductorViewModel);
-            //ActivateItem(contentConductorViewModel);
+
         }
 
         protected override void OnDeactivate(bool close)

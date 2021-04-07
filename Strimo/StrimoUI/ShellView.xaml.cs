@@ -27,7 +27,7 @@ namespace StrimoUI
             InitializeComponent();
         }
 
-        void MainWindow_Closing(object sender, CancelEventArgs e)
+        public void MainWindow_Closing(object sender, CancelEventArgs e)
         {
 
             string msg = "Do you want to close the window?";
@@ -37,14 +37,20 @@ namespace StrimoUI
                 e.Cancel = true;
             } else
             {
-                string currentUsername = GlobalVars.currentUser.username;
-                string currentPassword = GlobalVars.currentUser.password;
+                if(GlobalVars.currentUser != null)
+                {
+                    string currentUsername = GlobalVars.currentUser.username;
+                    string currentPassword = GlobalVars.currentUser.password;
 
 
-                DateTime currentDate = DateTime.Now;
-                string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
+                    DateTime currentDate = DateTime.Now;
+                    string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-                DatabaseService.UpdateUser(currentUsername, currentPassword, 0, currentDateStr);
+                    DatabaseService.UpdateUser(currentUsername, currentPassword, 0, currentDateStr);
+                } else
+                {
+                    return;
+                }
             }
         }
     }

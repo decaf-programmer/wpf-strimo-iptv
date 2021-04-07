@@ -93,7 +93,6 @@
   <ItemGroup>
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CategoryType.cs" />
-    <Compile Include="Models\UserDBModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WebsiteDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

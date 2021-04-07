@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StrimoDBLibrary.Models;
+using StrimoLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
@@ -104,6 +106,36 @@ namespace StrimoDBLibrary.Services
                     cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public static List<UserDBModel> GetLastUsers()
+        {
+            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=StrimoDb.db3;Version=3");
+            if(m_dbConnection.State == System.Data.ConnectionState.Closed)
+            {
+                m_dbConnection.Open();
+            }
+
+            SQLiteCommand command = new SQLiteCommand("Select * from User where loginStatus='1' ORDER BY lastLoginDate", m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            List<UserDBModel> users = new List<UserDBModel>();
+
+            while (reader.Read())
+            {
+                UserDBModel temp = new UserDBModel();
+                temp.username = (string)reader["username"];
+                temp.password = (string)reader["password"];
+                temp.loginStatus = (int)reader["loginStatus"];
+                temp.lastLoginDate = (string)reader["lastLoginDate"];
+
+                users.Add(temp);
+            }
+
+            reader.Close();
+            m_dbConnection.Close();
+
+            return users;
         }
 
 

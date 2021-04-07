@@ -7,17 +7,67 @@
              mc:Ignorable="d" 
              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Platform">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <StackPanel Width="543">
-            <Image Source="pack://siteoforigin:,,,/Resources/logo.png" Height="59" />
+        <StackPanel MinWidth="543">
+            <Image Source="/StrimoUI;component/Resources/logo.png" Height="59" />
             <TextBlock Text="s t r i m o" FontSize="68" TextAlignment="Center"
                        Foreground="{DynamicResource Gray_100}" Margin="0,0,0,48"/>
-            <Grid Margin="0,0,0,16" cal:Message.Attach="[MouseDown] = [SelectAccount]">
-                <Ellipse Width="235" Height="235" Fill="{DynamicResource Black_400}"
-                         Stroke="{DynamicResource Gray_200}" StrokeThickness="1" />
-                <Image Source="/StrimoUI;component/Resources/user.png" Width="119" Height="142" />
-            </Grid>
-            <TextBlock Text="s t r i m o" Foreground="{DynamicResource Gray_100}" FontSize="25"
-                       TextAlignment="Center" Margin="0,0,0,81.5" />
+            <ListView x:Name="Accounts" ItemsSource="{Binding Path=Users}" Background="Transparent" BorderBrush="Transparent"
+                      HorizontalAlignment="Center">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Foreground" Value="#808182" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="true"/>
+                                                <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}}"/>
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource White_200}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,16" cal:Message.Attach="[MouseDown] = [SelectAccount]">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Ellipse Width="235" Height="235" Fill="{DynamicResource Black_400}" Stroke="{DynamicResource Gray_200}" StrokeThickness="1" />
+                                <Image Source="/StrimoUI;component/Resources/user.png" Width="119" Height="142" />
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <TextBlock Text="{Binding Path=username}" Foreground="{DynamicResource Gray_100}" FontSize="20" HorizontalAlignment="Center" Margin="0 16 0 0"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
             <Grid Width="140">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
