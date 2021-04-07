@@ -10,5 +10,9 @@ namespace StrimoUI.Globals
     public static class GlobalVars
     {
         public static UserModel currentUser;
+
+        public static List<CategoryModel> currentUserLiveCategories;
+        public static List<CategoryModel> currentUserVodCategories;
+        public static List<CategoryModel> currentUserSerieCategories;
     }
 }

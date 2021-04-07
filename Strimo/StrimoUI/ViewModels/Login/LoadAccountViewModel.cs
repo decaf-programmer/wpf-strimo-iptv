@@ -79,7 +79,21 @@ namespace StrimoUI.ViewModels.Login
 
             List<List<CategoryModel>> allCategories = await XtreamCodeService.DownloadAllCategories(username, password, categoryActions, progress);
 
-            
+            foreach(List<CategoryModel> categoryList in allCategories)
+            {
+                switch (categoryList[0].category_type)
+                {
+                    case CategoryType.Live:
+                        GlobalVars.currentUserLiveCategories = categoryList;
+                        break;
+                    case CategoryType.Movie:
+                        GlobalVars.currentUserVodCategories = categoryList;
+                        break;
+                    case CategoryType.Serie:
+                        GlobalVars.currentUserSerieCategories = categoryList;
+                        break;
+                }
+            }
         }
 
         private void ReportProgress(object sender, int e)
