@@ -15,6 +15,8 @@ namespace StrimoUI.ViewModels.Content
 {
     public class NavigationItemViewModel : Screen
     {
+        IEventAggregator eventAggregator;
+
         private string _header;
         public string Header
         {
@@ -116,33 +118,39 @@ namespace StrimoUI.ViewModels.Content
             }
         }
 
-        private Boolean _isExpanded;
-        public Boolean IsExpanded
+        private Boolean _isMenuExpanded = false;
+        public Boolean IsMenuExpanded
         {
             get
             {
-                return _isExpanded;
+                return _isMenuExpanded;
             }
             set
             {
-                _isExpanded = value;
-                NotifyOfPropertyChange(() => IsExpanded);
+                _isMenuExpanded = value;
+                NotifyOfPropertyChange(() => IsMenuExpanded);
             }
         }
 
+        public NavigationItemViewModel(IEventAggregator _eventAggregator)
+        {
+            eventAggregator = _eventAggregator;
+        }
 
-        public NavigationItemViewModel(string header, string imageName, List<SubItemModel> subItems, UserControl screen){
+        public NavigationItemViewModel(string header, string imageName, List<SubItemModel> subItems, UserControl screen, IEventAggregator _eventAggregator){
+
+            eventAggregator = _eventAggregator;
+
             Header = header;
             ImageName = imageName;
             SubItems = subItems;
             Screen = screen;
 
-            IsExpanded = false;
-
             ListViewItemVisible = SubItems == null ? true : false;
             ExpanderVisible = SubItems == null ? false : true;
 
             TitleForegroundColor = ((SolidColorBrush)new BrushConverter().ConvertFrom("#808182"));
+
         }
 
         public string extractIconStr(string temp)
@@ -152,7 +160,6 @@ namespace StrimoUI.ViewModels.Content
 
             MatchCollection matchCollection = regex.Matches(temp);
             return matchCollection[0].Groups[1].Value;
-
         }
 
         public void NavigationMenuItemMouseEnter()
@@ -160,18 +167,23 @@ namespace StrimoUI.ViewModels.Content
             string iconName = extractIconStr(ImageName);
             ImageName = $"{iconName.Split('_')[0]}_active";
             TitleForegroundColor = ((SolidColorBrush)new BrushConverter().ConvertFrom("#F5F5F5"));
-
-            
         }
 
         public void NavigationMenuItemMouseLeave()
         {
-            if (!IsExpanded)
+            if (!IsMenuExpanded)
             {
                 string iconName = extractIconStr(ImageName);
                 ImageName = $"{iconName.Split('_')[0]}";
                 TitleForegroundColor = ((SolidColorBrush)new BrushConverter().ConvertFrom("#808182"));
             }
+        }
+
+
+        public void Expander_PreviewMouseLeftButtonDown()
+        {
+            eventAggregator.PublishOnUIThread(new NavigationItemClickedMessage() { ClickedItemTitle = Header});
+            //IsMenuExpanded = true;
         }
     }
 }

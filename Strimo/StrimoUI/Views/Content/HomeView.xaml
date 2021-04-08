@@ -49,7 +49,7 @@
                               Background="Transparent" BorderBrush="Transparent">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ContentControl cal:View.Model="{Binding}" />
+                                <ContentControl cal:View.Model="{Binding}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

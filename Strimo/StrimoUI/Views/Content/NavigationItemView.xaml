@@ -13,23 +13,35 @@
     </UserControl.Resources>
     <StackPanel Margin="0 0 0 12" HorizontalAlignment="Left" >
         <StackPanel Orientation="Horizontal" Width="280" Margin="0 0 0 16" VerticalAlignment="Top"
-            cal:Message.Attach="[MouseEnter] = [NavigationMenuItemMouseEnter()]; [MouseLeave] = [NavigationMenuItemMouseLeave()]">
+            cal:Message.Attach="
+                    [MouseEnter] = [NavigationMenuItemMouseEnter()]; 
+                    [MouseLeave] = [NavigationMenuItemMouseLeave()];">
             <Image x:Name="MenuIcon" Source="{Binding ImageName}" Width="25" Height="22" Margin="30 5 0 0" VerticalAlignment="Top"/>
             <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" 
                          Visibility="{Binding ListViewItemVisible, Converter={StaticResource BoolToVisConverter}}"
                          FontSize="20" Style="{DynamicResource NoEffectHoverListBoxItem}" 
                          HorizontalContentAlignment="Center" Padding="25 0"
                          Foreground="{Binding TitleForegroundColor}" />
-            <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" 
+            <!--<Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" 
                       Visibility="{Binding ExpanderVisible, Converter={StaticResource BoolToVisConverter}}"
-                      IsExpanded="{Binding IsExpanded}" Width="210" HorizontalAlignment="Right" 
+                      IsExpanded="{Binding IsMenuExpanded}" Width="210" HorizontalAlignment="Right" 
                       Background="{x:Null}" Foreground="{Binding TitleForegroundColor}" 
                       FontSize="20" Padding="25 0"
+                      cal:Message.Attach="[PreviewMouseLeftButtonDown] = [Expander_PreviewMouseLeftButtonDown()]"
+                      Style="{DynamicResource ArrowlessExpanderTemplate}">-->
+            <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" 
+                      Visibility="{Binding ExpanderVisible, Converter={StaticResource BoolToVisConverter}}"
+                      IsExpanded="{Binding IsMenuExpanded}" Width="210" HorizontalAlignment="Right" 
+                      Background="{x:Null}" Foreground="{Binding TitleForegroundColor}" 
+                      FontSize="20" Padding="25 0"
+                      cal:Message.Attach="[PreviewMouseLeftButtonDown] = [Expander_PreviewMouseLeftButtonDown()]"
                       Style="{DynamicResource ArrowlessExpanderTemplate}">
                 <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" 
                           Background="Transparent" Foreground="White" BorderThickness="0"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          VirtualizingStackPanel.IsVirtualizing="True"
+                          VirtualizingStackPanel.ScrollUnit="Item"
                           Height="210">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

@@ -12,7 +12,7 @@
             <TextBlock Text="s t r i m o" FontSize="68" TextAlignment="Center"
                        Foreground="{DynamicResource Gray_100}" Margin="0,0,0,48"/>
             <ListView x:Name="Accounts" ItemsSource="{Binding Path=Users}" Background="Transparent" BorderBrush="Transparent"
-                      HorizontalAlignment="Center">
+                      HorizontalAlignment="Center" Margin="0 0 0 81.5">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Background" Value="Transparent" />
@@ -61,20 +61,20 @@
                                 <Image Source="/StrimoUI;component/Resources/user.png" Width="119" Height="142" />
                             </Grid>
                             <Grid Grid.Row="1">
-                                <TextBlock x:Name="username" Text="{Binding Path=username}" Foreground="{DynamicResource Gray_100}" FontSize="20" HorizontalAlignment="Center" Margin="0 16 0 0"/>
+                                <TextBlock x:Name="username" Text="{Binding Path=username}" Foreground="{DynamicResource Gray_100}" FontSize="25" HorizontalAlignment="Center" Margin="0 16 0 0"/>
                                 <TextBlock x:Name="password" Text="{Binding Path=password}" Visibility ="Hidden" Foreground="{DynamicResource Gray_100}" FontSize="20" HorizontalAlignment="Center" Margin="0 16 0 0"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
-            <Grid Width="140">
+
+            <Grid Width="160" Margin="0 0 0 17.5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <Grid Grid.Column="0" >
                     <Ellipse Width="60" Height="60" Fill="{DynamicResource Black_200}" />
                     <Image Source="/StrimoUI;component/Resources/plus.png" Width="29" Height="50" />
                 </Grid>

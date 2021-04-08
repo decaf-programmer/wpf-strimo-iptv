@@ -134,6 +134,7 @@
     <Compile Include="Messages\LoadedAccountMessage.cs" />
     <Compile Include="Messages\LoginPageMessage.cs" />
     <Compile Include="Messages\NavigationHoverMessage.cs" />
+    <Compile Include="Messages\NavigationItemClickedMessage.cs" />
     <Compile Include="Models\SubItemModel.cs" />
     <Compile Include="ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
