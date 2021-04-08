@@ -4,8 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StrimoUI.Pages.Views.Content"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
              mc:Ignorable="d" >
-    <Grid Width="1920" Margin="86 0 0 0">
+    <Grid Width="1920" Height="700" Margin="86 0 0 0">
+        <syncfusion:Carousel Name="Carousel" 
+                         OpacityFraction="0.8"
+                         VisualMode="CustomPath"
+                         SelectedIndex="3"
+                         ItemsPerPage="3"
+                         ScalingEnabled="True"
+                         ItemsSource="{Binding HeaderCollection}">
+            <syncfusion:Carousel.Path>
+                <Path Data="M0,0 L100,0" />
+            </syncfusion:Carousel.Path>
+            <syncfusion:Carousel.ScaleFractions>
+                <syncfusion:PathFractionCollection>
+
+                    <!--Resize next items from the selected item-->
+                    <syncfusion:FractionValue Fraction="0" Value="0.6"/>
+
+                    <!--Resize selected item-->
+                    <syncfusion:FractionValue Fraction="0.5" Value="0.9"/>
+
+                    <!--Resize previous items from the selected item-->
+                    <syncfusion:FractionValue Fraction="1" Value="0"/>
+                </syncfusion:PathFractionCollection>
+            </syncfusion:Carousel.ScaleFractions>
+            <syncfusion:Carousel.ItemTemplate>
+                <DataTemplate>
+                    <Border Height="50" 
+                        Width="100" 
+                        BorderBrush="Purple" 
+                        BorderThickness="5"
+                        Background="LightBlue">
+                        <TextBlock HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Text="{Binding Header}"/>
+                    </Border>
+                </DataTemplate>
+            </syncfusion:Carousel.ItemTemplate>
+        </syncfusion:Carousel>
         
     </Grid>
 </UserControl>

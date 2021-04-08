@@ -1,5 +1,4 @@
-﻿using Syncfusion.Windows.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StrimoUI.Pages.Views.Content
+namespace StrimoUI.Components.Views
 {
     /// <summary>
-    /// Interaction logic for DashboardView.xaml
+    /// Interaction logic for VideoSliderView.xaml
     /// </summary>
-    public partial class DashboardView : UserControl
+    public partial class VideoSliderView : UserControl
     {
-        public DashboardView()
+        public VideoSliderView()
         {
             InitializeComponent();
-
         }
     }
 }
