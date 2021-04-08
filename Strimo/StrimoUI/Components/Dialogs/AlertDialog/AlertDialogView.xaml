@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="StrimoUI.Components.Dialogs.AlertDialog.AlertDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StrimoUI.Components.Dialogs.AlertDialog"
+        mc:Ignorable="d" Background="Transparent" Style="{DynamicResource BorderContentControl}">
+    <Border BorderBrush="{DynamicResource Red}" BorderThickness="1">
+        <Grid Width="543" Height="166" Background="{DynamicResource Black_200}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Message}" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       TextWrapping="Wrap" Foreground="{DynamicResource White_100}" FontSize="18"
+                       Width="440" TextAlignment="Center" />
+            <Button Content="OK" Grid.Row="1" Command="{Binding OKCommand}"
+                    CommandParameter="{DynamicResource AlertOKButton}" Width="169" Height="49" FontSize="18" Margin="0 0 0 16" />
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,10 @@
+﻿<Window x:Class="StrimoUI.Components.Dialogs.References.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StrimoUI.Components.Dialogs.References"
+        mc:Ignorable="d" Title="{Binding Title}" Height="166" Width="543" Top="452" Left="689" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent">
+    <ContentControl x:Name="ContentPresenter" Content="{Binding}" />
+</Window>

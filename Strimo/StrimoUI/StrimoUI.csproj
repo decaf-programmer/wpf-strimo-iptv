@@ -76,6 +76,12 @@
     <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.0.3.851, Culture=neutral, PublicKeyToken=b68184102cba0b3b, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCLRaw.provider.dynamic_cdecl.2.0.3\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=19.1460.0.55, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.19.1.0.55\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=19.1460.0.55, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.19.1.0.55\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -117,18 +123,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Dialogs\AlertDialog\AlertDialogView.xaml.cs">
+    <Compile Include="Components\Dialogs\AlertDialog\AlertDialogView.xaml.cs">
       <DependentUpon>AlertDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\AlertDialog\AlertDialogViewModel.cs" />
-    <Compile Include="Dialogs\DialogResult.cs" />
-    <Compile Include="Dialogs\References\DialogService.cs" />
-    <Compile Include="Dialogs\References\DialogViewModelBase.cs" />
-    <Compile Include="Dialogs\References\DialogWindow.xaml.cs">
+    <Compile Include="Components\Dialogs\AlertDialog\AlertDialogViewModel.cs" />
+    <Compile Include="Components\Dialogs\DialogResult.cs" />
+    <Compile Include="Components\Dialogs\References\DialogService.cs" />
+    <Compile Include="Components\Dialogs\References\DialogViewModelBase.cs" />
+    <Compile Include="Components\Dialogs\References\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\References\IDialogService.cs" />
-    <Compile Include="Dialogs\References\IDialogWindow.cs" />
+    <Compile Include="Components\Dialogs\References\IDialogService.cs" />
+    <Compile Include="Components\Dialogs\References\IDialogWindow.cs" />
     <Compile Include="Globals\GlobalVars.cs" />
     <Compile Include="Messages\AuthSuccessMessage.cs" />
     <Compile Include="Messages\LoadedAccountMessage.cs" />
@@ -140,32 +146,36 @@
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellViewModel.cs" />
-    <Compile Include="ViewModels\Content\ContentConductorViewModel.cs" />
-    <Compile Include="ViewModels\Content\HomeViewModel.cs" />
-    <Compile Include="ViewModels\Content\NavigationItemViewModel.cs" />
-    <Compile Include="ViewModels\Login\LoadAccountViewModel.cs" />
-    <Compile Include="ViewModels\Login\LoginConductorViewModel.cs" />
-    <Compile Include="ViewModels\Login\LoginPageViewModel.cs" />
-    <Compile Include="ViewModels\Login\SelectAccountViewModel.cs" />
-    <Compile Include="Views\Content\ContentConductorView.xaml.cs">
+    <Compile Include="Pages\ViewModels\Content\ContentConductorViewModel.cs" />
+    <Compile Include="Pages\ViewModels\Content\DashboardViewModel.cs" />
+    <Compile Include="Pages\ViewModels\Content\HomeViewModel.cs" />
+    <Compile Include="Pages\ViewModels\Content\NavigationItemViewModel.cs" />
+    <Compile Include="Pages\ViewModels\Login\LoadAccountViewModel.cs" />
+    <Compile Include="Pages\ViewModels\Login\LoginConductorViewModel.cs" />
+    <Compile Include="Pages\ViewModels\Login\LoginPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\Login\SelectAccountViewModel.cs" />
+    <Compile Include="Pages\Views\Content\ContentConductorView.xaml.cs">
       <DependentUpon>ContentConductorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Content\HomeView.xaml.cs">
+    <Compile Include="Pages\Views\Content\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Views\Content\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Content\NavigationItemView.xaml.cs">
+    <Compile Include="Pages\Views\Content\NavigationItemView.xaml.cs">
       <DependentUpon>NavigationItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login\LoadAccountView.xaml.cs">
+    <Compile Include="Pages\Views\Login\LoadAccountView.xaml.cs">
       <DependentUpon>LoadAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login\LoginConductorView.xaml.cs">
+    <Compile Include="Pages\Views\Login\LoginConductorView.xaml.cs">
       <DependentUpon>LoginConductorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login\LoginPageView.xaml.cs">
+    <Compile Include="Pages\Views\Login\LoginPageView.xaml.cs">
       <DependentUpon>LoginPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login\SelectAccountView.xaml.cs">
+    <Compile Include="Pages\Views\Login\SelectAccountView.xaml.cs">
       <DependentUpon>SelectAccountView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -199,11 +209,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Dialogs\AlertDialog\AlertDialogView.xaml">
+    <Page Include="Components\Dialogs\AlertDialog\AlertDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\References\DialogWindow.xaml">
+    <Page Include="Components\Dialogs\References\DialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,31 +237,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Content\ContentConductorView.xaml">
+    <Page Include="Pages\Views\Content\ContentConductorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Content\HomeView.xaml">
+    <Page Include="Pages\Views\Content\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Content\NavigationItemView.xaml">
+    <Page Include="Pages\Views\Content\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Login\LoadAccountView.xaml">
+    <Page Include="Pages\Views\Content\NavigationItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Login\LoginConductorView.xaml">
+    <Page Include="Pages\Views\Login\LoadAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Login\LoginPageView.xaml">
+    <Page Include="Pages\Views\Login\LoginConductorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Login\SelectAccountView.xaml">
+    <Page Include="Pages\Views\Login\LoginPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Views\Login\SelectAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

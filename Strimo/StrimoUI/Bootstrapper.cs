@@ -1,8 +1,8 @@
 ﻿using Caliburn.Micro;
-using StrimoUI.Dialogs.AlertDialog;
-using StrimoUI.Dialogs.References;
-using StrimoUI.ViewModels.Content;
-using StrimoUI.ViewModels.Login;
+using StrimoUI.Components.Dialogs.AlertDialog;
+using StrimoUI.Components.Dialogs.References;
+using StrimoUI.Pages.ViewModels.Content;
+using StrimoUI.Pages.ViewModels.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +38,7 @@ namespace StrimoUI
             simpleContainer.PerRequest<ContentConductorViewModel>();
             simpleContainer.PerRequest<HomeViewModel>();
             simpleContainer.PerRequest<NavigationItemViewModel>();
+            simpleContainer.PerRequest<DashboardViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

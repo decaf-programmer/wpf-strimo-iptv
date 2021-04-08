@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="StrimoUI.Pages.Views.Content.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StrimoUI.Pages.Views.Content"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080">
+    <Canvas>
+        <Grid x:Name="NavigationPanel" Width="82" Height="1080" HorizontalAlignment="Left" 
+              Background="{DynamicResource Black_200}" Panel.ZIndex="2">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="24" Direction="0" ShadowDepth="5" RenderingBias="Quality"></DropShadowEffect>
+            </Grid.Effect>
+            <Grid.Triggers>
+                <EventTrigger RoutedEvent="Grid.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard x:Name="HideStackPanel">
+                            <DoubleAnimation Storyboard.TargetName="NavigationPanel" Storyboard.TargetProperty="Width"
+                                             BeginTime="0:0:0" From="280" To="82" Duration="0:0:0.15" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Grid.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard x:Name="ShowStackPanel">
+                            <DoubleAnimation Storyboard.TargetName="NavigationPanel" Storyboard.TargetProperty="Width"
+                                             BeginTime="0:0:0" From="82" To="280" Duration="0:0:0.22" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Grid.Triggers>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="155"/>
+                <RowDefinition Height="884*" />
+                <RowDefinition Height="41" />
+            </Grid.RowDefinitions>
+            <Grid VerticalAlignment="Top" Margin="0 32 0 0" Grid.Row="0" Height="120">
+                <TextBlock Grid.Row="1" Grid.Column ="0" Margin="82,82,0,0" Text="S T R I M O" Foreground="#808182"
+                           FontSize="25" Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="1" Direction="-90" Color="#808182" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                <Image Source="/StrimoUI;component/Resources/brand_logo.png" Width="50.55" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="1" Background="Transparent">
+                <ItemsControl x:Name="NavigationItemsControl" ItemsSource="{Binding NavigationMenuItems}" 
+                              VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                              Background="Transparent" BorderBrush="Transparent">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl cal:View.Model="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <Grid Grid.Row="2">
+            </Grid>
+        </Grid>
+        <Grid Panel.ZIndex="1">
+            <ContentControl x:Name="ActiveItem" />
+        </Grid>
+    </Canvas>
+</UserControl>
