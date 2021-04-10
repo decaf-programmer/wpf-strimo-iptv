@@ -217,6 +217,30 @@
   <data name="movie_active" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\movie_active.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="movie_backdrop1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movie_backdrop2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movie_backdrop3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movie_backdrop4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movie_backdrop5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop5.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movie_backdrop6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movie_backdrop7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movie_backdrop8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\movie_backdrop8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="paypal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paypal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

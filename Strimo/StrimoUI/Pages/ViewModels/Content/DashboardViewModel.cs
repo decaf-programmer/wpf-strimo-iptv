@@ -11,29 +11,30 @@ namespace StrimoUI.Pages.ViewModels.Content
 {
     public class DashboardViewModel:Screen
     {
-		private ObservableCollection<CarouselModel> collection;
-		public ObservableCollection<CarouselModel> HeaderCollection
+		private ObservableCollection<CarouselModel> _lastMovieCollection;
+		public ObservableCollection<CarouselModel> LastMovieCollection
 		{
 			get
 			{
-				return collection;
+				return _lastMovieCollection;
 			}
 			set
 			{
-				collection = value;
+				_lastMovieCollection = value;
+				NotifyOfPropertyChange(() => LastMovieCollection);
 			}
 		}
 		public DashboardViewModel()
 		{
-			HeaderCollection = new ObservableCollection<CarouselModel>();
-			HeaderCollection.Add(new CarouselModel() { Header = "Buchanan" });
-			HeaderCollection.Add(new CarouselModel() { Header = "Callahan" });
-			HeaderCollection.Add(new CarouselModel() { Header = "Davolio" });
-			HeaderCollection.Add(new CarouselModel() { Header = "Dodsworth" });
-			HeaderCollection.Add(new CarouselModel() { Header = "Fuller" });
-			HeaderCollection.Add(new CarouselModel() { Header = "King" });
-			HeaderCollection.Add(new CarouselModel() { Header = "Leverling" });
-			HeaderCollection.Add(new CarouselModel() { Header = "Suyama" });
+			LastMovieCollection = new ObservableCollection<CarouselModel>();
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Buchanan", CarouselItemImageName="movie_backdrop1" });
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Callahan", CarouselItemImageName= "movie_backdrop2" });
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Davolio", CarouselItemImageName= "movie_backdrop3" });
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Dodsworth", CarouselItemImageName= "movie_backdrop4" });
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Fuller", CarouselItemImageName= "movie_backdrop5" });
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "King", CarouselItemImageName= "movie_backdrop6" });
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Leverling", CarouselItemImageName = "movie_backdrop7" });
+			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Suyama", CarouselItemImageName = "movie_backdrop8" });
 		}
 	}
 }
