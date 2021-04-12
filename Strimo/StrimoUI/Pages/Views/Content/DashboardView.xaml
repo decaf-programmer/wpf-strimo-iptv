@@ -4,10 +4,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StrimoUI.Pages.Views.Content"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" >
     <Grid Width="1920" Height="400" Margin="86 0 0 0">
-        <ListView ItemsSource="">
+        <ListView 
+            x:Name="CarouselList"
+            ItemsSource="{Binding LastMovieCollection}" Background="Transparent" 
+            ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            cal:Message.Attach="[PreviewMouseWheel] = [CarouselList_PreviewMouseWheel($eventArgs)];"
+            PreviewMouseWheel="CarouselList_PreviewMouseWheel"
+            SelectedIndex="1">
             
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <Border BorderBrush="{DynamicResource Orange}" BorderThickness="1" CornerRadius="20" Width="670" Height="349">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="5" Opacity=".8" ShadowDepth="10" />
+                                </Border.Effect>
+                                <Grid>
+                                    <Border Name="Mask" Background="White" BorderBrush="#FF3B5998" BorderThickness=".5" CornerRadius="20" />
+                                    <StackPanel Width="670" Height="349">
+                                        <Image Name="Receiver" Source="{Binding CarouselItemImageName}" Width="676" Height="347" Stretch="Fill"/>
+                                        <StackPanel.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=Mask}" />
+                                        </StackPanel.OpacityMask>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        
+                        <Grid Grid.Row="1">
+                            <TextBlock Text="{Binding CarouselItemTitle}" FontSize="20" Foreground="{DynamicResource White_200}"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </UserControl>

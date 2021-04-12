@@ -7,8 +7,7 @@
              xmlns:content="clr-namespace:StrimoUI.Pages.ViewModels.Content" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=content:NavigationItemViewModel}"
-             xmlns:cal="http://www.caliburnproject.org"
-              >
+             xmlns:cal="http://www.caliburnproject.org">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"  />
     </UserControl.Resources>

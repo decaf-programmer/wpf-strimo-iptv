@@ -26,34 +26,11 @@ namespace StrimoUI.Pages.Views.Content
         {
             InitializeComponent();
 
+            
         }
 
-        private int currentElement = 0;
-
-        private void Left_Click(object sender, RoutedEventArgs e)
+        private void CarouselList_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (currentElement < 2)
-            {
-                currentElement++;
-                AnimateCarousel();
-            }
-        }
-
-        private void Right_Click(object sender, RoutedEventArgs e)
-        {
-            if (currentElement > 0)
-            {
-                currentElement--;
-                AnimateCarousel();
-            }
-        }
-
-        private void AnimateCarousel()
-        {
-            Storyboard storyboard = (this.Resources["CarouselStoryboard"] as Storyboard);
-            DoubleAnimation animation = storyboard.Children.First() as DoubleAnimation;
-            animation.To = -this.Width * currentElement;
-            storyboard.Begin();
         }
     }
 }
