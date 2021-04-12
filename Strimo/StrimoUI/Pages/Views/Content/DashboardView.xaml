@@ -4,31 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StrimoUI.Pages.Views.Content"
-             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
-             xmlns:ec="http://schemas.microsoft.com/expression/2010/controls" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" >
     <Grid Width="1920" Height="400" Margin="86 0 0 0">
-        <Grid.Resources>
-            <Storyboard x:Key="CarouselStoryboard">
-                <DoubleAnimation
-                Storyboard.TargetName="CarouselTransform" 
-                Storyboard.TargetProperty="X"/>
-            </Storyboard>
-        </Grid.Resources>
-        <Canvas>
-            <StackPanel Name="Carousel" Orientation="Horizontal">
-                <StackPanel.RenderTransform>
-                    <TranslateTransform x:Name="CarouselTransform" />
-                </StackPanel.RenderTransform>
-                <Image Source="" Width="900" Height="350"/>
-                <Image Source="" Width="900" Height="350"/>
-                <Image Source="" Width="900" Height="350"/>
-            </StackPanel>
-            <Button Click="Left_Click" Content="Left" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Width="45">
-
-            </Button>
-            <Button Click="Right_Click" Content="Right" HorizontalAlignment="Left" Margin="448,170,0,0" VerticalAlignment="Top" Width="45"/>
-        </Canvas>
-
+        <ListView ItemsSource="">
+            
+        </ListView>
     </Grid>
 </UserControl>
