@@ -31,6 +31,7 @@ namespace StrimoUI.Pages.Views.Content
 
         private void CarouselList_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
+            
         }
     }
 }
