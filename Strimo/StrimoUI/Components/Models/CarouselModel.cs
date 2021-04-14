@@ -27,26 +27,72 @@ namespace StrimoUI.Components.Models
             } 
         }
 
-        private CategoryType _CategoryType;
-        public CategoryType CategoryType { 
+        private int _CarouselItemImageWidth;
+        public int CarouselItemImageWidth
+        {
+            get { return _CarouselItemImageWidth; }
+            set { _CarouselItemImageWidth = value; }
+        }
+
+        private int _CarouselItemImageHeight;
+        public int CarouselItemImageHeight
+        {
+            get { return _CarouselItemImageHeight; }
+            set { _CarouselItemImageHeight = value; }
+        }
+
+        private int _CarouselItemInnerImageWidth;
+        public int CarouselItemInnerImageWidth
+        {
+            get { return _CarouselItemInnerImageWidth; }
+            set { _CarouselItemInnerImageWidth = value; }
+        }
+
+        private int _CarouselItemInnerImageHeight;
+        public int CarouselItemInnerImageHeight
+        {
+            get { return _CarouselItemInnerImageHeight; }
+            set { _CarouselItemInnerImageHeight = value; }
+        }
+
+        private int _CarouselItemImageTop;
+        public int CarouselItemImageTop
+        {
+            get
+            {
+                return _CarouselItemImageTop;
+            }
+            set
+            {
+                _CarouselItemImageTop = value;
+            }
+        }
+        private CategoryType _CarouselItemCategoryType;
+        public CategoryType CarouselItemCategoryType { 
             get { 
-                return _CategoryType; 
+                return _CarouselItemCategoryType; 
             } 
             set
             {
-                _CategoryType = value;
+                _CarouselItemCategoryType = value;
             }
         }
 
-        private string _CategoryId;
-        public string CategoryId { 
+        private string _CarouselItemCategoryId;
+        public string CarouselItemCategoryId
+        { 
             get {
-                return _CategoryId;
+                return _CarouselItemCategoryId;
             } 
-            set { 
-                _CategoryId = value; 
+            set {
+                _CarouselItemCategoryId = value; 
             } 
         }
-        public string ParentId { get; set; }
+        private string _CarouselItemParentId;
+        public string CarouselItemParentId 
+        {
+            get { return _CarouselItemParentId; }
+            set { _CarouselItemParentId = value; }
+        }
     }
 }

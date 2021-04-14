@@ -9,36 +9,36 @@
     <Grid Width="1920" Height="400" Margin="86 0 0 0">
         <ListView 
             x:Name="CarouselList"
+            BorderThickness="0"
             ItemsSource="{Binding LastMovieCollection}" Background="Transparent" 
+            ItemContainerStyle="{DynamicResource CarouselListItemPanelStyle}"
             ScrollViewer.VerticalScrollBarVisibility="Disabled" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             cal:Message.Attach="[PreviewMouseWheel] = [CarouselList_PreviewMouseWheel($eventArgs)];"
             PreviewMouseWheel="CarouselList_PreviewMouseWheel"
             SelectedIndex="1">
-            
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <!--<Canvas x:Name="CarouselListCanvas" HorizontalAlignment="Left"/>-->
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Canvas Width="670">
-                        <Grid Canvas.Left="-260">
+                    <Canvas Width="{Binding CarouselItemImageWidth}" Margin="35 0 0 0">
+                        <Grid Canvas.Left="-165" VerticalAlignment="Center" Canvas.Top="{Binding CarouselItemImageTop}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="45"/>
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" >
-                                <Border BorderBrush="{DynamicResource Orange}" BorderThickness="1" CornerRadius="20" Width="670" Height="349">
+                            <Grid Grid.Row="0" VerticalAlignment="Center">
+                                <Border BorderBrush="{DynamicResource Orange}" BorderThickness="1" CornerRadius="20" Width="{Binding CarouselItemImageWidth}" Height="{Binding CarouselItemImageHeight}">
                                     <Border.Effect>
-                                        <DropShadowEffect BlurRadius="5" Opacity=".8" ShadowDepth="10" />
+                                        <DropShadowEffect Direction="-75" ShadowDepth="5" Opacity="0.8" BlurRadius="25" Color="Black"/>
                                     </Border.Effect>
                                     <Grid>
                                         <Border Name="Mask" Background="White" BorderBrush="{DynamicResource Orange}" BorderThickness=".5" CornerRadius="20" />
-                                        <StackPanel Width="670" Height="349">
-                                            <Image Name="Receiver" Source="{Binding CarouselItemImageName}" Width="676" Height="347" Stretch="Fill"/>
+                                        <StackPanel Width="{Binding CarouselItemImageWidth}" Height="{Binding CarouselItemImageHeight}">
+                                            <Image Name="Receiver" Source="{Binding CarouselItemImageName}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Stretch="Fill"/>
                                             <StackPanel.OpacityMask>
                                                 <VisualBrush Visual="{Binding ElementName=Mask}" />
                                             </StackPanel.OpacityMask>
@@ -46,8 +46,7 @@
                                     </Grid>
                                 </Border>
                             </Grid>
-                        
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding CarouselItemTitle}" FontSize="20" Foreground="{DynamicResource White_200}"/>
                             </Grid>
                         </Grid>

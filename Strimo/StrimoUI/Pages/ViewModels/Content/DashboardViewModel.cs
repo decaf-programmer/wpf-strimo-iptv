@@ -31,14 +31,78 @@ namespace StrimoUI.Pages.ViewModels.Content
 		public DashboardViewModel()
 		{
 			LastMovieCollection = new ObservableCollection<CarouselModel>();
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Buchanan", CarouselItemImageName="movie_backdrop1" });
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Callahan", CarouselItemImageName= "movie_backdrop2" });
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Davolio", CarouselItemImageName= "movie_backdrop3" });
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Dodsworth", CarouselItemImageName= "movie_backdrop4" });
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Fuller", CarouselItemImageName= "movie_backdrop5" });
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "King", CarouselItemImageName= "movie_backdrop6" });
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Leverling", CarouselItemImageName = "movie_backdrop7" });
-			LastMovieCollection.Add(new CarouselModel() { CarouselItemTitle = "Suyama", CarouselItemImageName = "movie_backdrop8" });
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "Buchanan", 
+				CarouselItemImageName="movie_backdrop1", 
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 312, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 309,
+				CarouselItemImageTop = 19
+			});
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "Callahan", 
+				CarouselItemImageName= "movie_backdrop2", 
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 349, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 347,
+				CarouselItemImageTop = 0
+			});
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "Davolio", 
+				CarouselItemImageName= "movie_backdrop3", 
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 312, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 310,
+				CarouselItemImageTop = 19
+			});
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "Dodsworth", 
+				CarouselItemImageName= "movie_backdrop4",
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 312, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 310,
+				CarouselItemImageTop = 19
+			});
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "Fuller", 
+				CarouselItemImageName= "movie_backdrop5", 
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 312, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 310,
+				CarouselItemImageTop = 19
+			});
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "King", 
+				CarouselItemImageName= "movie_backdrop6", 
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 312, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 310,
+				CarouselItemImageTop = 19
+			});
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "Leverling", 
+				CarouselItemImageName = "movie_backdrop7", 
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 312, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 310,
+				CarouselItemImageTop = 19
+			});
+			LastMovieCollection.Add(new CarouselModel() { 
+				CarouselItemTitle = "Suyama", 
+				CarouselItemImageName = "movie_backdrop8", 
+				CarouselItemImageWidth = 670, 
+				CarouselItemImageHeight = 312, 
+				CarouselItemInnerImageWidth = 668, 
+				CarouselItemInnerImageHeight = 310,
+				CarouselItemImageTop = 19
+			});
 		}
 
 		public void CarouselList_PreviewMouseWheel(MouseWheelEventArgs e)
@@ -46,25 +110,28 @@ namespace StrimoUI.Pages.ViewModels.Content
 			if(e.Delta > 0)
             {
 				// Mouse Wheel Up...
+				CarouselModel temp = LastMovieCollection[LastMovieCollection.Count - 1];
+				for (int i = LastMovieCollection.Count - 1; i > 0; i--)
+				{
+					LastMovieCollection[i] = LastMovieCollection[i - 1];
+				}
+				LastMovieCollection[0] = temp;
 
-				CarouselModel temp = LastMovieCollection[0];
-				for(int i = 0; i<LastMovieCollection.Count-1; i++)
-                {
-					LastMovieCollection[i] = LastMovieCollection[i+1];
-                }
-
-				LastMovieCollection[LastMovieCollection.Count - 1] = temp;
 
 			} else
             {
 				// Mouse Wheel Down...
-				CarouselModel temp = LastMovieCollection[LastMovieCollection.Count - 1];
-				for (int i = LastMovieCollection.Count-1; i>0; i--)
+				
+				CarouselModel temp = LastMovieCollection[0];
+				for (int i = 0; i < LastMovieCollection.Count - 1; i++)
 				{
-					LastMovieCollection[i] = LastMovieCollection[i-1];
+					LastMovieCollection[i] = LastMovieCollection[i + 1];
 				}
-				LastMovieCollection[0] = temp;
+
+				LastMovieCollection[LastMovieCollection.Count - 1] = temp;
 			}
+
+			
         }
 
 	}
