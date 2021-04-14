@@ -67,6 +67,16 @@ namespace StrimoUI.Components.Models
                 _CarouselItemImageTop = value;
             }
         }
+
+        private bool _CarouselItemAlphaVisible;
+        public bool CarouselItemAlphaVisible
+        {
+            get { return _CarouselItemAlphaVisible; }
+            set
+            {
+                _CarouselItemAlphaVisible = value;
+            }
+        }
         private CategoryType _CarouselItemCategoryType;
         public CategoryType CarouselItemCategoryType { 
             get { 

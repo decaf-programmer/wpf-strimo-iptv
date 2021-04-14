@@ -40,7 +40,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 312, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 309,
-				CarouselItemImageTop = 19
+				CarouselItemImageTop = 19,
+				CarouselItemAlphaVisible = true
 			});
 			LastMovieCollection.Add(new CarouselModel() { 
 				CarouselItemTitle = "Callahan", 
@@ -49,7 +50,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 349, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 347,
-				CarouselItemImageTop = 0
+				CarouselItemImageTop = 0,
+				CarouselItemAlphaVisible = false
 			});
 			LastMovieCollection.Add(new CarouselModel() { 
 				CarouselItemTitle = "Davolio", 
@@ -58,7 +60,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 312, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 310,
-				CarouselItemImageTop = 19
+				CarouselItemImageTop = 19,
+				CarouselItemAlphaVisible = true
 			});
 			LastMovieCollection.Add(new CarouselModel() { 
 				CarouselItemTitle = "Dodsworth", 
@@ -67,7 +70,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 312, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 310,
-				CarouselItemImageTop = 19
+				CarouselItemImageTop = 19,
+				CarouselItemAlphaVisible = true
 			});
 			LastMovieCollection.Add(new CarouselModel() { 
 				CarouselItemTitle = "Fuller", 
@@ -76,7 +80,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 312, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 310,
-				CarouselItemImageTop = 19
+				CarouselItemImageTop = 19,
+				CarouselItemAlphaVisible = true
 			});
 			LastMovieCollection.Add(new CarouselModel() { 
 				CarouselItemTitle = "King", 
@@ -85,7 +90,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 312, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 310,
-				CarouselItemImageTop = 19
+				CarouselItemImageTop = 19,
+				CarouselItemAlphaVisible = true
 			});
 			LastMovieCollection.Add(new CarouselModel() { 
 				CarouselItemTitle = "Leverling", 
@@ -94,7 +100,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 312, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 310,
-				CarouselItemImageTop = 19
+				CarouselItemImageTop = 19,
+				CarouselItemAlphaVisible = true
 			});
 			LastMovieCollection.Add(new CarouselModel() { 
 				CarouselItemTitle = "Suyama", 
@@ -103,7 +110,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemImageHeight = 312, 
 				CarouselItemInnerImageWidth = 668, 
 				CarouselItemInnerImageHeight = 310,
-				CarouselItemImageTop = 19
+				CarouselItemImageTop = 19,
+				CarouselItemAlphaVisible = true
 			});
 
 			GlobalVars.HomeLastMovieCarouselItemListSelectedIndex = 1;
@@ -117,6 +125,12 @@ namespace StrimoUI.Pages.ViewModels.Content
 				LastMovieCollection[0].CarouselItemImageTop = 0;
 				LastMovieCollection[0].CarouselItemImageHeight = 349;
 				LastMovieCollection[0].CarouselItemInnerImageHeight = 347;
+				LastMovieCollection[0].CarouselItemAlphaVisible = false;
+
+				LastMovieCollection[1].CarouselItemImageTop = 19;
+				LastMovieCollection[1].CarouselItemImageHeight = 312;
+				LastMovieCollection[1].CarouselItemInnerImageHeight = 310;
+				LastMovieCollection[1].CarouselItemAlphaVisible = true;
 
 				CarouselModel temp = LastMovieCollection[LastMovieCollection.Count - 1];
 				for (int i = LastMovieCollection.Count - 1; i > 0; i--)
@@ -125,16 +139,21 @@ namespace StrimoUI.Pages.ViewModels.Content
 					LastMovieCollection[i].CarouselItemImageTop = 19;
 					LastMovieCollection[i].CarouselItemImageHeight = 312;
 					LastMovieCollection[i].CarouselItemInnerImageHeight = 310;
+					LastMovieCollection[i].CarouselItemAlphaVisible = true;
 				}
 				LastMovieCollection[0] = temp;
-				
 			} else
             {
 				// Mouse Wheel Down...
 				LastMovieCollection[2].CarouselItemImageTop = 0;
 				LastMovieCollection[2].CarouselItemImageHeight = 349;
 				LastMovieCollection[2].CarouselItemInnerImageHeight = 347;
+				LastMovieCollection[2].CarouselItemAlphaVisible = false;
 
+				LastMovieCollection[1].CarouselItemImageTop = 19;
+				LastMovieCollection[1].CarouselItemImageHeight = 312;
+				LastMovieCollection[1].CarouselItemInnerImageHeight = 310;
+				LastMovieCollection[1].CarouselItemAlphaVisible = true;
 
 				CarouselModel temp = LastMovieCollection[0];
 				for (int i = 0; i < LastMovieCollection.Count - 1; i++)
@@ -143,6 +162,7 @@ namespace StrimoUI.Pages.ViewModels.Content
 					LastMovieCollection[i].CarouselItemImageTop = 19;
 					LastMovieCollection[i].CarouselItemImageHeight = 312;
 					LastMovieCollection[i].CarouselItemInnerImageHeight = 310;
+					LastMovieCollection[i].CarouselItemAlphaVisible = true;
 				}
 
 				LastMovieCollection[LastMovieCollection.Count - 1] = temp;

@@ -6,6 +6,9 @@
              xmlns:local="clr-namespace:StrimoUI.Pages.Views.Content"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"  />
+    </UserControl.Resources>
     <Grid Width="1920" Height="400" Margin="86 0 0 0">
         <ListView 
             x:Name="CarouselList"
@@ -37,10 +40,14 @@
                                     <Grid>
                                         <Border Name="Mask" Background="White" BorderBrush="{DynamicResource Orange}" BorderThickness=".5" CornerRadius="20" />
                                         <StackPanel Width="{Binding CarouselItemImageWidth}" Height="{Binding CarouselItemImageHeight}">
-                                            <Image Name="Receiver" Source="{Binding CarouselItemImageName}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Stretch="Fill"/>
-                                            <StackPanel.OpacityMask>
-                                                <VisualBrush Visual="{Binding ElementName=Mask}" />
-                                            </StackPanel.OpacityMask>
+                                            <Canvas>
+                                                <Image Source="{Binding CarouselItemImageName}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Stretch="Fill" />
+                                                <Rectangle Visibility="{Binding CarouselItemAlphaVisible, Converter={StaticResource BoolToVisConverter}}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Fill="Black" Opacity="0.8" />
+                                                <Canvas.OpacityMask>
+                                                    <VisualBrush Visual="{Binding ElementName=Mask}" />
+                                                </Canvas.OpacityMask>
+                                            </Canvas>
+
                                         </StackPanel>
                                     </Grid>
                                 </Border>
