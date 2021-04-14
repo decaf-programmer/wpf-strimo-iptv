@@ -14,5 +14,7 @@ namespace StrimoUI.Globals
         public static List<CategoryModel> currentUserLiveCategories;
         public static List<CategoryModel> currentUserVodCategories;
         public static List<CategoryModel> currentUserSerieCategories;
+
+        public static int HomeLastMovieCarouselItemListSelectedIndex;
     }
 }

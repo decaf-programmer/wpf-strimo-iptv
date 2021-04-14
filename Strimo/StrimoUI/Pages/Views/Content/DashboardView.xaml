@@ -15,7 +15,6 @@
             ScrollViewer.VerticalScrollBarVisibility="Disabled" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
             cal:Message.Attach="[PreviewMouseWheel] = [CarouselList_PreviewMouseWheel($eventArgs)];"
-            PreviewMouseWheel="CarouselList_PreviewMouseWheel"
             SelectedIndex="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

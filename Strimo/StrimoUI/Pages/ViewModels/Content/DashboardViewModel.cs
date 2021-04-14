@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using StrimoUI.Components.Models;
+using StrimoUI.Globals;
 using Syncfusion.Windows.Shared;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace StrimoUI.Pages.ViewModels.Content
 {
     public class DashboardViewModel:Screen
     {
+		public int selectedMovieIndex;
 
 		private ObservableCollection<CarouselModel> _lastMovieCollection;
 		public ObservableCollection<CarouselModel> LastMovieCollection
@@ -103,6 +105,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 				CarouselItemInnerImageHeight = 310,
 				CarouselItemImageTop = 19
 			});
+
+			GlobalVars.HomeLastMovieCarouselItemListSelectedIndex = 1;
 		}
 
 		public void CarouselList_PreviewMouseWheel(MouseWheelEventArgs e)
@@ -110,29 +114,40 @@ namespace StrimoUI.Pages.ViewModels.Content
 			if(e.Delta > 0)
             {
 				// Mouse Wheel Up...
+				LastMovieCollection[0].CarouselItemImageTop = 0;
+				LastMovieCollection[0].CarouselItemImageHeight = 349;
+				LastMovieCollection[0].CarouselItemInnerImageHeight = 347;
+
 				CarouselModel temp = LastMovieCollection[LastMovieCollection.Count - 1];
 				for (int i = LastMovieCollection.Count - 1; i > 0; i--)
 				{
 					LastMovieCollection[i] = LastMovieCollection[i - 1];
+					LastMovieCollection[i].CarouselItemImageTop = 19;
+					LastMovieCollection[i].CarouselItemImageHeight = 312;
+					LastMovieCollection[i].CarouselItemInnerImageHeight = 310;
 				}
 				LastMovieCollection[0] = temp;
-
-
+				
 			} else
             {
 				// Mouse Wheel Down...
-				
+				LastMovieCollection[2].CarouselItemImageTop = 0;
+				LastMovieCollection[2].CarouselItemImageHeight = 349;
+				LastMovieCollection[2].CarouselItemInnerImageHeight = 347;
+
+
 				CarouselModel temp = LastMovieCollection[0];
 				for (int i = 0; i < LastMovieCollection.Count - 1; i++)
 				{
 					LastMovieCollection[i] = LastMovieCollection[i + 1];
+					LastMovieCollection[i].CarouselItemImageTop = 19;
+					LastMovieCollection[i].CarouselItemImageHeight = 312;
+					LastMovieCollection[i].CarouselItemInnerImageHeight = 310;
 				}
 
 				LastMovieCollection[LastMovieCollection.Count - 1] = temp;
+				
 			}
-
-			
         }
-
 	}
 }

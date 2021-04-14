@@ -25,13 +25,8 @@ namespace StrimoUI.Pages.Views.Content
         public DashboardView()
         {
             InitializeComponent();
-
-            
         }
 
-        private void CarouselList_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            
-        }
+
     }
 }
