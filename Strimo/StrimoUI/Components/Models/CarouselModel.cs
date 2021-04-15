@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace StrimoUI.Components.Models
 {
@@ -86,6 +87,13 @@ namespace StrimoUI.Components.Models
             {
                 _CarouselItemTitleVisible = value;
             }
+        }
+
+        private string _CarouselItemBorderColor;
+        public string CarouselItemBorderColor
+        {
+            get { return _CarouselItemBorderColor; }
+            set { _CarouselItemBorderColor = value; }
         }
 
 

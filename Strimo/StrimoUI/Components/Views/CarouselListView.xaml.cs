@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace StrimoUI.Components.Views
 {
     /// <summary>
-    /// Interaction logic for VideoSliderView.xaml
+    /// Interaction logic for CarouselListView.xaml
     /// </summary>
-    public partial class VideoSliderView : UserControl
+    public partial class CarouselListView : UserControl
     {
-        public VideoSliderView()
+        public CarouselListView()
         {
             InitializeComponent();
         }
