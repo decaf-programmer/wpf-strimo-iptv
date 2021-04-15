@@ -151,9 +151,9 @@
     <Compile Include="Components\Dialogs\References\IDialogService.cs" />
     <Compile Include="Components\Dialogs\References\IDialogWindow.cs" />
     <Compile Include="Components\Models\CarouselModel.cs" />
-    <Compile Include="Components\ViewModels\VideoSliderViewModel.cs" />
-    <Compile Include="Components\Views\VideoSliderView.xaml.cs">
-      <DependentUpon>VideoSliderView.xaml</DependentUpon>
+    <Compile Include="Components\ViewModels\CarouselListViewModel.cs" />
+    <Compile Include="Components\Views\CarouselListView.xaml.cs">
+      <DependentUpon>CarouselListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Globals\GlobalVars.cs" />
     <Compile Include="Messages\AuthSuccessMessage.cs" />
@@ -237,7 +237,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\Views\VideoSliderView.xaml">
+    <Page Include="Components\Views\CarouselListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

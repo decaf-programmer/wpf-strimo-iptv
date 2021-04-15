@@ -1,15 +1,15 @@
-﻿<UserControl x:Class="StrimoUI.Pages.Views.Content.DashboardView"
+﻿<UserControl x:Class="StrimoUI.Components.Views.CarouselListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:StrimoUI.Pages.Views.Content"
-             xmlns:cal="http://www.caliburnproject.org"
-             mc:Ignorable="d" >
+             xmlns:local="clr-namespace:StrimoUI.Components.Views"
+             mc:Ignorable="d" 
+             xmlns:cal="http://www.caliburnproject.org">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"  />
     </UserControl.Resources>
-    <Canvas Width="1920" Height="400">
+    <Canvas Width="{Binding CarouselListWidth}" Height="{Binding CarouselListHeight}">
         <Button Canvas.Left="114" Canvas.Top="144" Canvas.ZIndex="3" Background="Transparent" BorderThickness="0"
                 cal:Message.Attach="[Click]=[LeftButtonClick()]">
             <Button.Style>
@@ -34,7 +34,7 @@
             </Button.Style>
             <StackPanel>
                 <Image Source="/StrimoUI;component/Resources/leftBtn.png" Width="50" Height="50"/>
-            </StackPanel>    
+            </StackPanel>
         </Button>
         <Button Canvas.Right="32" Canvas.Top="144" Canvas.ZIndex="3" Background="Transparent" BorderThickness="0"
                 cal:Message.Attach="[Click]=[RightButtonClick()]">
@@ -66,7 +66,7 @@
             <ListView 
                 x:Name="CarouselList"
                 BorderThickness="0"
-                ItemsSource="{Binding LastMovieCollection}" Background="Transparent" 
+                ItemsSource="{Binding CarouselListCollection}" Background="Transparent" 
                 ItemContainerStyle="{DynamicResource CarouselListItemPanelStyle}"
                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
