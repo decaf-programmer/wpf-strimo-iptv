@@ -233,6 +233,16 @@ namespace StrimoUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leftBtn {
+            get {
+                object obj = ResourceManager.GetObject("leftBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
@@ -546,6 +556,16 @@ namespace StrimoUI.Properties {
         internal static System.Drawing.Bitmap Record_active {
             get {
                 object obj = ResourceManager.GetObject("Record_active", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rightBtn {
+            get {
+                object obj = ResourceManager.GetObject("rightBtn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
