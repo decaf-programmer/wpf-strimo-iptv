@@ -97,8 +97,8 @@ namespace StrimoUI.Components.Models
         }
 
 
-        private CategoryType _CarouselItemCategoryType;
-        public CategoryType CarouselItemCategoryType { 
+        private XCCategoryType _CarouselItemCategoryType;
+        public XCCategoryType CarouselItemCategoryType { 
             get { 
                 return _CarouselItemCategoryType; 
             } 

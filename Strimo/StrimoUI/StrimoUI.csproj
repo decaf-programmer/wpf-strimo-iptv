@@ -161,7 +161,7 @@
     <Compile Include="Messages\LoginPageMessage.cs" />
     <Compile Include="Messages\NavigationHoverMessage.cs" />
     <Compile Include="Messages\NavigationItemClickedMessage.cs" />
-    <Compile Include="Models\SubItemModel.cs" />
+    <Compile Include="Pages\Models\SubItemModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -449,13 +449,13 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StrimoDBLibrary\StrimoDBLibrary.csproj">
+    <ProjectReference Include="..\StrimoDBLibrary\StrimoDB.csproj">
       <Project>{987772FB-F69C-4B36-B5F9-A0B3FABF4867}</Project>
-      <Name>StrimoDBLibrary</Name>
+      <Name>StrimoDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StrimoLibrary\StrimoUILibrary.csproj">
+    <ProjectReference Include="..\StrimoLibrary\ThirdParty.csproj">
       <Project>{b6036171-9283-4b19-a17e-5205b6fa300c}</Project>
-      <Name>StrimoUILibrary</Name>
+      <Name>ThirdParty</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -597,9 +597,7 @@
       <Version>8.0.0.1909</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\leftBtn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace StrimoUI.Models
+namespace StrimoUI.Pages.Models
 {
     public class SubItemModel
     {

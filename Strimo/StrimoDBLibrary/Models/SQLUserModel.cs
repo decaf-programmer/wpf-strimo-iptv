@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrimoDBLibrary.Models
 {
-    public class UserDBModel
+    public class SQLUserModel
     {
         public string username { get; set; }
         public string password { get; set; }

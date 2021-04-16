@@ -46,7 +46,7 @@ namespace StrimoUI
                     DateTime currentDate = DateTime.Now;
                     string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-                    DatabaseService.UpdateUser(currentUsername, currentPassword, 0, currentDateStr);
+                    SQLDatabaseService.UpdateUser(currentUsername, currentPassword, 0, currentDateStr);
                 } else
                 {
                     return;

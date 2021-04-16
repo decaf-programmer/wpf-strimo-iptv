@@ -1,6 +1,6 @@
 ﻿using Caliburn.Micro;
 using StrimoUI.Messages;
-using StrimoUI.Models;
+using StrimoUI.Pages.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StrimoLibrary.Models
 {
-    public class UserModel
+    public class XCUserModel
     {
         public string username { get; set; }
         public string password { get; set; }

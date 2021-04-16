@@ -3,7 +3,7 @@ using Caliburn.Micro;
 using StrimoLibrary.Models;
 using StrimoUI.Globals;
 using StrimoUI.Messages;
-using StrimoUI.Models;
+using StrimoUI.Pages.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -61,10 +61,10 @@ namespace StrimoUI.Pages.ViewModels.Content
 
         protected void SetNavigationMenu()
         {
-            List<CategoryModel> liveCategories = GlobalVars.currentUserLiveCategories;
+            List<XCCategoryModel> liveCategories = GlobalVars.currentUserLiveCategories;
             List<SubItemModel> liveSubItems = new List<SubItemModel>();
 
-            foreach (CategoryModel liveCategory in liveCategories)
+            foreach (XCCategoryModel liveCategory in liveCategories)
             {
                 liveSubItems.Add(
                     new SubItemModel()
@@ -78,10 +78,10 @@ namespace StrimoUI.Pages.ViewModels.Content
                 );
             }
 
-            List<CategoryModel> serieCategories = GlobalVars.currentUserSerieCategories;
+            List<XCCategoryModel> serieCategories = GlobalVars.currentUserSerieCategories;
             List<SubItemModel> serieSubItems = new List<SubItemModel>();
 
-            foreach (CategoryModel serieCategory in serieCategories)
+            foreach (XCCategoryModel serieCategory in serieCategories)
             {
                 serieSubItems.Add(
                     new SubItemModel()
@@ -95,10 +95,10 @@ namespace StrimoUI.Pages.ViewModels.Content
                 );
             }
 
-            List<CategoryModel> vodCategories = GlobalVars.currentUserVodCategories;
+            List<XCCategoryModel> vodCategories = GlobalVars.currentUserVodCategories;
             List<SubItemModel> vodSubItems = new List<SubItemModel>();
 
-            foreach (CategoryModel vodCategory in vodCategories)
+            foreach (XCCategoryModel vodCategory in vodCategories)
             {
                 vodSubItems.Add(
                     new SubItemModel()

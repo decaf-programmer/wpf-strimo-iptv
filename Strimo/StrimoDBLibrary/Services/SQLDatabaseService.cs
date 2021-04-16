@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StrimoDBLibrary.Services
 {
-    public static class DatabaseService
+    public static class SQLDatabaseService
     {
 
         public static string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -108,7 +108,7 @@ namespace StrimoDBLibrary.Services
             }
         }
 
-        public static List<UserDBModel> GetLastUsers()
+        public static List<SQLUserModel> GetLastUsers()
         {
             SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=StrimoDb.db3;Version=3");
             if(m_dbConnection.State == System.Data.ConnectionState.Closed)
@@ -119,11 +119,11 @@ namespace StrimoDBLibrary.Services
             SQLiteCommand command = new SQLiteCommand("Select * from User where loginStatus='1' ORDER BY lastLoginDate", m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
 
-            List<UserDBModel> users = new List<UserDBModel>();
+            List<SQLUserModel> users = new List<SQLUserModel>();
 
             while (reader.Read())
             {
-                UserDBModel temp = new UserDBModel();
+                SQLUserModel temp = new SQLUserModel();
                 temp.username = (string)reader["username"];
                 temp.password = (string)reader["password"];
                 temp.loginStatus = (int)reader["loginStatus"];

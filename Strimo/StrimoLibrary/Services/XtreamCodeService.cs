@@ -15,7 +15,6 @@ namespace StrimoLibrary.Services
     {
         public static string server_url = "http://hd.qweret.com:80";
 
-
         public static string Auth(string username, string password)
         {
             var request_url = $"{server_url}/player_api.php?username={username}&password={password}";
@@ -44,23 +43,23 @@ namespace StrimoLibrary.Services
 
         }
 
-        public static async Task<List<List<CategoryModel>>> DownloadAllCategories(string username, string password, List<string> categoryActionTypes, IProgress<int> progress)
+        public static async Task<List<List<XCCategoryModel>>> DownloadAllCategories(string username, string password, List<string> categoryActionTypes, IProgress<int> progress, int currentProgress)
         {
-            List<List<CategoryModel>> categoryModels = new List<List<CategoryModel>>();
+            List<List<XCCategoryModel>> categoryModels = new List<List<XCCategoryModel>>();
 
-            int report = 0;
+            
             foreach(string categoryActionType in categoryActionTypes)
             {
                 var results = await ReadTypeCategories(username, password, categoryActionType);
                 categoryModels.Add(results);
 
-                report = (categoryModels.Count * 100) / categoryActionTypes.Count;
-                progress.Report(report);
+                currentProgress = (categoryModels.Count * 50) / categoryActionTypes.Count;
+                progress.Report(currentProgress);
             }
             return categoryModels;
         }
 
-        private static async Task<List<CategoryModel>> ReadTypeCategories(string username, string password, string categoryAction)
+        private static async Task<List<XCCategoryModel>> ReadTypeCategories(string username, string password, string categoryAction)
         {
             var categoryRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action={categoryAction}";
 
@@ -72,19 +71,19 @@ namespace StrimoLibrary.Services
                     {
                         var responseContent = await httpContent.ReadAsStringAsync();
 
-                        var categoryModels = new JavaScriptSerializer().Deserialize<List<CategoryModel>>(responseContent);
+                        var categoryModels = new JavaScriptSerializer().Deserialize<List<XCCategoryModel>>(responseContent);
 
-                        foreach(CategoryModel categoryModel in categoryModels)
+                        foreach(XCCategoryModel categoryModel in categoryModels)
                         {
                             if (categoryAction.Equals("get_live_categories"))
                             {
-                                categoryModel.category_type = CategoryType.Live;
+                                categoryModel.category_type = XCCategoryType.Live;
                             } else if (categoryAction.Equals("get_series_categories"))
                             {
-                                categoryModel.category_type = CategoryType.Serie;
+                                categoryModel.category_type = XCCategoryType.Serie;
                             } else if (categoryAction.Equals("get_vod_categories"))
                             {
-                                categoryModel.category_type = CategoryType.Movie;
+                                categoryModel.category_type = XCCategoryType.Movie;
                             }
                         }
                         return categoryModels;
@@ -93,28 +92,110 @@ namespace StrimoLibrary.Services
             }
         }
 
-
-        public static string ReadCategoryByType(string username, string password, string action)
+        public static async Task<List<XCLiveStreamModel>> ReadLiveStreams(string username, string password, IProgress<int> progress, int currentProgress)
         {
-            var request_url = $"{server_url}/player_api.php?username={username}&password={password}&action={action}";
+            var liveStreamRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action=get_live_streams";
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(request_url);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            try
+            using (HttpClient httpClient = new HttpClient())
             {
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using(StreamReader reader = new StreamReader(stream))
+                using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(liveStreamRequestURL))
                 {
-                    return reader.ReadToEnd();
+                    using (HttpContent httpContent = httpResponseMessage.Content)
+                    {
+                        var responseContent = await httpContent.ReadAsStringAsync();
+
+                        currentProgress += 16;
+                        progress.Report(currentProgress);
+
+                        var livestreamModels = new JavaScriptSerializer().Deserialize<List<XCLiveStreamModel>>(responseContent);
+                        return livestreamModels;
+                    }
                 }
-            } catch(WebException e)
-            {
-                Console.WriteLine(e);
-                return "Error";
             }
         }
+
+        public static async Task<List<XCVodStreamModel>> ReadVodStreams(string username, string password, IProgress<int> progress, int currentProgress)
+        {
+            var vodStreamRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action=get_vod_streams";
+
+            using (HttpClient httpClient = new HttpClient())
+            {
+                using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(vodStreamRequestURL))
+                {
+                    using (HttpContent httpContent = httpResponseMessage.Content)
+                    {
+                        var responseContent = await httpContent.ReadAsStringAsync();
+
+                        currentProgress += 17;
+                        progress.Report(currentProgress);
+                        
+                        var vodStreamModels = new JavaScriptSerializer().Deserialize<List<XCVodStreamModel>>(responseContent);
+                        return vodStreamModels;
+                    }
+                }
+            }
+        }
+
+        public static async Task<List<XCSerieStreamModel>> ReadSerieStreams(string username, string password, IProgress<int> progress, int currentProgress)
+        {
+            var serieStreamRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action=get_series";
+            using (HttpClient httpClient = new HttpClient())
+            {
+                using (HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(serieStreamRequestURL))
+                {
+                    using (HttpContent httpContent = httpResponseMessage.Content)
+                    {
+                        var responseContent = await httpContent.ReadAsStringAsync();
+
+                        currentProgress += 17;
+                        progress.Report(currentProgress);
+
+                        var serieStreamModels = new JavaScriptSerializer().Deserialize<List<XCSerieStreamModel>>(responseContent);
+                        return serieStreamModels;
+                    }
+                }
+            }
+        }
+
+        public static List<XCVodStreamModel> GetLastVods(List<XCVodStreamModel> vods, int count)
+        {
+            List<XCVodStreamModel> tempVods = new List<XCVodStreamModel>();
+            vods.Sort((vod1, vod2) => vod2.added.CompareTo(vod1.added));
+
+            for(int i = 0; i < count; i++)
+            {
+                tempVods.Add(vods[i]);
+            }
+
+            return tempVods;
+        }
+
+        public static List<XCSerieStreamModel> GetLastSeries(List<XCSerieStreamModel> series, int count)
+        {
+            List<XCSerieStreamModel> tempSeries = new List<XCSerieStreamModel>();
+            series.Sort((serie1, serie2) => serie2.lastModified.CompareTo(serie1.lastModified));
+
+            for (int i = 0; i < count; i++)
+            {
+                tempSeries.Add(series[i]);
+            }
+
+            return tempSeries;
+        }
+
+        public static List<XCLiveStreamModel> GetLastLives(List<XCLiveStreamModel> lives, int count)
+        {
+            List<XCLiveStreamModel> tempLives = new List<XCLiveStreamModel>();
+            lives.Sort((live1, live2) => live1.added.CompareTo(live2.added));
+
+            for (int i = 0; i < count; i++)
+            {
+                tempLives.Add(lives[i]);
+            }
+
+            return tempLives;
+        }
+
     }
 
 }

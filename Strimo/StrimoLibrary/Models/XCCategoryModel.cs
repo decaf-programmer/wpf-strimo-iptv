@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace StrimoLibrary.Models
 {
-    public class CategoryModel
+    public class XCCategoryModel
     {
         public string category_id { get; set; } = "";
         public string category_name { get; set; } = "";
         public int parent_id { get; set; } = 0;
-        public Enum category_type { get; set; } = CategoryType.Undefined;
+        public Enum category_type { get; set; } = XCCategoryType.Undefined;
     }
 }

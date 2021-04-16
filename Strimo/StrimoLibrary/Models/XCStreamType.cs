@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace StrimoLibrary.Models
 {
-    public enum CategoryType
+    public enum XCStreamType
     {
-        Live,
+        Live, 
         Serie,
         Movie,
         Undefined

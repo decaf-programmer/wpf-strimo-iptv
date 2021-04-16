@@ -106,7 +106,7 @@ namespace StrimoUI.Pages.ViewModels.Login
                     }
                     else
                     {
-                        UserModel authUserModel = new UserModel();
+                        XCUserModel authUserModel = new XCUserModel();
                         authUserModel.username = (string)authUser["username"];
                         authUserModel.password = (string)authUser["password"];
                         authUserModel.message = (string)authUser["message"];
@@ -128,9 +128,9 @@ namespace StrimoUI.Pages.ViewModels.Login
                         DateTime currentDate = DateTime.Now;
                         string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        DatabaseService.CreateDBFile();
-                        DatabaseService.CreateUserTable();
-                        DatabaseService.UpdateUser(authUserModel.username, authUserModel.password, 1, currentDateStr);
+                        SQLDatabaseService.CreateDBFile();
+                        SQLDatabaseService.CreateUserTable();
+                        SQLDatabaseService.UpdateUser(authUserModel.username, authUserModel.password, 1, currentDateStr);
 
                         eventAggregator.PublishOnUIThread(new AuthSuccessMessage());
                     }

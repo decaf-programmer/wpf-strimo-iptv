@@ -40,9 +40,6 @@ namespace StrimoUI.Pages.ViewModels.Login
         public LoadAccountViewModel(IEventAggregator _eventAggregator)
         {
             eventAggregator = _eventAggregator;
-
-            
-            
         }
 
         protected override async void OnActivate()
@@ -71,25 +68,35 @@ namespace StrimoUI.Pages.ViewModels.Login
         {
             Progress<int> progress = new Progress<int>();
             progress.ProgressChanged += ReportProgress;
+            
 
             List<string> categoryActions = new List<string>();
             categoryActions.Add("get_live_categories");
             categoryActions.Add("get_series_categories");
             categoryActions.Add("get_vod_categories");
 
-            List<List<CategoryModel>> allCategories = await XtreamCodeService.DownloadAllCategories(username, password, categoryActions, progress);
+            List<List<XCCategoryModel>> allCategories = await XtreamCodeService.DownloadAllCategories(username, password, categoryActions, progress, LoadAccountProgressBarValue);
+            List<XCLiveStreamModel> liveStreams = await XtreamCodeService.ReadLiveStreams(username, password, progress, LoadAccountProgressBarValue);
+            List<XCVodStreamModel> vodStreams = await XtreamCodeService.ReadVodStreams(username, password, progress, LoadAccountProgressBarValue);
+            List<XCSerieStreamModel> serieStreams = await XtreamCodeService.ReadSerieStreams(username, password, progress, LoadAccountProgressBarValue);
 
-            foreach(List<CategoryModel> categoryList in allCategories)
+            List<XCVodStreamModel> lastVods = XtreamCodeService.GetLastVods(vodStreams, 10);
+            List<XCLiveStreamModel> lastLives = XtreamCodeService.GetLastLives(liveStreams, 10);
+            List<XCSerieStreamModel> lastSeries = XtreamCodeService.GetLastSeries(serieStreams, 10);
+
+            
+
+            foreach (List<XCCategoryModel> categoryList in allCategories)
             {
                 switch (categoryList[0].category_type)
                 {
-                    case CategoryType.Live:
+                    case XCCategoryType.Live:
                         GlobalVars.currentUserLiveCategories = categoryList;
                         break;
-                    case CategoryType.Movie:
+                    case XCCategoryType.Movie:
                         GlobalVars.currentUserVodCategories = categoryList;
                         break;
-                    case CategoryType.Serie:
+                    case XCCategoryType.Serie:
                         GlobalVars.currentUserSerieCategories = categoryList;
                         break;
                 }

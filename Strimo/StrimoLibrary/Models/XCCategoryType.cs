@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace StrimoLibrary.Models
 {
-    public class WebsiteDataModel
+    public enum XCCategoryType
     {
-        public string WebsiteUrl { get; set; } = "";
-        public string WebsiteData { get; set; } = "";
+        Live,
+        Serie,
+        Movie,
+        Undefined
     }
 }

@@ -32,7 +32,7 @@ namespace StrimoUI.Pages.ViewModels.Login
             base.OnActivate();
             eventAggregator.Subscribe(this);
 
-            List<UserDBModel> users = DatabaseService.GetLastUsers();
+            List<SQLUserModel> users = SQLDatabaseService.GetLastUsers();
             if (users != null && users.Count != 0)
             {
                 ActivateItem(selectAccountVM);
@@ -53,7 +53,7 @@ namespace StrimoUI.Pages.ViewModels.Login
             ActivateItem(loadAccountVM);
         }
 
-        public UserModel getLastUsers()
+        public XCUserModel getLastUsers()
         {
 
             return null;
