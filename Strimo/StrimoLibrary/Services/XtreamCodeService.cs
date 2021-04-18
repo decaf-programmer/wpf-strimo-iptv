@@ -58,7 +58,6 @@ namespace StrimoLibrary.Services
             }
             return categoryModels;
         }
-
         private static async Task<List<XCCategoryModel>> ReadTypeCategories(string username, string password, string categoryAction)
         {
             var categoryRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action={categoryAction}";
@@ -113,7 +112,6 @@ namespace StrimoLibrary.Services
                 }
             }
         }
-
         public static async Task<List<XCVodStreamModel>> ReadVodStreams(string username, string password, IProgress<int> progress, int currentProgress)
         {
             var vodStreamRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action=get_vod_streams";
@@ -135,7 +133,6 @@ namespace StrimoLibrary.Services
                 }
             }
         }
-
         public static async Task<List<XCSerieStreamModel>> ReadSerieStreams(string username, string password, IProgress<int> progress, int currentProgress)
         {
             var serieStreamRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action=get_series";
@@ -156,46 +153,6 @@ namespace StrimoLibrary.Services
                 }
             }
         }
-
-        public static List<XCVodStreamModel> GetLastVods(List<XCVodStreamModel> vods, int count)
-        {
-            List<XCVodStreamModel> tempVods = new List<XCVodStreamModel>();
-            vods.Sort((vod1, vod2) => vod2.added.CompareTo(vod1.added));
-
-            for(int i = 0; i < count; i++)
-            {
-                tempVods.Add(vods[i]);
-            }
-
-            return tempVods;
-        }
-
-        public static List<XCSerieStreamModel> GetLastSeries(List<XCSerieStreamModel> series, int count)
-        {
-            List<XCSerieStreamModel> tempSeries = new List<XCSerieStreamModel>();
-            series.Sort((serie1, serie2) => serie2.lastModified.CompareTo(serie1.lastModified));
-
-            for (int i = 0; i < count; i++)
-            {
-                tempSeries.Add(series[i]);
-            }
-
-            return tempSeries;
-        }
-
-        public static List<XCLiveStreamModel> GetLastLives(List<XCLiveStreamModel> lives, int count)
-        {
-            List<XCLiveStreamModel> tempLives = new List<XCLiveStreamModel>();
-            lives.Sort((live1, live2) => live1.added.CompareTo(live2.added));
-
-            for (int i = 0; i < count; i++)
-            {
-                tempLives.Add(lives[i]);
-            }
-
-            return tempLives;
-        }
-
     }
 
 }

@@ -21,42 +21,10 @@ namespace StrimoUI.Pages.ViewModels.Login
         private readonly IEventAggregator eventAggregator;
         private IDialogService dialogService;
 
-        private string username = "Username";
-        private string password = "Password";
+        public string Username { get; set; } = "Username";
+        public string Password { get; set; } = "Password";
 
-
-        public string Username
-        {
-            get { return username; }
-            set
-            {
-                if (username == value)
-                {
-                    return;
-                }
-                username = value;
-                NotifyOfPropertyChange(() => Username);
-
-            }
-        }
-
-        public string Password
-        {
-            get
-            {
-                return password;
-            }
-            set
-            {
-                if (password == value)
-                {
-                    return;
-                }
-                password = value;
-                NotifyOfPropertyChange(() => Password);
-            }
-        }
-
+        
         public LoginPageViewModel(IEventAggregator _eventAggregator)
         {
             eventAggregator = _eventAggregator;
@@ -83,7 +51,10 @@ namespace StrimoUI.Pages.ViewModels.Login
                 else
                 {
                     JObject authResponseJSON = JObject.Parse(authResult);
+
                     JObject authUser = (JObject)authResponseJSON["user_info"];
+
+
                     if ((int)authUser["auth"] == 0)
                     {
                         openAlertDialog("WARNING", "INCORRECT USERNAME AND PASSWORD. PLEASE INPUT CORRECT ONE");
