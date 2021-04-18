@@ -10,19 +10,19 @@ namespace StrimoLibrary.Models
     {
         public int num { get; set; }
         public string name { get; set; }
-        public int seriesId { get; set; }
+        public int series_id { get; set; }
         public string cover { get; set; }
         public string plot { get; set; }
         public string cast { get; set; }
         public string director { get; set; }
         public string genre { get; set; }
         public string releaseDate { get; set; }
-        public string lastModified { get; set; }
-        public double rating { get; set; }
-        public double ratingFiveBased { get; set; }
-        public List<string> backDropPath { get; set; }
-        public string youtubeTrailer { get; set; }
-        public string episodeRunTime { get; set; }
-        public string categoryId { get; set; }
+        public string last_modified { get; set; }
+        public float rating { get; set; }
+        public float ratingFiveBased { get; set; }
+        public List<string> backdrop_path { get; set; }
+        public string youtube_trailer { get; set; }
+        public string episode_run_time { get; set; }
+        public string category_id { get; set; }
     }
 }

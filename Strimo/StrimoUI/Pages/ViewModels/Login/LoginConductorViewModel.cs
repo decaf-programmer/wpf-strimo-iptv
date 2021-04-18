@@ -5,6 +5,7 @@ using StrimoLibrary.Models;
 using StrimoUI.Messages;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,20 +28,28 @@ namespace StrimoUI.Pages.ViewModels.Login
             Items.AddRange(new Screen[] { loginPageVM, loadAccountVM, selectAccountVM });
         }
 
+
+        // Go to Login Page or Select Account Page...
         protected override void OnActivate()
         {
             base.OnActivate();
             eventAggregator.Subscribe(this);
 
-            List<SQLUserModel> users = SQLDatabaseService.GetLastUsers();
-            if (users != null && users.Count != 0)
-            {
-                ActivateItem(selectAccountVM);
-            } else
+            if (!File.Exists("StrimoDB.db3"))
             {
                 ActivateItem(loginPageVM);
+            } else
+            {
+                List<SQLUserModel> users = SQLDatabaseService.GetLastUsers();
+                if (users != null && users.Count != 0)
+                {
+                    ActivateItem(selectAccountVM);
+                }
+                else
+                {
+                    ActivateItem(loginPageVM);
+                }
             }
-
         }
 
         protected override void OnDeactivate(bool close)
@@ -53,10 +62,5 @@ namespace StrimoUI.Pages.ViewModels.Login
             ActivateItem(loadAccountVM);
         }
 
-        public XCUserModel getLastUsers()
-        {
-
-            return null;
-        }
     }
 }

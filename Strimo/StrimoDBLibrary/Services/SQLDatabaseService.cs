@@ -13,9 +13,6 @@ namespace StrimoDBLibrary.Services
     public static class SQLDatabaseService
     {
 
-        public static string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-
         public static void CreateDBFile()
         {
             if (!File.Exists("StrimoDB.db3"))
@@ -67,6 +64,8 @@ namespace StrimoDBLibrary.Services
 
             return false;
         }
+
+
 
         public static void RegisterUser(string username, string password, int loginStatus, string currentTime)
         {
@@ -139,32 +138,32 @@ namespace StrimoDBLibrary.Services
         }
 
 
-        private static bool CheckIfColumnExists(string tableName, string columnName)
-        {
-            SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=StrimoDB.db3;Version=3;");
-            if (m_dbConnection.State == System.Data.ConnectionState.Closed)
-                m_dbConnection.Open();
+        //private static bool CheckIfColumnExists(string tableName, string columnName)
+        //{
+        //    SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=StrimoDB.db3;Version=3;");
+        //    if (m_dbConnection.State == System.Data.ConnectionState.Closed)
+        //        m_dbConnection.Open();
 
-            using (SQLiteCommand cmd = new SQLiteCommand(m_dbConnection))
-            {
-                cmd.CommandText = string.Format("PRAGMA table_info({0})", tableName);
+        //    using (SQLiteCommand cmd = new SQLiteCommand(m_dbConnection))
+        //    {
+        //        cmd.CommandText = string.Format("PRAGMA table_info({0})", tableName);
 
-                var reader = cmd.ExecuteReader();
-                int nameIndex = reader.GetOrdinal("Name");
-                while (reader.Read())
-                {
-                    if (reader.GetString(nameIndex).Equals(columnName))
-                    {
-                        return true;
-                    }
-                }
-            }
+        //        var reader = cmd.ExecuteReader();
+        //        int nameIndex = reader.GetOrdinal("Name");
+        //        while (reader.Read())
+        //        {
+        //            if (reader.GetString(nameIndex).Equals(columnName))
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //    }
 
-            if (m_dbConnection.State == System.Data.ConnectionState.Open)
-            {
-                m_dbConnection.Close();
-            }
-            return false;
-        }
+        //    if (m_dbConnection.State == System.Data.ConnectionState.Open)
+        //    {
+        //        m_dbConnection.Close();
+        //    }
+        //    return false;
+        //}
     }
 }

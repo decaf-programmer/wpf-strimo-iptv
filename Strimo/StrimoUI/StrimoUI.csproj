@@ -203,6 +203,7 @@
     <Compile Include="Pages\Views\Login\SelectAccountView.xaml.cs">
       <DependentUpon>SelectAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
