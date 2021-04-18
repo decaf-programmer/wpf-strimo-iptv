@@ -11,7 +11,7 @@ namespace StrimoUI.Globals
     public static class GlobalVars
     {
         // Current Logged User...
-        public static XCUserModel currentUser;
+        public static XCAuthInfoModel currentAuthInfo;
 
         // Xtream Codes Categories...
         public static List<XCCategoryModel> currentUserLiveCategories;

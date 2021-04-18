@@ -109,6 +109,7 @@ namespace StrimoDBLibrary.Services
 
         public static List<SQLUserModel> GetLastUsers()
         {
+
             SQLiteConnection m_dbConnection = new SQLiteConnection("Data Source=StrimoDb.db3;Version=3");
             if(m_dbConnection.State == System.Data.ConnectionState.Closed)
             {
