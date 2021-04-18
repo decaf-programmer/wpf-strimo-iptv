@@ -20,7 +20,6 @@ namespace StrimoLibrary.Services
             var request_url = $"{server_url}/player_api.php?username={username}&password={password}";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(request_url);
-
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
             try
@@ -40,7 +39,6 @@ namespace StrimoLibrary.Services
                 }
                 return "Error";
             }
-
         }
 
         public static async Task<List<List<XCCategoryModel>>> DownloadAllCategories(string username, string password, List<string> categoryActionTypes, IProgress<int> progress, int currentProgress)

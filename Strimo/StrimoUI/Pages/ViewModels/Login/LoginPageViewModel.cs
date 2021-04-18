@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace StrimoUI.Pages.ViewModels.Login
 {
@@ -40,6 +41,7 @@ namespace StrimoUI.Pages.ViewModels.Login
             else
             {
                 string authResult = XtreamCodeService.Auth(Username, Password);
+                
                 if (authResult.Equals("Error"))
                 {
                     openAlertDialog("WARNING", "APP OR SERVICE IS NOT WORKING WITH PROVIDER SERVICE, PLEASE CONTACT WITH PROVIDER");
@@ -50,58 +52,37 @@ namespace StrimoUI.Pages.ViewModels.Login
                 }
                 else
                 {
-                    JObject authResponseJSON = JObject.Parse(authResult);
-
-                    JObject authUser = (JObject)authResponseJSON["user_info"];
-
-
-                    if ((int)authUser["auth"] == 0)
+                    var authInfo = new JavaScriptSerializer().Deserialize<XCAuthInfoModel>(authResult);
+                    if (authInfo.user_info.auth == 0)
                     {
                         openAlertDialog("WARNING", "INCORRECT USERNAME AND PASSWORD. PLEASE INPUT CORRECT ONE");
                     }
-                    else if ((int)long.Parse((string)authUser["active_cons"]) + 1 > (int)long.Parse((string)authUser["max_connections"]))
+                    else if ((int)long.Parse(authInfo.user_info.active_cons) + 1 > (int)long.Parse(authInfo.user_info.max_connections))
                     {
                         openAlertDialog("WARNING", "YOU HAVE LIMITED CONNECTIONS, PLEASE EXTEND CONNECTION BY UPGRADING MEMBERSHIP");
                     }
-                    else if ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() / 1000) > (int)Int64.Parse((string)authUser["exp_date"]) || (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() / 1000) < (int)Int64.Parse((string)authUser["created_at"]))
+                    else if ((DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() / 1000) > (int)Int64.Parse(authInfo.user_info.exp_date) || (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() / 1000) < (int)Int64.Parse(authInfo.user_info.created_at))
                     {
                         openAlertDialog("WARNING", "YOUR ACCOUNT IS EXPIRED ALREADY, PLEASE CONTACT TO PROVIDER");
                     }
-                    else if (authUser["status"].Equals("Active"))
+                    else if (authInfo.user_info.status.Equals("Active"))
                     {
                         openAlertDialog("WARNING", "YOUR ACCOUNT IS NOT ACTIVATED. PLEASE MAKE YOUR ACCOUNT ACTIVATE");
                     }
-                    else if (authUser["is_trial"].Equals("0"))
+                    else if (authInfo.user_info.is_trial.Equals("0"))
                     {
                         openAlertDialog("WARNING", "YOUR ACCOUNT IS NOT TRIAL NOW. PLEASE PURCHASE APP NOW");
                     }
                     else
                     {
-                        XCUserModel authUserModel = new XCUserModel();
-                        authUserModel.username = (string)authUser["username"];
-                        authUserModel.password = (string)authUser["password"];
-                        authUserModel.message = (string)authUser["message"];
-                        authUserModel.auth = (int)authUser["auth"];
-                        authUserModel.status = (string)authUser["status"];
-                        authUserModel.exp_date = (string)authUser["exp_date"];
-                        authUserModel.is_trial = (string)authUser["is_trial"];
-                        authUserModel.active_cons = (string)authUser["active_cons"];
-                        authUserModel.created_at = (string)authUser["created_at"];
-                        authUserModel.max_connections = (string)authUser["max_connections"];
-                        authUserModel.allowed_output_formats = new List<string>();
-                        foreach (string format in authUser["allowed_output_formats"])
-                        {
-                            authUserModel.allowed_output_formats.Add(format);
-                        }
-
-                        GlobalVars.currentUser = authUserModel;
+                        GlobalVars.currentAuthInfo = authInfo;
 
                         DateTime currentDate = DateTime.Now;
                         string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
 
                         SQLDatabaseService.CreateDBFile();
                         SQLDatabaseService.CreateUserTable();
-                        SQLDatabaseService.UpdateUser(authUserModel.username, authUserModel.password, 1, currentDateStr);
+                        SQLDatabaseService.UpdateUser(authInfo.user_info.username, authInfo.user_info.password, 1, currentDateStr);
 
                         eventAggregator.PublishOnUIThread(new AuthSuccessMessage());
                     }
