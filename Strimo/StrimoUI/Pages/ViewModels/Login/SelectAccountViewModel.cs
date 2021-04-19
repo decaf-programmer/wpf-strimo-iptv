@@ -86,11 +86,11 @@ namespace StrimoUI.Pages.ViewModels.Login
                 {
                     openAlertDialog("WARNING", "YOUR ACCOUNT IS EXPIRED ALREADY, PLEASE CONTACT TO PROVIDER");
                 }
-                else if (authInfo.user_info.status.Equals("Active"))
+                else if (!authInfo.user_info.status.Equals("Active"))
                 {
                     openAlertDialog("WARNING", "YOUR ACCOUNT IS NOT ACTIVATED. PLEASE MAKE YOUR ACCOUNT ACTIVATE");
                 }
-                else if (authInfo.user_info.is_trial.Equals("0"))
+                else if (!authInfo.user_info.is_trial.Equals("0"))
                 {
                     openAlertDialog("WARNING", "YOUR ACCOUNT IS NOT TRIAL NOW. PLEASE PURCHASE APP NOW");
                 }

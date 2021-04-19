@@ -6,5 +6,7 @@
              xmlns:local="clr-namespace:StrimoUI.Pages.Views.Content"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" >
-    
+    <Grid>
+        
+    </Grid>
 </UserControl>

@@ -10,29 +10,12 @@ namespace StrimoUI.Components.Models
 {
     public class CarouselModel
     {
-        private string _CarouselItemTitle;
-        public string CarouselItemTitle {
-            get { return _CarouselItemTitle; }
-            set { 
-                _CarouselItemTitle = value;
-            }
-        }
-
-        private string _CarouselItemImageName;
-        public string CarouselItemImageName { 
-            get {
-                return $"/StrimoUI;component/Resources/{_CarouselItemImageName}.jpg";
-            } 
-            set {
-                _CarouselItemImageName = value;
-            } 
-        }
-
+        public string CarouselItemTitle { get; set; }
+        public string CarouselItemImage { get; set; }
         private int _CarouselItemImageWidth;
-        public int CarouselItemImageWidth
-        {
-            get { return _CarouselItemImageWidth; }
-            set { _CarouselItemImageWidth = value; }
+        public int CarouselItemImageWidth { 
+            get { return _CarouselItemImageWidth; } 
+            set { _CarouselItemImageWidth = value; } 
         }
 
         private int _CarouselItemImageHeight;
@@ -42,87 +25,25 @@ namespace StrimoUI.Components.Models
             set { _CarouselItemImageHeight = value; }
         }
 
-        private int _CarouselItemInnerImageWidth;
         public int CarouselItemInnerImageWidth
-        {
-            get { return _CarouselItemInnerImageWidth; }
-            set { _CarouselItemInnerImageWidth = value; }
+        { 
+            get { return _CarouselItemImageWidth - 2; }
+            set
+            {
+                _CarouselItemImageWidth = value;
+            }
         }
 
-        private int _CarouselItemInnerImageHeight;
         public int CarouselItemInnerImageHeight
         {
-            get { return _CarouselItemInnerImageHeight; }
-            set { _CarouselItemInnerImageHeight = value; }
+            get { return _CarouselItemImageHeight-2; }
+            set{ _CarouselItemImageHeight = value; }
         }
 
-        private int _CarouselItemImageTop;
-        public int CarouselItemImageTop
-        {
-            get
-            {
-                return _CarouselItemImageTop;
-            }
-            set
-            {
-                _CarouselItemImageTop = value;
-            }
-        }
+        public int CarouselItemImageTop { get; set; }
 
-        private bool _CarouselItemAlphaVisible;
-        public bool CarouselItemAlphaVisible
-        {
-            get { return _CarouselItemAlphaVisible; }
-            set
-            {
-                _CarouselItemAlphaVisible = value;
-            }
-        }
-
-        private bool _CarouselItemTitleVisible;
-        public bool CarouselItemTitleVisible
-        {
-            get { return _CarouselItemTitleVisible; }
-            set
-            {
-                _CarouselItemTitleVisible = value;
-            }
-        }
-
-        private string _CarouselItemBorderColor;
-        public string CarouselItemBorderColor
-        {
-            get { return _CarouselItemBorderColor; }
-            set { _CarouselItemBorderColor = value; }
-        }
-
-
-        private XCCategoryType _CarouselItemCategoryType;
-        public XCCategoryType CarouselItemCategoryType { 
-            get { 
-                return _CarouselItemCategoryType; 
-            } 
-            set
-            {
-                _CarouselItemCategoryType = value;
-            }
-        }
-
-        private string _CarouselItemCategoryId;
-        public string CarouselItemCategoryId
-        { 
-            get {
-                return _CarouselItemCategoryId;
-            } 
-            set {
-                _CarouselItemCategoryId = value; 
-            } 
-        }
-        private string _CarouselItemParentId;
-        public string CarouselItemParentId 
-        {
-            get { return _CarouselItemParentId; }
-            set { _CarouselItemParentId = value; }
-        }
+        public bool CarouselItemActive{ get; set; }
+        public int CarouselItemStreamId { get; set; }
+        
     }
 }
