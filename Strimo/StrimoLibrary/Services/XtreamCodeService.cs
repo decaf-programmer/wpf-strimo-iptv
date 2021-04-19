@@ -1,4 +1,5 @@
-﻿using StrimoLibrary.Models;
+﻿using Newtonsoft.Json.Linq;
+using StrimoLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -151,6 +152,66 @@ namespace StrimoLibrary.Services
                 }
             }
         }
+
+        public static string GetImageWithStreamId(string username, string password, int stream_id, Type stream_type){
+            if(stream_type.Equals(typeof(XCVodStreamModel))){
+                var request_url = $"{server_url}/player_api.php?username={username}&password={password}&action=get_vod_info&vod_id={stream_id}";
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(request_url);
+                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+                try
+                {
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (Stream stream = response.GetResponseStream())
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string content = reader.ReadToEnd();
+                        JObject contentObj = JObject.Parse(content);
+                        if((string)contentObj["info"]["tmdb_id"] == ""){
+                            // This should be customized by searching movie name in TMDB API...
+                            return null;
+                        } else {
+                            return (string)contentObj["info"]["backdrop_path"][0];
+                        }
+                        
+                    }
+                }
+                catch (WebException e)
+                {
+                    return null;
+                }
+
+            } else if (stream_type.Equals(typeof(XCSerieStreamModel))){
+                var request_url = $"{server_url}/player_api.php?username={username}&password={password}&action=get_serie_info&serie_id={stream_id}";
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(request_url);
+                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+                try
+                {
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (Stream stream = response.GetResponseStream())
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string content = reader.ReadToEnd();
+                        JObject contentObj = JObject.Parse(content);
+                        if((string)contentObj["info"]["tmdb_id"] == ""){
+                            // This should be customized by searching movie name in TMDB API...
+                            return null;
+                        } else {
+                            return (string)contentObj["info"]["backdrop_path"][0];
+                        }
+                    }
+                }catch (WebException e)
+                {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
+
     }
 
 }

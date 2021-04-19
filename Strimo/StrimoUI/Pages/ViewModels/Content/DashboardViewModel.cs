@@ -16,6 +16,14 @@ namespace StrimoUI.Pages.ViewModels.Content
 {
     public class DashboardViewModel:Screen
     {
-        	
+        private readonly IEventAggregator eventAggregator;
+
+        public DashboardViewModel(IEventAggregator _eventAggregator)
+        {
+            eventAggregator = _eventAggregator;
+        }
+
+        
+        
 	}
 }

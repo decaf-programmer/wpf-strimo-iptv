@@ -69,28 +69,15 @@ namespace StrimoUI.Pages.ViewModels.Login
             progress.ProgressChanged += ReportProgress;
             
 
-            List<string> categoryActions = new List<string>();
-            categoryActions.Add("get_live_categories");
-            categoryActions.Add("get_series_categories");
-            categoryActions.Add("get_vod_categories");
-
-            List<List<XCCategoryModel>> allCategories = await XtreamCodeService.DownloadAllCategories(username, password, categoryActions, progress, LoadAccountProgressBarValue);
+            List<List<XCCategoryModel>> allCategories = await XtreamCodeService.DownloadAllCategories(username, password, XCCommands.GET_CATEGORIES, progress, LoadAccountProgressBarValue);
 
             List<XCLiveStreamModel> liveStreams = await XtreamCodeService.ReadLiveStreams(username, password, progress, LoadAccountProgressBarValue);
             List<XCVodStreamModel> vodStreams = await XtreamCodeService.ReadVodStreams(username, password, progress, LoadAccountProgressBarValue);
             List<XCSerieStreamModel> serieStreams = await XtreamCodeService.ReadSerieStreams(username, password, progress, LoadAccountProgressBarValue);
+            List<XCLiveStreamModel> radioStreams = liveStreams.Where<XCLiveStreamModel>(liveStream => liveStream.stream_type == "radio_streams").ToList();
 
-            //Sort the Streams...
-            liveStreams.Sort((liveStream1, liveStream2) => liveStream2.added.CompareTo(liveStream1.added));
-            vodStreams.Sort((vodStream1, vodStream2) => vodStream2.added.CompareTo(vodStream1.added));
-            serieStreams.Sort((serieStream1, serieStream2) => serieStream2.last_modified.CompareTo(serieStream1.last_modified));
-
-            // GET Last Streams...
-            List<XCLiveStreamModel> lastLives = (List<XCLiveStreamModel>)liveStreams.Take(10);
-            List<XCVodStreamModel> lastVods = (List<XCVodStreamModel>)vodStreams.Take(10);
-            List<XCSerieStreamModel> lastSeries = (List<XCSerieStreamModel>)serieStreams.Take(10);
-
-            // SET the Variables to Global Vars...
+             // SET the Variables to Global Vars...
+             // SET the Categories into Global Vars...
             foreach (List<XCCategoryModel> categoryList in allCategories)
             {
                 switch (categoryList[0].category_type)
@@ -107,134 +94,44 @@ namespace StrimoUI.Pages.ViewModels.Login
                 }
             }
 
+            // SET the Streams into Global Vars...
             GlobalVars.currentLiveStreams = liveStreams;
-            GlobalVars.currentVodStreams = vodStreams;
             GlobalVars.currentSerieStreams = serieStreams;
+            GlobalVars.currentVodStreams = vodStreams;
+            GlobalVars.currentRadioStreams = radioStreams;
 
-            List<CarouselModel> vodCarouselList = new List<CarouselModel>();
-            List<CarouselModel> liveCarouselList = new List<CarouselModel>();
-            List<CarouselModel> serieCarouselList = new List<CarouselModel>();
+            //Sort the Streams...
+            // liveStreams.Sort((liveStream1, liveStream2) => liveStream2.added.CompareTo(liveStream1.added));
+            // vodStreams.Sort((vodStream1, vodStream2) => vodStream2.added.CompareTo(vodStream1.added));
+            // serieStreams.Sort((serieStream1, serieStream2) => serieStream2.last_modified.CompareTo(serieStream1.last_modified));
+            
 
-            // Geerate CarouselList
-            for(int i = 0; i < lastLives.Count; i++)
-            {
-                CarouselModel temp = new CarouselModel();
-                if(i == 1 && i == 2 && i == 3 && i == 4 && i == 5 )
-                {
-                    temp.CarouselItemTitle = lastLives[i].name;
-                    temp.CarouselItemImageName = lastLives[i].stream_icon;
-                    temp.CarouselItemImageWidth = 274;
-                    temp.CarouselItemImageHeight = 162;
-                    temp.CarouselItemInnerImageWidth = 270;
-                    temp.CarouselItemInnerImageHeight = 160;
-                    temp.CarouselItemImageTop = 0;
-                    temp.CarouselItemTitleVisible = false;
-                    temp.CarouselItemAlphaVisible = false;
-                    temp.CarouselItemBorderColor = "Transparent";
-                    temp.CarouselItemCategoryType = XCCategoryType.Live;
-                    temp.CarouselItemCategoryId = lastLives[i].category_id;
-                    temp.CarouselItemParentId = null;
-                } else
-                {
-                    temp.CarouselItemTitle = lastLives[i].name;
-                    temp.CarouselItemImageName = lastLives[i].stream_icon;
-                    temp.CarouselItemImageWidth = 274;
-                    temp.CarouselItemImageHeight = 162;
-                    temp.CarouselItemInnerImageWidth = 270;
-                    temp.CarouselItemInnerImageHeight = 160;
-                    temp.CarouselItemImageTop = 0;
-                    temp.CarouselItemTitleVisible = false;
-                    temp.CarouselItemAlphaVisible = true;
-                    temp.CarouselItemBorderColor = "Transparent";
-                    temp.CarouselItemCategoryType = XCCategoryType.Live;
-                    temp.CarouselItemCategoryId = lastLives[i].category_id;
-                    temp.CarouselItemParentId = null;
-                }
+            List<XCLiveStreamModel> latestLiveStreams = new List<XCLiveStreamModel>();
+            List<XCSerieStreamModel> latestSerieStreams = new List<XCSerieStreamModel>();
+            List<XCVodStreamModel> latestVodStreams = new List<XCVodStreamModel>();
+            List<XCLiveStreamModel> latestRadioStreams = new List<XCLiveStreamModel>();
+            
+            
 
-                liveCarouselList.Add(temp);
-            }
+            latestLiveStreams = liveStreams.OrderByDescending(liveStream => liveStream.added).Take<XCLiveStreamModel>(10).ToList();
+            latestSerieStreams = serieStreams.OrderByDescending(serieStream => serieStream.last_modified).Take<XCSerieStreamModel>(10).ToList();
+            latestVodStreams = vodStreams.OrderByDescending(vodStream => vodStream.added).Take<XCVodStreamModel>(10).ToList();
+            latestRadioStreams = radioStreams.OrderByDescending(radioStream => radioStream.added).Take<XCLiveStreamModel>(10).ToList();
 
-            for (int i = 0; i < lastVods.Count; i++)
-            {
-                CarouselModel temp = new CarouselModel();
-                if (i == 1)
-                {
+            List<CarouselModel> latestLiveCarouselList = new List<CarouselModel>();
+            List<CarouselModel> latestVodCarouselList = new List<CarouselModel>();
+            List<CarouselModel> latestSerieCarouselList = new List<CarouselModel>();
+            List<CarouselModel> latestRadioCarouselList = new List<CarouselModel>();
 
-                    temp.CarouselItemTitle = lastVods[i].name;
-                    temp.CarouselItemImageName = lastVods[i].stream_icon;
-                    temp.CarouselItemImageWidth = 670;
-                    temp.CarouselItemImageHeight = 349;
-                    temp.CarouselItemInnerImageWidth = 667;
-                    temp.CarouselItemInnerImageHeight = 347;
-                    temp.CarouselItemImageTop = 0;
-                    temp.CarouselItemTitleVisible = false;
-                    temp.CarouselItemAlphaVisible = false;
-                    temp.CarouselItemBorderColor = "Transparent";
-                    temp.CarouselItemCategoryType = XCCategoryType.Live;
-                    temp.CarouselItemCategoryId = lastVods[i].category_id;
-                    temp.CarouselItemParentId = null;
-                }
-                else
-                {
-                    temp.CarouselItemTitle = lastVods[i].name;
-                    temp.CarouselItemImageName = lastVods[i].stream_icon;
-                    temp.CarouselItemImageWidth = 274;
-                    temp.CarouselItemImageHeight = 162;
-                    temp.CarouselItemInnerImageWidth = 270;
-                    temp.CarouselItemInnerImageHeight = 160;
-                    temp.CarouselItemImageTop = 0;
-                    temp.CarouselItemTitleVisible = false;
-                    temp.CarouselItemAlphaVisible = true;
-                    temp.CarouselItemBorderColor = "Transparent";
-                    temp.CarouselItemCategoryType = XCCategoryType.Live;
-                    temp.CarouselItemCategoryId = lastVods[i].category_id;
-                    temp.CarouselItemParentId = null;
-                }
+            latestLiveCarouselList =  Utility.ConvertStreamListToCarouselList(latestLiveStreams);
+            latestVodCarouselList = Utility.ConvertStreamListToCarouselList(latestVodStreams);
+            latestSerieCarouselList = Utility.ConvertStreamListToCarouselList(latestSerieStreams);
+            latestRadioCarouselList = Utility.ConvertStreamListToCarouselList(latestRadioStreams);
 
-                vodCarouselList.Add(temp);
-            }
-
-            for (int i = 0; i < lastSeries.Count; i++)
-            {
-                CarouselModel temp = new CarouselModel();
-                if (i == 1)
-                {
-
-                    temp.CarouselItemTitle = lastSeries[i].name;
-                    //temp.CarouselItemImageName = lastSeries[i].stream_icon;
-                    //temp.CarouselItemImageWidth = 670;
-                    //temp.CarouselItemImageHeight = 349;
-                    //temp.CarouselItemInnerImageWidth = 667;
-                    //temp.CarouselItemInnerImageHeight = 347;
-                    //temp.CarouselItemImageTop = 0;
-                    //temp.CarouselItemTitleVisible = false;
-                    //temp.CarouselItemAlphaVisible = false;
-                    //temp.CarouselItemBorderColor = "Transparent";
-                    //temp.CarouselItemCategoryType = XCCategoryType.Live;
-                    //temp.CarouselItemCategoryId = lastSeries[i].category_id;
-                    //temp.CarouselItemParentId = null;
-                }
-                else
-                {
-                    temp.CarouselItemTitle = lastVods[i].name;
-                    //temp.CarouselItemImageName = lastVods[i].stream_icon;
-                    //temp.CarouselItemImageWidth = 274;
-                    //temp.CarouselItemImageHeight = 162;
-                    //temp.CarouselItemInnerImageWidth = 270;
-                    //temp.CarouselItemInnerImageHeight = 160;
-                    //temp.CarouselItemImageTop = 0;
-                    //temp.CarouselItemTitleVisible = false;
-                    //temp.CarouselItemAlphaVisible = true;
-                    //temp.CarouselItemBorderColor = "Transparent";
-                    //temp.CarouselItemCategoryType = XCCategoryType.Live;
-                    //temp.CarouselItemCategoryId = lastVods[i].category_id;
-                    //temp.CarouselItemParentId = null;
-                }
-
-                serieCarouselList.Add(temp);
-            }
-
-
+            GlobalVars.latestLiveCarouselList = latestLiveCarouselList;
+            GlobalVars.latestSerieCaoureslList = latestSerieCarouselList;
+            GlobalVars.latestVodCarouselList = latestVodCarouselList;
+            GlobalVars.latestRadioCarouselList = latestRadioCarouselList;
         }
 
         private void ReportProgress(object sender, int e)
@@ -242,4 +139,6 @@ namespace StrimoUI.Pages.ViewModels.Login
             LoadAccountProgressBarValue = e;
         }
     }
+
+    
 }

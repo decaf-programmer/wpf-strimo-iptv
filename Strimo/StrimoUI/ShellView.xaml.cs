@@ -37,15 +37,14 @@ namespace StrimoUI
                 e.Cancel = true;
             } else
             {
-                if(GlobalVars.currentUser != null)
+                
+                if(GlobalVars.currentAuthInfo != null || GlobalVars.currentAuthInfo.user_info != null)
                 {
-                    string currentUsername = GlobalVars.currentUser.username;
-                    string currentPassword = GlobalVars.currentUser.password;
-
+                    string currentUsername = GlobalVars.currentAuthInfo.user_info.username;
+                    string currentPassword = GlobalVars.currentAuthInfo.user_info.password;
 
                     DateTime currentDate = DateTime.Now;
                     string currentDateStr = currentDate.ToString("yyyy-MM-dd HH:mm:ss");
-
                     SQLDatabaseService.UpdateUser(currentUsername, currentPassword, 0, currentDateStr);
                 } else
                 {
