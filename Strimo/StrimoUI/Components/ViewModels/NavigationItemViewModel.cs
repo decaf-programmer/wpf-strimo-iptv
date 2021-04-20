@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace StrimoUI.Pages.ViewModels.Content
+namespace StrimoUI.Components.ViewModels
 {
     public class NavigationItemViewModel : Screen
     {

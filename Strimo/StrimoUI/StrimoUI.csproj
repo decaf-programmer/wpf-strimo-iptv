@@ -162,7 +162,7 @@
     <Compile Include="Messages\LoginPageMessage.cs" />
     <Compile Include="Messages\NavigationHoverMessage.cs" />
     <Compile Include="Messages\NavigationItemClickedMessage.cs" />
-    <Compile Include="Pages\Models\SubItemModel.cs" />
+    <Compile Include="Components\Models\SubItemModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -175,7 +175,7 @@
     <Compile Include="Pages\ViewModels\Content\ContentConductorViewModel.cs" />
     <Compile Include="Pages\ViewModels\Content\DashboardViewModel.cs" />
     <Compile Include="Pages\ViewModels\Content\HomeViewModel.cs" />
-    <Compile Include="Pages\ViewModels\Content\NavigationItemViewModel.cs" />
+    <Compile Include="Components\ViewModels\NavigationItemViewModel.cs" />
     <Compile Include="Pages\ViewModels\Login\LoadAccountViewModel.cs" />
     <Compile Include="Pages\ViewModels\Login\LoginConductorViewModel.cs" />
     <Compile Include="Pages\ViewModels\Login\LoginPageViewModel.cs" />
@@ -189,7 +189,7 @@
     <Compile Include="Pages\Views\Content\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Views\Content\NavigationItemView.xaml.cs">
+    <Compile Include="Components\Views\NavigationItemView.xaml.cs">
       <DependentUpon>NavigationItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Views\Login\LoadAccountView.xaml.cs">
@@ -279,7 +279,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Views\Content\NavigationItemView.xaml">
+    <Page Include="Components\Views\NavigationItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -599,7 +599,9 @@
       <Version>8.0.0.1909</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\leftBtn.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

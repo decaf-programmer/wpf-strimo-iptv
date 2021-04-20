@@ -32,7 +32,7 @@ namespace StrimoUI.Utilities
                         temp.CarouselItemStreamId = vodStream.stream_id;
                         temp.CarouselItemImage = XtreamCodeService.GetImageWithStreamId(username, password, vodStream.stream_id, streamType);
                         temp.CarouselItemImageWidth = 670;
-                        temp.CarouselItemImageHeight = 349;
+                        temp.CarouselItemImageHeight = 312;
                         temp.CarouselItemImageTop = 19;
                         temp.CarouselItemActive = false;
                         carouselList.Add(temp);

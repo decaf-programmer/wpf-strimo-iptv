@@ -12,6 +12,7 @@ namespace StrimoUI.Components.ViewModels
 {
     public class CarouselListViewModel:Screen
     {
+		public string CarouselListHeader { get; set; }
 		public int CarouselListWidth { get; set; }
 		public int CarouselListHeight { get; set; }
 
@@ -57,17 +58,12 @@ namespace StrimoUI.Components.ViewModels
 		{
 			CarouselListCollection[0].CarouselItemImageTop = 0;
 			CarouselListCollection[0].CarouselItemImageHeight = 349;
-			//CarouselListCollection[0].CarouselItemInnerImageHeight = 347;
-			//CarouselListCollection[0].CarouselItemAlphaVisible = false;
-			//CarouselListCollection[0].CarouselItemTitleVisible = true;
-			//CarouselListCollection[0].CarouselItemBorderColor = "#EB761C";
+			CarouselListCollection[0].CarouselItemActive = true;
+			
 			
 			CarouselListCollection[1].CarouselItemImageTop = 19;
 			CarouselListCollection[1].CarouselItemImageHeight = 312;
-			//CarouselListCollection[1].CarouselItemInnerImageHeight = 310;
-			//CarouselListCollection[1].CarouselItemAlphaVisible = true;
-			//CarouselListCollection[1].CarouselItemTitleVisible = false;
-			//CarouselListCollection[1].CarouselItemBorderColor = "#20ffffff";
+			CarouselListCollection[1].CarouselItemActive = false;
 
 			CarouselModel temp = CarouselListCollection[CarouselListCollection.Count - 1];
 			for (int i = CarouselListCollection.Count - 1; i > 0; i--)
@@ -75,10 +71,7 @@ namespace StrimoUI.Components.ViewModels
 				CarouselListCollection[i] = CarouselListCollection[i - 1];
 				CarouselListCollection[i].CarouselItemImageTop = 19;
 				CarouselListCollection[i].CarouselItemImageHeight = 312;
-				//CarouselListCollection[i].CarouselItemInnerImageHeight = 310;
-				//CarouselListCollection[i].CarouselItemAlphaVisible = true;
-				//CarouselListCollection[i].CarouselItemTitleVisible = false;
-				//CarouselListCollection[i].CarouselItemBorderColor = "#20ffffff";
+				CarouselListCollection[i].CarouselItemActive = false;
 			}
 			CarouselListCollection[0] = temp;
 		}
@@ -87,17 +80,11 @@ namespace StrimoUI.Components.ViewModels
 		{
 			CarouselListCollection[2].CarouselItemImageTop = 0;
 			CarouselListCollection[2].CarouselItemImageHeight = 349;
-			//CarouselListCollection[2].CarouselItemInnerImageHeight = 347;
-			//CarouselListCollection[2].CarouselItemAlphaVisible = false;
-			//CarouselListCollection[2].CarouselItemTitleVisible = true;
-			//CarouselListCollection[2].CarouselItemBorderColor = "#EB761C";
+			CarouselListCollection[2].CarouselItemActive = true;
 
 			CarouselListCollection[1].CarouselItemImageTop = 19;
 			CarouselListCollection[1].CarouselItemImageHeight = 312;
-			//CarouselListCollection[1].CarouselItemInnerImageHeight = 310;
-			//CarouselListCollection[1].CarouselItemAlphaVisible = true;
-			//CarouselListCollection[1].CarouselItemTitleVisible = false;
-			//CarouselListCollection[1].CarouselItemBorderColor = "#20ffffff";
+			CarouselListCollection[1].CarouselItemActive = false;
 
 			CarouselModel temp = CarouselListCollection[0];
 			for (int i = 0; i < CarouselListCollection.Count - 1; i++)
@@ -105,10 +92,7 @@ namespace StrimoUI.Components.ViewModels
 				CarouselListCollection[i] = CarouselListCollection[i + 1];
 				CarouselListCollection[i].CarouselItemImageTop = 19;
 				CarouselListCollection[i].CarouselItemImageHeight = 312;
-				//CarouselListCollection[i].CarouselItemInnerImageHeight = 310;
-				//CarouselListCollection[i].CarouselItemAlphaVisible = true;
-				//CarouselListCollection[i].CarouselItemTitleVisible = false;
-				//CarouselListCollection[i].CarouselItemBorderColor = "#20ffffff";
+				CarouselListCollection[i].CarouselItemActive = false;
 			}
 
 			CarouselListCollection[CarouselListCollection.Count - 1] = temp;

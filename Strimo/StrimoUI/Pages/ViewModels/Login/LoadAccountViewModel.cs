@@ -111,8 +111,6 @@ namespace StrimoUI.Pages.ViewModels.Login
             List<XCVodStreamModel> latestVodStreams = new List<XCVodStreamModel>();
             List<XCLiveStreamModel> latestRadioStreams = new List<XCLiveStreamModel>();
             
-            
-
             latestLiveStreams = liveStreams.OrderByDescending(liveStream => liveStream.added).Take<XCLiveStreamModel>(10).ToList();
             latestSerieStreams = serieStreams.OrderByDescending(serieStream => serieStream.last_modified).Take<XCSerieStreamModel>(10).ToList();
             latestVodStreams = vodStreams.OrderByDescending(vodStream => vodStream.added).Take<XCVodStreamModel>(10).ToList();
@@ -127,6 +125,17 @@ namespace StrimoUI.Pages.ViewModels.Login
             latestVodCarouselList = Utility.ConvertStreamListToCarouselList(latestVodStreams);
             latestSerieCarouselList = Utility.ConvertStreamListToCarouselList(latestSerieStreams);
             latestRadioCarouselList = Utility.ConvertStreamListToCarouselList(latestRadioStreams);
+
+            // Set First Item of all Streams to Active...
+            // Set the Vod Or Serie 
+            latestVodCarouselList[1].CarouselItemActive = true;
+            latestVodCarouselList[1].CarouselItemImageHeight = 349;
+            latestVodCarouselList[1].CarouselItemImageTop = 0;
+
+            latestSerieCarouselList[1].CarouselItemActive = true;
+            latestSerieCarouselList[1].CarouselItemImageHeight = 349;
+            latestSerieCarouselList[1].CarouselItemImageTop = 0;
+
 
             GlobalVars.latestLiveCarouselList = latestLiveCarouselList;
             GlobalVars.latestSerieCaoureslList = latestSerieCarouselList;

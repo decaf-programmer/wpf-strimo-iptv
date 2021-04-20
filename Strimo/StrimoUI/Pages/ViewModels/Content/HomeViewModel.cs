@@ -1,6 +1,7 @@
 ﻿
 using Caliburn.Micro;
 using StrimoLibrary.Models;
+using StrimoUI.Components.ViewModels;
 using StrimoUI.Globals;
 using StrimoUI.Messages;
 using StrimoUI.Pages.Models;
