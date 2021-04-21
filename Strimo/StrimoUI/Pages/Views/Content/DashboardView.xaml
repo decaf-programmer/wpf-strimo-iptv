@@ -8,28 +8,116 @@
              mc:Ignorable="d" 
              Width="1920">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0"  Margin="0 80 0 0" Height="1020">
+        <Grid Margin="0 80 0 0" Height="1020">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
-                <ItemsControl x:Name="CarouselLists" ItemsSource="{Binding DashCarouselLists}"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                          Background="Transparent" BorderBrush="Transparent">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="611"/>
+                    </Grid.RowDefinitions>
+                    
+                    <ItemsControl x:Name="CarouselLists" ItemsSource="{Binding DashCarouselLists}"
+                                  Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                  Background="Transparent" BorderBrush="Transparent">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="{Binding CarouselListHeight}" Margin="0 0 0 100">
+                                    <ContentControl cal:View.Model="{Binding}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Grid Grid.Row="1" Margin="0 0 0 60">
+                        <Grid Background="{DynamicResource Black_400}" Margin="100 0 19 0">
+                            <Border BorderThickness="1" CornerRadius="10" BorderBrush="#10ffffff" >
+                                <Grid Margin="71.5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" >
+                                        <Border BorderThickness="0 0 1 0" BorderBrush="#10ffffff">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="235"/>
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <Ellipse Width="235" Height="235" Fill="{DynamicResource Black_400}" Stroke="{DynamicResource Gray_200}" StrokeThickness="1" />
+                                                    <Image Source="/StrimoUI;component/Resources/user.png" Width="119" Height="142" />
+                                                </Grid>
+                                                <Grid Grid.Column="1" Margin="83 0 20 0">
+                                                    <StackPanel Orientation="Vertical">
+                                                        <TextBlock Text="U S E R   A C C O U N T   I N F O" FontSize="20" Foreground="{DynamicResource White_200}"/>
+                                                        <StackPanel Margin="0 80 0 0" Orientation="Horizontal">
+                                                            <TextBlock Text="U s e r n a m e :  " Foreground="{DynamicResource Gray_200}" FontSize="20"/>
+                                                            <TextBlock Text="{Binding Username}" Foreground="{DynamicResource White_200}" FontSize="20"/>
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                                            <TextBlock Text="S t a t u s :  " Foreground="{DynamicResource Gray_200}" FontSize="20"/>
+                                                            <TextBlock Text="{Binding Status}" Foreground="{DynamicResource White_200}" FontSize="20"/>
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                                            <TextBlock Text="A l l o w e d  F o r m a t s :  " Foreground="{DynamicResource Gray_200}" FontSize="20"/>
+                                                            <TextBlock Text="{Binding AllowedFormats}" Foreground="{DynamicResource White_200}" FontSize="20" />
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                                            <TextBlock Text="T r i a l :  " Foreground="{DynamicResource Gray_200}" FontSize="20"/>
+                                                            <TextBlock Text="{Binding Trial}" Foreground="{DynamicResource White_200}" FontSize="20"/>
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                                            <TextBlock Text="M a x  c o n n e c t i o n s :  " Foreground="{DynamicResource Gray_200}" FontSize="20"/>
+                                                            <TextBlock Text="{Binding Maxconnections}" Foreground="{DynamicResource White_200}" FontSize="20"/>
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                                            <TextBlock Text="C r e a t e d :  " Foreground="{DynamicResource Gray_200}" FontSize="20"/>
+                                                            <TextBlock Text="{Binding CreatedAt}" Foreground="{DynamicResource White_200}" FontSize="20"/>
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                                            <TextBlock Text="E x p i r e :  " Foreground="{DynamicResource Gray_200}" FontSize="20"/>
+                                                            <TextBlock Text="{Binding Expired}" Foreground="{DynamicResource White_200}" FontSize="20"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                    <Grid Grid.Column="1" Margin="40 0 0 0">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="U N L O C K  S T R I M O" Foreground="{DynamicResource White_100}" FontSize="20"/>
+                                            <StackPanel Margin="31.5 20 0 0">
+                                                <TextBlock 
+                                                    Text="Please Visit https://strimo.co.uk to purchase a license key in order to use the full functionality of the applications" 
+                                                    FontSize="20" Foreground="{DynamicResource Gray_300}" TextWrapping="WrapWithOverflow"
+                                                    HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Segoe UI Semibold"/>    
+                                            </StackPanel>
+                                            <StackPanel Margin="31.5 40 0 0">
+                                                <TextBlock 
+                                                    Text="E N T E R  L I C E N S E  K E Y" 
+                                                    FontSize="20" Foreground="{DynamicResource Gray_300}" TextWrapping="WrapWithOverflow"
+                                                    HorizontalAlignment="Center" TextAlignment="Center" FontFamily="Segoe UI Semilight"/>
+                                            </StackPanel>
+                                            <StackPanel Margin="31.5 20 0 0">
+                                                <TextBox x:Name="StrimoNum" Text="0 0 0 0   0 0 0 0   0 0 0 0   0 0 0 0" Style="{DynamicResource HoverInput}"
+                                                         Width="500"
+                                                    Background="{DynamicResource Black_300}" Foreground="{DynamicResource Gray_100}"
+                                                    FontSize="30" Padding="5,10" Margin="0,0,0,16" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <StackPanel Margin="31.5 50 0 0">
+                                                <Button x:Name="UnlockStripeButton" Content="U N L O C K  S T R I P E" Width ="700" Style="{DynamicResource HoverButton}" Height="59" FontSize="30"/>
+                                            </StackPanel>
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="{Binding CarouselListHeight}" Margin="0 0 0 100">
-                                <ContentControl cal:View.Model="{Binding}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                        </StackPanel>
+                                        
+                                        
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        
+                    </Grid>
+                </Grid>
             </ScrollViewer>
-        </Grid>
-        <Grid Grid.Row="1">
-            <!--UserInfo-->
         </Grid>
     </Grid>
 </UserControl>
