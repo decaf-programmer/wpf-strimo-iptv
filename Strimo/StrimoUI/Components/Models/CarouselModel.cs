@@ -39,11 +39,39 @@ namespace StrimoUI.Components.Models
             get { return _CarouselItemImageHeight-2; }
             set{ _CarouselItemImageHeight = value; }
         }
+        private bool _CarouselItemActive;
+        public bool CarouselItemActive
+        {
+            get
+            {
+                return _CarouselItemActive;
+            }
+            set
+            {
+                _CarouselItemActive = value;
+            }
+        }
+
+        public string CarouselItemBorderColor
+        {
+            get
+            {
+                if (_CarouselItemActive)
+                {
+                    return "#EB761C";
+                } else {
+                    return "#20707070";
+                }
+            }
+        }
+
+        public bool CarouselItemAlphaVisible { get { return !_CarouselItemActive; } }
+        public bool CarouselItemTitleVisible { get { return _CarouselItemActive; } }
 
         public int CarouselItemImageTop { get; set; }
-
-        public bool CarouselItemActive{ get; set; }
         public int CarouselItemStreamId { get; set; }
+
+        public XCStreamType StreamType { get; set; }
         
     }
 }

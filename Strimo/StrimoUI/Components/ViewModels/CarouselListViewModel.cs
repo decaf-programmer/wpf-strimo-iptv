@@ -7,13 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using StrimoLibrary.Models;
+using System.Windows;
 
 namespace StrimoUI.Components.ViewModels
 {
     public class CarouselListViewModel:Screen
     {
-		public int CarouselListWidth { get; set; }
-		public int CarouselListHeight { get; set; }
+		public string CarouselListHeader { get; set; }
+		private int _CarouselListWidth;
+		public int CarouselListWidth { 
+			get { return _CarouselListWidth; }
+            set
+            {
+				_CarouselListWidth = value;
+            }
+		}
+
+		private int _CarouselListHeight;
+		public int CarouselListHeight { 
+			get { return _CarouselListHeight; } 
+			set { _CarouselListHeight = value; } 
+		}
+
+		public int CarouselScrollButtonTop { get { return _CarouselListHeight / 2 - 40; } }
 
 		private ObservableCollection<CarouselModel> _CarouselListCollection;
 		public ObservableCollection<CarouselModel> CarouselListCollection
@@ -55,63 +72,86 @@ namespace StrimoUI.Components.ViewModels
 
 		public void CarouselListMoveLeft()
 		{
-			CarouselListCollection[0].CarouselItemImageTop = 0;
-			CarouselListCollection[0].CarouselItemImageHeight = 349;
-			//CarouselListCollection[0].CarouselItemInnerImageHeight = 347;
-			//CarouselListCollection[0].CarouselItemAlphaVisible = false;
-			//CarouselListCollection[0].CarouselItemTitleVisible = true;
-			//CarouselListCollection[0].CarouselItemBorderColor = "#EB761C";
-			
-			CarouselListCollection[1].CarouselItemImageTop = 19;
-			CarouselListCollection[1].CarouselItemImageHeight = 312;
-			//CarouselListCollection[1].CarouselItemInnerImageHeight = 310;
-			//CarouselListCollection[1].CarouselItemAlphaVisible = true;
-			//CarouselListCollection[1].CarouselItemTitleVisible = false;
-			//CarouselListCollection[1].CarouselItemBorderColor = "#20ffffff";
+			if(CarouselListCollection[0].StreamType != XCStreamType.Live)
+            {
+				CarouselListCollection[0].CarouselItemImageTop = 0;
+				CarouselListCollection[0].CarouselItemImageHeight = 349;
+				CarouselListCollection[0].CarouselItemActive = true;
 
-			CarouselModel temp = CarouselListCollection[CarouselListCollection.Count - 1];
-			for (int i = CarouselListCollection.Count - 1; i > 0; i--)
-			{
-				CarouselListCollection[i] = CarouselListCollection[i - 1];
-				CarouselListCollection[i].CarouselItemImageTop = 19;
-				CarouselListCollection[i].CarouselItemImageHeight = 312;
-				//CarouselListCollection[i].CarouselItemInnerImageHeight = 310;
-				//CarouselListCollection[i].CarouselItemAlphaVisible = true;
-				//CarouselListCollection[i].CarouselItemTitleVisible = false;
-				//CarouselListCollection[i].CarouselItemBorderColor = "#20ffffff";
+				CarouselListCollection[1].CarouselItemImageTop = 19;
+				CarouselListCollection[1].CarouselItemImageHeight = 312;
+				CarouselListCollection[1].CarouselItemActive = false;
+
+				CarouselModel temp = CarouselListCollection[CarouselListCollection.Count - 1];
+				for (int i = CarouselListCollection.Count - 1; i > 0; i--)
+				{
+					CarouselListCollection[i] = CarouselListCollection[i - 1];
+					CarouselListCollection[i].CarouselItemImageTop = 19;
+					CarouselListCollection[i].CarouselItemImageHeight = 312;
+					CarouselListCollection[i].CarouselItemActive = false;
+				}
+				CarouselListCollection[0] = temp;
+			} else
+            {
+				CarouselListCollection[0].CarouselItemActive = true;
+				CarouselListCollection[1].CarouselItemActive = true;
+				CarouselListCollection[2].CarouselItemActive = true;
+				CarouselListCollection[3].CarouselItemActive = true;
+				CarouselListCollection[4].CarouselItemActive = true;
+				CarouselListCollection[5].CarouselItemActive = false;
+				
+				CarouselModel latestItem = CarouselListCollection[CarouselListCollection.Count - 1];
+				for (int i = CarouselListCollection.Count - 1; i > 0; i--)
+				{
+					CarouselListCollection[i] = CarouselListCollection[i-1];
+					CarouselListCollection[i].CarouselItemActive = false;
+				}
+				CarouselListCollection[0] = latestItem;
 			}
-			CarouselListCollection[0] = temp;
+			
 		}
 
 		public void CarouselListMoveRight()
 		{
-			CarouselListCollection[2].CarouselItemImageTop = 0;
-			CarouselListCollection[2].CarouselItemImageHeight = 349;
-			//CarouselListCollection[2].CarouselItemInnerImageHeight = 347;
-			//CarouselListCollection[2].CarouselItemAlphaVisible = false;
-			//CarouselListCollection[2].CarouselItemTitleVisible = true;
-			//CarouselListCollection[2].CarouselItemBorderColor = "#EB761C";
+			if(CarouselListCollection[0].StreamType != XCStreamType.Live)
+            {
+				CarouselListCollection[2].CarouselItemImageTop = 0;
+				CarouselListCollection[2].CarouselItemImageHeight = 349;
+				CarouselListCollection[2].CarouselItemActive = true;
 
-			CarouselListCollection[1].CarouselItemImageTop = 19;
-			CarouselListCollection[1].CarouselItemImageHeight = 312;
-			//CarouselListCollection[1].CarouselItemInnerImageHeight = 310;
-			//CarouselListCollection[1].CarouselItemAlphaVisible = true;
-			//CarouselListCollection[1].CarouselItemTitleVisible = false;
-			//CarouselListCollection[1].CarouselItemBorderColor = "#20ffffff";
+				CarouselListCollection[1].CarouselItemImageTop = 19;
+				CarouselListCollection[1].CarouselItemImageHeight = 312;
+				CarouselListCollection[1].CarouselItemActive = false;
 
-			CarouselModel temp = CarouselListCollection[0];
-			for (int i = 0; i < CarouselListCollection.Count - 1; i++)
-			{
-				CarouselListCollection[i] = CarouselListCollection[i + 1];
-				CarouselListCollection[i].CarouselItemImageTop = 19;
-				CarouselListCollection[i].CarouselItemImageHeight = 312;
-				//CarouselListCollection[i].CarouselItemInnerImageHeight = 310;
-				//CarouselListCollection[i].CarouselItemAlphaVisible = true;
-				//CarouselListCollection[i].CarouselItemTitleVisible = false;
-				//CarouselListCollection[i].CarouselItemBorderColor = "#20ffffff";
+				CarouselModel temp = CarouselListCollection[0];
+				for (int i = 0; i < CarouselListCollection.Count - 1; i++)
+				{
+                    CarouselListCollection[i] = CarouselListCollection[i + 1];
+					CarouselListCollection[i].CarouselItemImageTop = 19;
+					CarouselListCollection[i].CarouselItemImageHeight = 312;
+					CarouselListCollection[i].CarouselItemActive = false;
+				}
+
+				CarouselListCollection[CarouselListCollection.Count - 1] = temp;
 			}
+            else
+            {
+				CarouselListCollection[2].CarouselItemActive = true;
+				CarouselListCollection[3].CarouselItemActive = true;
+				CarouselListCollection[4].CarouselItemActive = true;
+				CarouselListCollection[5].CarouselItemActive = true;
+				CarouselListCollection[6].CarouselItemActive = true;
+				CarouselListCollection[1].CarouselItemActive = false;
 
-			CarouselListCollection[CarouselListCollection.Count - 1] = temp;
+				CarouselModel temp = CarouselListCollection[0];
+				for (int i = 0; i < CarouselListCollection.Count - 1; i++)
+				{
+					CarouselListCollection[i] = CarouselListCollection[i + 1];
+					CarouselListCollection[i].CarouselItemActive = false;
+				}
+				CarouselListCollection[CarouselListCollection.Count - 1] = temp;
+			}
+			
 		}
 	}
 }

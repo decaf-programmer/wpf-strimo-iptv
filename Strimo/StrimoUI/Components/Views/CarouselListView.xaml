@@ -9,110 +9,122 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"  />
     </UserControl.Resources>
-    <Canvas Width="{Binding CarouselListWidth}" Height="{Binding CarouselListHeight}">
-        <Button Canvas.Left="114" Canvas.Top="144" Canvas.ZIndex="3" Background="Transparent" BorderThickness="0"
-                cal:Message.Attach="[Click]=[LeftButtonClick()]">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="Transparent"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-            <StackPanel>
-                <Image Source="/StrimoUI;component/Resources/leftBtn.png" Width="50" Height="50"/>
-            </StackPanel>
-        </Button>
-        <Button Canvas.Right="32" Canvas.Top="144" Canvas.ZIndex="3" Background="Transparent" BorderThickness="0"
-                cal:Message.Attach="[Click]=[RightButtonClick()]">
-            <Button.Style>
-                <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="Transparent"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-            <StackPanel>
-                <Image Source="/StrimoUI;component/Resources/rightBtn.png" Width="50" Height="50"/>
-            </StackPanel>
-        </Button>
-        <Grid Width="1920" Height="400" Margin="86 0 0 0">
-            <ListView 
-                x:Name="CarouselList"
-                BorderThickness="0"
-                ItemsSource="{Binding CarouselListCollection}" Background="Transparent" 
-                ItemContainerStyle="{DynamicResource CarouselListItemPanelStyle}"
-                ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                cal:Message.Attach="[PreviewMouseWheel] = [CarouselList_PreviewMouseWheel($eventArgs)];"
-                SelectedIndex="1">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Canvas Width="{Binding CarouselItemImageWidth}" Margin="35 0 0 0">
-                            <Grid Canvas.Left="-165" VerticalAlignment="Center" Canvas.Top="{Binding CarouselItemImageTop}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="45"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" VerticalAlignment="Center">
-                                    <Border BorderBrush="{Binding CarouselItemBorderColor}" BorderThickness="1" CornerRadius="20" Width="{Binding CarouselItemImageWidth}" Height="{Binding CarouselItemImageHeight}">
-                                        <Border.Effect>
-                                            <DropShadowEffect Direction="-75" ShadowDepth="5" Opacity="0.8" BlurRadius="25" Color="Black"/>
-                                        </Border.Effect>
-                                        <Grid>
-                                            <Border Name="Mask" Background="White" BorderBrush="{Binding CarouselItemBorderColor}" BorderThickness=".5" CornerRadius="20" />
-                                            <StackPanel Width="{Binding CarouselItemImageWidth}" Height="{Binding CarouselItemImageHeight}">
-                                                <Canvas>
-                                                    <Image Source="{Binding CarouselItemImageName}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Stretch="Fill" />
-                                                    <Rectangle Visibility="{Binding CarouselItemAlphaVisible, Converter={StaticResource BoolToVisConverter}}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Fill="Black" Opacity="0.8" />
-                                                    <Canvas.OpacityMask>
-                                                        <VisualBrush Visual="{Binding ElementName=Mask}" />
-                                                    </Canvas.OpacityMask>
-                                                </Canvas>
-
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-                                </Grid>
-                                <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBlock Visibility="{Binding CarouselItemTitleVisible, Converter={StaticResource BoolToVisConverter}}" Text="{Binding CarouselItemTitle}" FontSize="20" Foreground="{DynamicResource White_200}"/>
-                                </Grid>
-                            </Grid>
-                        </Canvas>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="{Binding CarouselListHeader}" FontSize="20" Margin="114 0 0 0" Foreground="{DynamicResource White_200}"/>
         </Grid>
-    </Canvas>
+        <Grid Grid.Row="1">
+            <Canvas Width="{Binding CarouselListWidth}" Height="{Binding CarouselListHeight}">
+                <Button Canvas.Left="114" Canvas.Top="{Binding CarouselScrollButtonTop}" Canvas.ZIndex="3" Background="Transparent" BorderThickness="0"
+                    cal:Message.Attach="[Click]=[LeftButtonClick()]">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <StackPanel>
+                        <Image Source="/StrimoUI;component/Resources/leftBtn.png" Width="50" Height="50"/>
+                    </StackPanel>
+                </Button>
+                <Button Canvas.Right="32" Canvas.Top="{Binding CarouselScrollButtonTop}" Canvas.ZIndex="3" Background="Transparent" BorderThickness="0"
+                    cal:Message.Attach="[Click]=[RightButtonClick()]">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="Transparent"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <StackPanel>
+                        <Image Source="/StrimoUI;component/Resources/rightBtn.png" Width="50" Height="50"/>
+                    </StackPanel>
+                </Button>
+                <Grid Width="{Binding CarouselListWidth}" Height="{Binding CarouselListHeight}" Margin="86 0 0 0">
+                    <ListView 
+                        x:Name="CarouselList"
+                        BorderThickness="0"
+                        ItemsSource="{Binding CarouselListCollection}" Background="Transparent" 
+                        ItemContainerStyle="{DynamicResource CarouselListItemPanelStyle}"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        cal:Message.Attach="[PreviewMouseWheel] = [CarouselList_PreviewMouseWheel($eventArgs)];"
+                        SelectedIndex="1">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Canvas Width="{Binding CarouselItemImageWidth}" Margin="35 0 0 0">
+                                    <Grid Canvas.Left="-165" VerticalAlignment="Center" Canvas.Top="{Binding CarouselItemImageTop}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="45"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0" VerticalAlignment="Center">
+                                            <Border BorderBrush="{Binding CarouselItemBorderColor}" BorderThickness="1" CornerRadius="20" Width="{Binding CarouselItemImageWidth}" Height="{Binding CarouselItemImageHeight}">
+                                                <Border.Effect>
+                                                    <DropShadowEffect Direction="-75" ShadowDepth="5" Opacity="0.8" BlurRadius="25" Color="Black"/>
+                                                </Border.Effect>
+                                                <Grid>
+                                                    <Border Name="Mask" Background="White" BorderBrush="{Binding CarouselItemBorderColor}" BorderThickness=".5" CornerRadius="20" />
+                                                    <StackPanel Width="{Binding CarouselItemImageWidth}" Height="{Binding CarouselItemImageHeight}">
+                                                        <Canvas>
+                                                            <Image Source="{Binding CarouselItemImage}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Stretch="Fill" />
+                                                            <Rectangle Visibility="{Binding CarouselItemAlphaVisible, Converter={StaticResource BoolToVisConverter}}" Width="{Binding CarouselItemInnerImageWidth}" Height="{Binding CarouselItemInnerImageHeight}" Fill="Black" Opacity="0.8" />
+                                                            <Canvas.OpacityMask>
+                                                                <VisualBrush Visual="{Binding ElementName=Mask}" />
+                                                            </Canvas.OpacityMask>
+                                                        </Canvas>
+
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <TextBlock Visibility="{Binding CarouselItemTitleVisible, Converter={StaticResource BoolToVisConverter}}" Text="{Binding CarouselItemTitle}" FontSize="20" Foreground="{DynamicResource White_200}"/>
+                                        </Grid>
+                                    </Grid>
+                                </Canvas>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Canvas>
+        </Grid>
+    </Grid>
+    
 </UserControl>

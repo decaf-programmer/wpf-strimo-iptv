@@ -32,9 +32,10 @@ namespace StrimoUI.Utilities
                         temp.CarouselItemStreamId = vodStream.stream_id;
                         temp.CarouselItemImage = XtreamCodeService.GetImageWithStreamId(username, password, vodStream.stream_id, streamType);
                         temp.CarouselItemImageWidth = 670;
-                        temp.CarouselItemImageHeight = 349;
+                        temp.CarouselItemImageHeight = 312;
                         temp.CarouselItemImageTop = 19;
                         temp.CarouselItemActive = false;
+                        temp.StreamType = XCStreamType.VOD;
                         carouselList.Add(temp);
                     }
                 } else if(streamType.Equals(typeof(XCSerieStreamModel))){
@@ -47,6 +48,7 @@ namespace StrimoUI.Utilities
                         temp.CarouselItemImageHeight = 312;
                         temp.CarouselItemImageTop = 19;
                         temp.CarouselItemActive = false;
+                        temp.StreamType = XCStreamType.Serie;
                         carouselList.Add(temp);
                     }
                 } else if(streamType.Equals(typeof(XCLiveStreamModel))){
@@ -57,8 +59,9 @@ namespace StrimoUI.Utilities
                         temp.CarouselItemImage = liveStream.stream_icon;
                         temp.CarouselItemImageWidth = 274;
                         temp.CarouselItemImageHeight = 162;
-                        temp.CarouselItemImageTop = 0;
+                        temp.CarouselItemImageTop = 20;
                         temp.CarouselItemActive = false;
+                        temp.StreamType = XCStreamType.Live;
                         carouselList.Add(temp);
                     }
                 }

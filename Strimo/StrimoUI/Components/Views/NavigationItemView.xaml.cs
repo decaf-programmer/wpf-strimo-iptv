@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StrimoUI.Pages.Views.Content
+namespace StrimoUI.Components.Views
 {
     /// <summary>
     /// Interaction logic for NavigationItemView.xaml

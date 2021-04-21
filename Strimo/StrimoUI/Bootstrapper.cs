@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using StrimoUI.Components.Dialogs.AlertDialog;
 using StrimoUI.Components.Dialogs.References;
+using StrimoUI.Components.ViewModels;
 using StrimoUI.Pages.ViewModels.Content;
 using StrimoUI.Pages.ViewModels.Login;
 using System;
