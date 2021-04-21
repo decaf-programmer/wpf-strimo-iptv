@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace StrimoUI.Utilities
@@ -67,6 +68,18 @@ namespace StrimoUI.Utilities
                 }
             }
             return carouselList;
+        }
+
+        public static string MakeLetterSpace(string OriginalString)
+        {
+            string ConvertedString = Regex.Replace(OriginalString, ".{1}", "$0 ");
+            return ConvertedString;
+        }
+        public static string MilliSecondsToDate(string milliseconds)
+        {
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddMilliseconds(double.Parse(milliseconds)*1000).ToLocalTime();
+            return dtDateTime.ToString();
         }
     }
 }
