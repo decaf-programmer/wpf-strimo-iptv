@@ -52,7 +52,7 @@ namespace StrimoUI.Pages.ViewModels.Content
                 {
                     CarouselListHeader = "Favourite Lives",
                     CarouselListWidth = 1920,
-                    CarouselListHeight = 202,
+                    CarouselListHeight = 222,
                     CarouselListCollection = latestLiveCollection
                 },
                 new CarouselListViewModel()
@@ -66,7 +66,7 @@ namespace StrimoUI.Pages.ViewModels.Content
                 {
                     CarouselListHeader = "Favourtie Radios",
                     CarouselListWidth = 1920,
-                    CarouselListHeight = 202,
+                    CarouselListHeight = 222,
                     CarouselListCollection = latestRadioCollection
                 }
             };

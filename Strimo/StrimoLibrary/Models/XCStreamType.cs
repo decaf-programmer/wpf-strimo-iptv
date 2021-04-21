@@ -10,7 +10,8 @@ namespace StrimoLibrary.Models
     {
         Live, 
         Serie,
-        Movie,
+        VOD,
+        Radio,
         Undefined
     }
 }

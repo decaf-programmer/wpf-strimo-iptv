@@ -102,7 +102,7 @@ namespace StrimoLibrary.Services
                     {
                         var responseContent = await httpContent.ReadAsStringAsync();
 
-                        currentProgress += 16;
+                        currentProgress += 15;
                         progress.Report(currentProgress);
 
                         var livestreamModels = new JavaScriptSerializer().Deserialize<List<XCLiveStreamModel>>(responseContent);
@@ -123,7 +123,7 @@ namespace StrimoLibrary.Services
                     {
                         var responseContent = await httpContent.ReadAsStringAsync();
 
-                        currentProgress += 17;
+                        currentProgress += 10;
                         progress.Report(currentProgress);
                         
                         var vodStreamModels = new JavaScriptSerializer().Deserialize<List<XCVodStreamModel>>(responseContent);
@@ -143,7 +143,7 @@ namespace StrimoLibrary.Services
                     {
                         var responseContent = await httpContent.ReadAsStringAsync();
 
-                        currentProgress += 17;
+                        currentProgress += 10;
                         progress.Report(currentProgress);
 
                         var serieStreamModels = new JavaScriptSerializer().Deserialize<List<XCSerieStreamModel>>(responseContent);

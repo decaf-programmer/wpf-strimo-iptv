@@ -100,28 +100,28 @@ namespace StrimoUI.Pages.ViewModels.Login
             GlobalVars.currentVodStreams = vodStreams;
             GlobalVars.currentRadioStreams = radioStreams;
 
-            //Sort the Streams...
-            // liveStreams.Sort((liveStream1, liveStream2) => liveStream2.added.CompareTo(liveStream1.added));
-            // vodStreams.Sort((vodStream1, vodStream2) => vodStream2.added.CompareTo(vodStream1.added));
-            // serieStreams.Sort((serieStream1, serieStream2) => serieStream2.last_modified.CompareTo(serieStream1.last_modified));
-            
+            PrepareHomeView(progress, LoadAccountProgressBarValue);
 
+        }
+
+        public void PrepareHomeView(IProgress<int> progress, int currentProgress)
+        {
             List<XCLiveStreamModel> latestLiveStreams = new List<XCLiveStreamModel>();
             List<XCSerieStreamModel> latestSerieStreams = new List<XCSerieStreamModel>();
             List<XCVodStreamModel> latestVodStreams = new List<XCVodStreamModel>();
             List<XCLiveStreamModel> latestRadioStreams = new List<XCLiveStreamModel>();
-            
-            latestLiveStreams = liveStreams.OrderByDescending(liveStream => liveStream.added).Take<XCLiveStreamModel>(10).ToList();
-            latestSerieStreams = serieStreams.OrderByDescending(serieStream => serieStream.last_modified).Take<XCSerieStreamModel>(10).ToList();
-            latestVodStreams = vodStreams.OrderByDescending(vodStream => vodStream.added).Take<XCVodStreamModel>(10).ToList();
-            latestRadioStreams = radioStreams.OrderByDescending(radioStream => radioStream.added).Take<XCLiveStreamModel>(10).ToList();
+
+            latestLiveStreams = GlobalVars.currentLiveStreams.OrderByDescending(liveStream => liveStream.added).Take<XCLiveStreamModel>(10).ToList();
+            latestSerieStreams = GlobalVars.currentSerieStreams.OrderByDescending(serieStream => serieStream.last_modified).Take<XCSerieStreamModel>(10).ToList();
+            latestVodStreams = GlobalVars.currentVodStreams.OrderByDescending(vodStream => vodStream.added).Take<XCVodStreamModel>(10).ToList();
+            latestRadioStreams = GlobalVars.currentRadioStreams.OrderByDescending(radioStream => radioStream.added).Take<XCLiveStreamModel>(10).ToList();
 
             List<CarouselModel> latestLiveCarouselList = new List<CarouselModel>();
             List<CarouselModel> latestVodCarouselList = new List<CarouselModel>();
             List<CarouselModel> latestSerieCarouselList = new List<CarouselModel>();
             List<CarouselModel> latestRadioCarouselList = new List<CarouselModel>();
 
-            latestLiveCarouselList =  Utility.ConvertStreamListToCarouselList(latestLiveStreams);
+            latestLiveCarouselList = Utility.ConvertStreamListToCarouselList(latestLiveStreams);
             latestVodCarouselList = Utility.ConvertStreamListToCarouselList(latestVodStreams);
             latestSerieCarouselList = Utility.ConvertStreamListToCarouselList(latestSerieStreams);
             latestRadioCarouselList = Utility.ConvertStreamListToCarouselList(latestRadioStreams);
@@ -136,11 +136,19 @@ namespace StrimoUI.Pages.ViewModels.Login
             latestSerieCarouselList[1].CarouselItemImageHeight = 349;
             latestSerieCarouselList[1].CarouselItemImageTop = 0;
 
+            for(int i = 1; i < 6; i++)
+            {
+                latestLiveCarouselList[i].CarouselItemActive = true;
+            }
+
+            currentProgress += 15;
+            progress.Report(currentProgress);
 
             GlobalVars.latestLiveCarouselList = latestLiveCarouselList;
             GlobalVars.latestSerieCaoureslList = latestSerieCarouselList;
             GlobalVars.latestVodCarouselList = latestVodCarouselList;
             GlobalVars.latestRadioCarouselList = latestRadioCarouselList;
+
         }
 
         private void ReportProgress(object sender, int e)

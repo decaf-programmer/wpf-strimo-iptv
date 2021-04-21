@@ -69,9 +69,9 @@ namespace StrimoUI.Components.Models
         public bool CarouselItemTitleVisible { get { return _CarouselItemActive; } }
 
         public int CarouselItemImageTop { get; set; }
-
-        
         public int CarouselItemStreamId { get; set; }
+
+        public XCStreamType StreamType { get; set; }
         
     }
 }

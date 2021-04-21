@@ -12,23 +12,21 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <ItemsControl x:Name="CarouselLists" ItemsSource="{Binding DashCarouselLists}"
+        <Grid Grid.Row="0"  Margin="0 80 0 0" Height="1020">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                <ItemsControl x:Name="CarouselLists" ItemsSource="{Binding DashCarouselLists}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           Background="Transparent" BorderBrush="Transparent">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="400">
-                            <ContentControl cal:View.Model="{Binding}" />    
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="{Binding CarouselListHeight}" Margin="0 0 0 100">
+                                <ContentControl cal:View.Model="{Binding}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
         <Grid Grid.Row="1">
             <!--UserInfo-->
