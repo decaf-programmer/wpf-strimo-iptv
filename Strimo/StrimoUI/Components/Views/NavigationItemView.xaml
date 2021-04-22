@@ -82,7 +82,7 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid MouseEnter="SubMenuMouseEnter" MouseLeave="SubMenuMouseLeave">
+                            <Grid MouseEnter="SubMenuMouseEnter" MouseLeave="SubMenuMouseLeave" cal:Message.Attach="[MouseLeftButtonDown] = [SubItemMouseLeftButtonDown($this)]">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3"/>
                                     <ColumnDefinition Width="100*"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StrimoLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,8 @@ namespace StrimoUI.Pages.Models
 
         public string CategoryId { get; set; }
         public int ParentId { get; set; }
-        public Enum CategoryType { get; set; }
+
+        public XCCategoryType CategoryType { get; set; }
         
     }
 }

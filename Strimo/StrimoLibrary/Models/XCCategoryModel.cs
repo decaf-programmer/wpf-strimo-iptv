@@ -11,6 +11,6 @@ namespace StrimoLibrary.Models
         public string category_id { get; set; } = "";
         public string category_name { get; set; } = "";
         public int parent_id { get; set; } = 0;
-        public Enum category_type { get; set; } = XCCategoryType.Undefined;
+        public XCCategoryType category_type { get; set; } = XCCategoryType.Undefined;
     }
 }
