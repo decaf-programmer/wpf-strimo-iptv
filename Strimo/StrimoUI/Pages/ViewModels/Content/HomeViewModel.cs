@@ -1,10 +1,12 @@
 ﻿
 using Caliburn.Micro;
 using StrimoLibrary.Models;
+using StrimoUI.Components.Models;
 using StrimoUI.Components.ViewModels;
 using StrimoUI.Globals;
 using StrimoUI.Messages;
 using StrimoUI.Pages.Models;
+using StrimoUI.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +20,7 @@ using System.Windows.Media;
 
 namespace StrimoUI.Pages.ViewModels.Content
 {
-    public class HomeViewModel : Conductor<Screen>.Collection.OneActive
+    public class HomeViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigationItemClickedMessage>
     {
         private readonly IEventAggregator eventAggregator;
         
@@ -114,14 +116,20 @@ namespace StrimoUI.Pages.ViewModels.Content
             }
 
             NavigationMenuItems = new ObservableCollection<NavigationItemViewModel>() {
-               new NavigationItemViewModel("H O M E", "home", null, new UserControl(), eventAggregator),
-               new NavigationItemViewModel("L I V E  T V", "monitor", liveSubItems, new UserControl(), eventAggregator),
-               new NavigationItemViewModel("M O V I E S", "movie", vodSubItems, new UserControl(), eventAggregator),
-               new NavigationItemViewModel("T V  S E R I E S", "tvseries", serieSubItems, new UserControl(), eventAggregator),
-               new NavigationItemViewModel("R A D I O", "radio", null, new UserControl(), eventAggregator),    // This should be changed because radio will change...
-               new NavigationItemViewModel("R E C O R D I N G S", "record", null, new UserControl(), eventAggregator), // This should be changed because radio will change...
-               new NavigationItemViewModel("F A V O U R I T E", "favorite", null, new UserControl(), eventAggregator) // This should be changed because radio will change...
+               new NavigationItemViewModel("H O M E", "home", null, NavigationItemType.Home, eventAggregator),
+               new NavigationItemViewModel("L I V E  T V", "monitor", liveSubItems, NavigationItemType.Live, eventAggregator),
+               new NavigationItemViewModel("M O V I E S", "movie", vodSubItems,  NavigationItemType.Movies, eventAggregator),
+               new NavigationItemViewModel("T V  S E R I E S", "tvseries", serieSubItems, NavigationItemType.Movies, eventAggregator),
+               new NavigationItemViewModel("R A D I O", "radio", null, NavigationItemType.Movies, eventAggregator),    // This should be changed because radio will change...
+               new NavigationItemViewModel("R E C O R D I N G S", "record", null, NavigationItemType.Movies, eventAggregator), // This should be changed because radio will change...
+               new NavigationItemViewModel("F A V O U R I T E", "favorite", null, NavigationItemType.Movies, eventAggregator) // This should be changed because radio will change...
             };
+        }
+
+        public void Handle(NavigationItemClickedMessage message)
+        {
+            //MessageBox.Show(message.ClickedItemTitle);
+            NavigationItemType selectedNavigationItemType = message.SelectedNavigationItemType;
         }
     }
 }
