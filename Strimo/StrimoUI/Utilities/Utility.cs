@@ -81,5 +81,11 @@ namespace StrimoUI.Utilities
             dtDateTime = dtDateTime.AddMilliseconds(double.Parse(milliseconds)*1000).ToLocalTime();
             return dtDateTime.ToString();
         }
+        public static string RemoveSpace(string OriginalString)
+        {
+            string trimmed = String.Concat(OriginalString.Where(c => !Char.IsWhiteSpace(c)));
+
+            return trimmed;
+        }
     }
 }

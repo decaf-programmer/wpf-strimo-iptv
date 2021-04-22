@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using StrimoUI.Components.Models;
 using StrimoUI.Messages;
 using StrimoUI.Pages.Models;
 using System;
@@ -62,20 +63,6 @@ namespace StrimoUI.Components.ViewModels
             }
         }
 
-        private UserControl _screen;
-        public UserControl Screen
-        {
-            get {
-                return _screen;
-            }
-            set {
-                if (_screen == value) {
-                    return;
-                }
-                _screen = value;
-                NotifyOfPropertyChange(() => Screen);
-            }
-        }
 
         private bool _listViewItemVisible;
         public bool ListViewItemVisible
@@ -132,19 +119,22 @@ namespace StrimoUI.Components.ViewModels
             }
         }
 
+        
+        public NavigationItemType SelectedNavigationItemType{ get; set;}
+
         public NavigationItemViewModel(IEventAggregator _eventAggregator)
         {
             eventAggregator = _eventAggregator;
         }
 
-        public NavigationItemViewModel(string header, string imageName, List<SubItemModel> subItems, UserControl screen, IEventAggregator _eventAggregator){
+        public NavigationItemViewModel(string header, string imageName, List<SubItemModel> subItems, NavigationItemType selectedNavigationItenType, IEventAggregator _eventAggregator){
 
             eventAggregator = _eventAggregator;
 
             Header = header;
             ImageName = imageName;
             SubItems = subItems;
-            Screen = screen;
+            SelectedNavigationItemType = selectedNavigationItenType;
 
             ListViewItemVisible = SubItems == null ? true : false;
             ExpanderVisible = SubItems == null ? false : true;
@@ -182,8 +172,15 @@ namespace StrimoUI.Components.ViewModels
 
         public void Expander_PreviewMouseLeftButtonDown()
         {
-            eventAggregator.PublishOnUIThread(new NavigationItemClickedMessage() { ClickedItemTitle = Header});
+            eventAggregator.PublishOnUIThread(new NavigationItemClickedMessage() { SelectedNavigationItemType = SelectedNavigationItemType});
             //IsMenuExpanded = true;
+        }
+
+        
+
+        public void IconMouseLeftButtonDown()
+        {
+            eventAggregator.PublishOnUIThread(new NavigationItemClickedMessage() { SelectedNavigationItemType = SelectedNavigationItemType });
         }
     }
 }

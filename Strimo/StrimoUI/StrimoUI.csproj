@@ -152,6 +152,7 @@
     <Compile Include="Components\Dialogs\References\IDialogService.cs" />
     <Compile Include="Components\Dialogs\References\IDialogWindow.cs" />
     <Compile Include="Components\Models\CarouselModel.cs" />
+    <Compile Include="Components\Models\NavigationItemType.cs" />
     <Compile Include="Components\ViewModels\CarouselListViewModel.cs" />
     <Compile Include="Components\Views\CarouselListView.xaml.cs">
       <DependentUpon>CarouselListView.xaml</DependentUpon>

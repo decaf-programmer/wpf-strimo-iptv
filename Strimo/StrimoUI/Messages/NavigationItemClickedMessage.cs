@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StrimoUI.Components.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace StrimoUI.Messages
 {
     public class NavigationItemClickedMessage
     {
-        public string ClickedItemTitle { get; set; }
+        public NavigationItemType SelectedNavigationItemType { get; set; }
     }
 }

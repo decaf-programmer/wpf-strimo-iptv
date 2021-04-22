@@ -25,8 +25,6 @@ namespace StrimoUI.Pages.ViewModels.Content
             base.OnActivate();
             eventAggregator.Subscribe(this);
             ActivateItem(homeViewModel);
-            
-            
         }
 
         protected override void OnDeactivate(bool close)
