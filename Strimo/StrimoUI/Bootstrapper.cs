@@ -3,6 +3,7 @@ using StrimoUI.Components.Dialogs.AlertDialog;
 using StrimoUI.Components.Dialogs.References;
 using StrimoUI.Components.ViewModels;
 using StrimoUI.Pages.ViewModels.Content;
+using StrimoUI.Pages.ViewModels.Exit;
 using StrimoUI.Pages.ViewModels.Login;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace StrimoUI
             simpleContainer.PerRequest<HomeViewModel>();
             simpleContainer.PerRequest<NavigationItemViewModel>();
             simpleContainer.PerRequest<DashboardViewModel>();
+            simpleContainer.PerRequest<ExitViewModel>();
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

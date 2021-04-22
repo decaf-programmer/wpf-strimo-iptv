@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace StrimoUI.Pages.ViewModels.Login
 {
-    public class LoginConductorViewModel:Conductor<Screen>.Collection.OneActive, IHandle<AuthSuccessMessage>
+    public class LoginConductorViewModel:Conductor<Screen>.Collection.OneActive, IHandle<AuthSuccessMessage>, IHandle<LogoutMessage>
     {
         private readonly IEventAggregator eventAggregator;
         private readonly LoginPageViewModel loginPageVM;
@@ -62,5 +62,9 @@ namespace StrimoUI.Pages.ViewModels.Login
             ActivateItem(loadAccountVM);
         }
 
+        public void Handle(LogoutMessage message)
+        {
+            ActivateItem(loginPageVM);
+        }
     }
 }

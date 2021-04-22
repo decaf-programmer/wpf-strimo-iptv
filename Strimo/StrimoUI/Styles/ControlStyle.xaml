@@ -43,6 +43,46 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="InvertHoverButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource White_200}" />
+        <Setter Property="Foreground" Value="{DynamicResource Black_200}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True" CornerRadius="8">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Black_200}" />
+                <Setter Property="Foreground" Value="{DynamicResource White_200}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ColorHoverButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource Black_200}" />
+        <Setter Property="Foreground" Value="{DynamicResource Orange}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True" CornerRadius="8">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource Orange}" />
+                <Setter Property="Foreground" Value="{DynamicResource White_200}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <Style TargetType="Button" x:Key="AlertOKButton">
         <Setter Property="Background" Value="{DynamicResource Black_400}" />
         <Setter Property="Foreground" Value="{DynamicResource White_300}" />
