@@ -15,9 +15,6 @@ namespace StrimoUI
     {
         //Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDI2ODY1QDMxMzgyZTM0MmUzMG5GOHNDNmFjblZrUUR5QS96TlgzZ1lzVEx5eTlpdlZiSi8va0lXejhLTnM9");
 
-        public App()
-        {
-            
-        }
+        
     }
 }

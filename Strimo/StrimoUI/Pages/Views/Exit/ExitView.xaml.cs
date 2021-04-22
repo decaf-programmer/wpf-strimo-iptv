@@ -1,8 +1,5 @@
-﻿using StrimoDBLibrary.Services;
-using StrimoUI.Globals;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StrimoUI
+namespace StrimoUI.Pages.Views.Exit
 {
     /// <summary>
-    /// Interaction logic for ShellView.xaml
+    /// Interaction logic for ExitView.xaml
     /// </summary>
-    public partial class ShellView : Window
+    public partial class ExitView : UserControl
     {
-        public ShellView()
+        public ExitView()
         {
             InitializeComponent();
         }
-
-        
     }
 }

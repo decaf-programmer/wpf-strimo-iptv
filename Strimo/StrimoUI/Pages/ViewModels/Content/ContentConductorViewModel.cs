@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using StrimoUI.Globals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,9 @@ namespace StrimoUI.Pages.ViewModels.Content
         {
             base.OnActivate();
             eventAggregator.Subscribe(this);
-
             ActivateItem(homeViewModel);
+            
+            
         }
 
         protected override void OnDeactivate(bool close)
