@@ -11,7 +11,7 @@ namespace StrimoUI.Components.Models
         Home,
         Live,
         Movies,
-        TVSeries,
+        Serie,
         Radio,
         Records,
         Favorites

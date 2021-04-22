@@ -182,5 +182,16 @@ namespace StrimoUI.Components.ViewModels
         {
             eventAggregator.PublishOnUIThread(new NavigationItemClickedMessage() { SelectedNavigationItemType = SelectedNavigationItemType });
         }
+
+        public void SubItemMouseLeftButtonDown(SubItemModel selectedSubItemModel)
+        {
+            //Console.WriteLine(selectedSubItemModel.CategoryId);
+            Console.WriteLine(selectedSubItemModel.CategoryType);
+
+            eventAggregator.PublishOnUIThread(new NavigationSubItemClickedMessage() { 
+                SelectedCategoryId = selectedSubItemModel.CategoryId, 
+                SelectedCategoryType = selectedSubItemModel.CategoryType 
+            });
+        }
     }
 }

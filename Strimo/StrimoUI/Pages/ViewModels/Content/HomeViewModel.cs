@@ -20,7 +20,7 @@ using System.Windows.Media;
 
 namespace StrimoUI.Pages.ViewModels.Content
 {
-    public class HomeViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigationItemClickedMessage>
+    public class HomeViewModel : Conductor<Screen>.Collection.OneActive, IHandle<NavigationItemClickedMessage>, IHandle<NavigationSubItemClickedMessage>
     {
         private readonly IEventAggregator eventAggregator;
         
@@ -126,10 +126,64 @@ namespace StrimoUI.Pages.ViewModels.Content
             };
         }
 
+        // Router for the Navigation Menus...
+
+        // Go to Pages Directly.
         public void Handle(NavigationItemClickedMessage message)
         {
             //MessageBox.Show(message.ClickedItemTitle);
             NavigationItemType selectedNavigationItemType = message.SelectedNavigationItemType;
+
+            switch (selectedNavigationItemType)
+            {
+                case NavigationItemType.Home:
+                    ActivateItem(dashboardVM);
+                    break;
+                case NavigationItemType.Live:
+                    // Switch Right panel to Live Pane
+                    break;
+                case NavigationItemType.Movies:
+                    // Switch Right panel to Movie Pane
+                    break;
+                case NavigationItemType.Serie:
+                    // Switch Right panel to Serie Pane
+                    break;
+                case NavigationItemType.Radio:
+                    // Switch Right panel to Radio Pane
+                    break;
+                case NavigationItemType.Records:
+                    // Switch Right panel to Records Pane
+                    break;
+                case NavigationItemType.Favorites:
+                    // Switch Right panel to Favorites Pane
+                    break;
+                default:
+                    // Switch Right panel to Home Pane
+                    break;
+            }
+
+        }
+
+
+        // Go to Pages for subItems in Lives, Movies, Series....
+        public void Handle(NavigationSubItemClickedMessage message)
+        {
+            //message.SelectedCategoryType; // XCCategory;;;////
+            // message.SelectedCategoryId; //  int;;; 
+            switch (message.SelectedCategoryType)
+            {
+                case XCCategoryType.Live:
+                    // Switch Right panel to Sub Live Pane
+                    break;
+                case XCCategoryType.Movie:
+                    // Switch Right panel to Sub Movie Pane
+                    break;
+                case XCCategoryType.Serie:
+                    // Switch Right panel to Sub Serie Pane
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
