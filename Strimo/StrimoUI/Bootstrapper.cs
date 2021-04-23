@@ -41,6 +41,7 @@ namespace StrimoUI
             simpleContainer.PerRequest<HomeViewModel>();
             simpleContainer.PerRequest<NavigationItemViewModel>();
             simpleContainer.PerRequest<DashboardViewModel>();
+            simpleContainer.PerRequest<MovieViewModel>();
             simpleContainer.PerRequest<ExitViewModel>();
         }
 
@@ -64,4 +65,4 @@ namespace StrimoUI
             base.BuildUp(instance);
         }
     }
-}
+};

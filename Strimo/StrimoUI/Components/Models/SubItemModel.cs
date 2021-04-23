@@ -12,8 +12,6 @@ namespace StrimoUI.Pages.Models
     {
 
         public string Name { get; set; }
-        public UserControl Screen { get; set; }
-
 
         public string CategoryId { get; set; }
         public int ParentId { get; set; }

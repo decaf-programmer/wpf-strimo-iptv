@@ -19,6 +19,11 @@
                     <ItemsControl x:Name="CarouselLists" ItemsSource="{Binding DashCarouselLists}"
                                   Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                   Background="Transparent" BorderBrush="Transparent">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid Height="{Binding CarouselListHeight}" Margin="0 0 0 100">

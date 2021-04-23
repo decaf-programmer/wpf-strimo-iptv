@@ -83,7 +83,7 @@
                         SelectedIndex="1">
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
+                                <VirtualizingStackPanel Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
@@ -109,7 +109,6 @@
                                                                 <VisualBrush Visual="{Binding ElementName=Mask}" />
                                                             </Canvas.OpacityMask>
                                                         </Canvas>
-
                                                     </StackPanel>
                                                 </Grid>
                                             </Border>
