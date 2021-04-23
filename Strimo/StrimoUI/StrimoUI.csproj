@@ -167,7 +167,11 @@
     <Compile Include="Messages\NavigationItemClickedMessage.cs" />
     <Compile Include="Components\Models\SubItemModel.cs" />
     <Compile Include="Messages\NavigationSubItemClickedMessage.cs" />
+    <Compile Include="Pages\ViewModels\Content\MovieViewModel.cs" />
     <Compile Include="Pages\ViewModels\Exit\ExitViewModel.cs" />
+    <Compile Include="Pages\Views\Content\MovieView.xaml.cs">
+      <DependentUpon>MovieView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Views\Exit\ExitView.xaml.cs">
       <DependentUpon>ExitView.xaml</DependentUpon>
     </Compile>
@@ -248,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\Views\CarouselListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Views\Content\MovieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

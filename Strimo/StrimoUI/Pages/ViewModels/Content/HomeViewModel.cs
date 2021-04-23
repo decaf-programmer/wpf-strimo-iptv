@@ -39,15 +39,17 @@ namespace StrimoUI.Pages.ViewModels.Content
         }
 
         public DashboardViewModel dashboardVM;
+        public MovieViewModel movieViewModel;
 
-        public HomeViewModel(IEventAggregator _eventAggregator, DashboardViewModel _dashboardVM)
+        public HomeViewModel(IEventAggregator _eventAggregator, DashboardViewModel _dashboardVM, MovieViewModel _movieViewModel)
         {
             eventAggregator = _eventAggregator;
             eventAggregator.Subscribe(this);
 
             dashboardVM = _dashboardVM;
+            movieViewModel = _movieViewModel;
 
-            Items.AddRange(new Screen[] { dashboardVM });
+            Items.AddRange(new Screen[] { dashboardVM, movieViewModel });
         }
 
         protected override void OnActivate()
@@ -76,7 +78,6 @@ namespace StrimoUI.Pages.ViewModels.Content
                         CategoryId = liveCategory.category_id,
                         ParentId = liveCategory.parent_id,
                         CategoryType = liveCategory.category_type,
-                        Screen = new UserControl()
                     }
                 );
             }
@@ -93,7 +94,6 @@ namespace StrimoUI.Pages.ViewModels.Content
                         CategoryId = serieCategory.category_id,
                         ParentId = serieCategory.parent_id,
                         CategoryType = serieCategory.category_type,
-                        Screen = new UserControl()
                     }
                 );
             }
@@ -110,7 +110,6 @@ namespace StrimoUI.Pages.ViewModels.Content
                         CategoryId = vodCategory.category_id,
                         ParentId = vodCategory.parent_id,
                         CategoryType = vodCategory.category_type,
-                        Screen = new UserControl()
                     }
                 );
             }
@@ -127,7 +126,6 @@ namespace StrimoUI.Pages.ViewModels.Content
         }
 
         // Router for the Navigation Menus...
-
         // Go to Pages Directly.
         public void Handle(NavigationItemClickedMessage message)
         {
@@ -144,6 +142,7 @@ namespace StrimoUI.Pages.ViewModels.Content
                     break;
                 case NavigationItemType.Movies:
                     // Switch Right panel to Movie Pane
+                    ActivateItem(movieViewModel);
                     break;
                 case NavigationItemType.Serie:
                     // Switch Right panel to Serie Pane

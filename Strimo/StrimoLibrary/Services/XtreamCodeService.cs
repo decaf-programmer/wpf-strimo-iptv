@@ -49,7 +49,7 @@ namespace StrimoLibrary.Services
             
             foreach(string categoryActionType in categoryActionTypes)
             {
-                var results = await ReadTypeCategories(username, password, categoryActionType);
+                var results = await ReadCategoriesByType(username, password, categoryActionType);
                 categoryModels.Add(results);
 
                 currentProgress = (categoryModels.Count * 50) / categoryActionTypes.Count;
@@ -57,7 +57,8 @@ namespace StrimoLibrary.Services
             }
             return categoryModels;
         }
-        private static async Task<List<XCCategoryModel>> ReadTypeCategories(string username, string password, string categoryAction)
+
+        private static async Task<List<XCCategoryModel>> ReadCategoriesByType(string username, string password, string categoryAction)
         {
             var categoryRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action={categoryAction}";
 
@@ -152,6 +153,8 @@ namespace StrimoLibrary.Services
                 }
             }
         }
+
+        
 
         public static string GetImageWithStreamId(string username, string password, int stream_id, Type stream_type){
             if(stream_type.Equals(typeof(XCVodStreamModel))){
