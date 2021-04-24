@@ -23,6 +23,8 @@ namespace StrimoUI.Globals
         public static List<XCVodStreamModel> currentVodStreams;
         public static List<XCSerieStreamModel> currentSerieStreams;
         public static List<XCLiveStreamModel> currentRadioStreams;
+
+        public static List<XCVodImageModel> currentVodImages;
         
         // Xtream Code Last Added or Favourite Carousel Infos...
         public static List<CarouselModel> latestVodCarouselList;

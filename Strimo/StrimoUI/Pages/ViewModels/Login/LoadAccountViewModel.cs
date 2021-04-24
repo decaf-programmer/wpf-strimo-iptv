@@ -73,11 +73,14 @@ namespace StrimoUI.Pages.ViewModels.Login
 
             List<XCLiveStreamModel> liveStreams = await XtreamCodeService.ReadLiveStreams(username, password, progress, LoadAccountProgressBarValue);
             List<XCVodStreamModel> vodStreams = await XtreamCodeService.ReadVodStreams(username, password, progress, LoadAccountProgressBarValue);
+            
             List<XCSerieStreamModel> serieStreams = await XtreamCodeService.ReadSerieStreams(username, password, progress, LoadAccountProgressBarValue);
             List<XCLiveStreamModel> radioStreams = liveStreams.Where<XCLiveStreamModel>(liveStream => liveStream.stream_type == "radio_streams").ToList();
 
-             // SET the Variables to Global Vars...
-             // SET the Categories into Global Vars...
+            List<XCVodImageModel> imageModels = XtreamCodeService.ReadVodImages(username, password, vodStreams, progress, LoadAccountProgressBarValue);
+
+            // SET the Variables to Global Vars...
+            // SET the Categories into Global Vars...
             foreach (List<XCCategoryModel> categoryList in allCategories)
             {
                 switch (categoryList[0].category_type)
