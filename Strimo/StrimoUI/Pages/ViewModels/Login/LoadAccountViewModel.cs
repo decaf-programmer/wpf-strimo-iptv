@@ -73,11 +73,31 @@ namespace StrimoUI.Pages.ViewModels.Login
 
             List<XCLiveStreamModel> liveStreams = await XtreamCodeService.ReadLiveStreams(username, password, progress, LoadAccountProgressBarValue);
             List<XCVodStreamModel> vodStreams = await XtreamCodeService.ReadVodStreams(username, password, progress, LoadAccountProgressBarValue);
-            
             List<XCSerieStreamModel> serieStreams = await XtreamCodeService.ReadSerieStreams(username, password, progress, LoadAccountProgressBarValue);
             List<XCLiveStreamModel> radioStreams = liveStreams.Where<XCLiveStreamModel>(liveStream => liveStream.stream_type == "radio_streams").ToList();
 
-            List<XCVodImageModel> imageModels = XtreamCodeService.ReadVodImages(username, password, vodStreams, progress, LoadAccountProgressBarValue);
+            // Extract XtreamCode Vods Title and Released Date from XtreamCode Service.
+            List<XCVodTMDBModel> vodTMdbModels = new List<XCVodTMDBModel>();
+            foreach(XCVodStreamModel vodstream in vodStreams)
+            {
+                if(vodstream.category_id != "13")
+                {
+                    XCVodTMDBModel vodTMDbModel = new XCVodTMDBModel();
+                    vodTMDbModel.categoryId = vodstream.category_id;
+                    vodTMDbModel.streamId = vodstream.stream_id;
+                    vodTMDbModel.releaseDate = 0;
+                    vodTMDbModel.name = vodstream.name;
+                } else
+                {
+                    XCVodTMDBModel vodTMDbModel = new XCVodTMDBModel();
+                    vodTMDbModel.categoryId = vodstream.category_id;
+                    vodTMDbModel.streamId = vodstream.stream_id;
+
+                    vodTMDbModel.name = Utility.ExtractName(vodstream.name);
+                    vodTMDbModel.releaseDate = Utility.ExtractDate(vodstream.name);
+                }
+            }
+
 
             // SET the Variables to Global Vars...
             // SET the Categories into Global Vars...
@@ -102,6 +122,10 @@ namespace StrimoUI.Pages.ViewModels.Login
             GlobalVars.currentSerieStreams = serieStreams;
             GlobalVars.currentVodStreams = vodStreams;
             GlobalVars.currentRadioStreams = radioStreams;
+
+
+
+
 
             PrepareHomeView(progress, LoadAccountProgressBarValue);
 
@@ -158,6 +182,8 @@ namespace StrimoUI.Pages.ViewModels.Login
         {
             LoadAccountProgressBarValue = e;
         }
+
+        
     }
 
     

@@ -63,6 +63,8 @@ namespace StrimoUI.Pages.ViewModels.Content
 
                 var categoryId = categoryModel.category_id;
                 List<XCVodStreamModel> selectedGenreVodStreams = GlobalVars.currentVodStreams.Where<XCVodStreamModel>(vodStream => vodStream.category_id == categoryId).ToList();
+
+                
                 List<CarouselModel> selectedStreamCarouselList = Utility.ConvertStreamListToCarouselList(selectedGenreVodStreams);
                 ObservableCollection<CarouselModel> selectedStreamCarouselCollection = new ObservableCollection<CarouselModel>(selectedStreamCarouselList);
 

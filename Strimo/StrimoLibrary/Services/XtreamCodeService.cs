@@ -134,6 +134,7 @@ namespace StrimoLibrary.Services
                 }
             }
         }
+        
         public static async Task<List<XCSerieStreamModel>> ReadSerieStreams(string username, string password, IProgress<int> progress, int currentProgress)
         {
             var serieStreamRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action=get_series";
@@ -155,63 +156,33 @@ namespace StrimoLibrary.Services
             }
         }
 
-        public static List<XCVodImageModel> ReadVodImages(string username, string password, List<XCVodStreamModel> vodStreamModels, IProgress<int> progress, int currentProgress)
+        public static List<XCVodStreamModel> AddBackdropPath(string username, string password, List<XCVodStreamModel> vodStreams, IProgress<int> progress, int currentProgress)
         {
-            List<XCVodImageModel> vodImageModels = new List<XCVodImageModel>();
-
-
-            foreach (XCVodStreamModel vodStream  in vodStreamModels)
+            var client = new HttpClient();
+            List<string> vodStreamInfoUrls= new List<string>();
+            foreach(XCVodStreamModel vodstream in vodStreams)
             {
-                XCVodImageModel temp = ReadVodBackdropImage(username, password, vodStream.stream_id);
-                vodImageModels.Add(temp);
-
-                //currentProgress = (vodImageModels.Count * 15) / vodStreamModels.Count;
-                //progress.Report(currentProgress);
+                vodStreamInfoUrls.Add($"{server_url}/player_api.php?username={username}&password={password}&action=get_vod_info&vod_id={vodstream.stream_id}");
             }
-            return vodImageModels;
+
+            var vodStreamInfoRequests = vodStreamInfoUrls.Select(vodStreamInfoUrl => client.GetAsync(vodStreamInfoUrl)).ToList();
+
+            //await Task.WhenAll(vodStreamInfoRequests);
+
+            //var responses = vodStreamInfoRequests.Select(task => task.Result);
+
+            //foreach(var r in responses)
+            //{
+            //    var s = await r.Content.ReadAsStringAsync();
+            //    Console.WriteLine(s);
+
+            //}
+
+            Console.WriteLine(vodStreamInfoRequests);
+
+            return vodStreams;
         }
 
-        public static XCVodImageModel ReadVodBackdropImage(string username, string password, int stream_id)
-        {
-            
-            var vodStreamByIDRequestURL = $"{server_url}/player_api.php?username={username}&password={password}&action=get_vod_info&vod_id={stream_id}";
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(vodStreamByIDRequestURL);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            try
-            {
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    
-                    string responseContent = reader.ReadToEnd();
-                    JObject responseContentObj = JObject.Parse(responseContent);
-                    JObject infoContentObj = JObject.FromObject(responseContentObj["info"]);
-                    XCVodImageModel temp = new XCVodImageModel();
-                    temp.stream_id = stream_id;
-                    if (infoContentObj != null && infoContentObj.ContainsKey("backdrop_path"))
-                    {
-
-                        temp.backdrop_path = (string)infoContentObj["backdrop_path"][0];
-
-                    }
-                    else
-                    {
-                        temp.backdrop_path = null;
-                    }
-                    return temp;
-                }
-            }
-            catch (WebException e)
-            {
-                return new XCVodImageModel() { stream_id = stream_id, backdrop_path = null };
-            }
-
-            
-                    
-        }
 
         public static string GetImageWithStreamId(string username, string password, int stream_id, Type stream_type){
             if(stream_type.Equals(typeof(XCVodStreamModel))){

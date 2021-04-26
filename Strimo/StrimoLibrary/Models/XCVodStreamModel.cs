@@ -18,5 +18,6 @@ namespace StrimoLibrary.Models
         public string container_extension { get; set; }
         public string custom_sid { get; set; }
         public string direct_source { get; set; }
+        public string backdrop_path { get; set; }
     }
 }

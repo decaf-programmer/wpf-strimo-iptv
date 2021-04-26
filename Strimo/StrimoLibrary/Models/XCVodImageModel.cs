@@ -10,6 +10,5 @@ namespace StrimoLibrary.Models
     {
         public string backdrop_path { get; set; }
         public int stream_id { get; set; }
-        
     }
 }
