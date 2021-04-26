@@ -77,7 +77,7 @@ namespace StrimoUI.Pages.ViewModels.Login
             List<XCSerieStreamModel> serieStreams = await XtreamCodeService.ReadSerieStreams(username, password, progress, LoadAccountProgressBarValue);
             List<XCLiveStreamModel> radioStreams = liveStreams.Where<XCLiveStreamModel>(liveStream => liveStream.stream_type == "radio_streams").ToList();
 
-            List<XCVodImageModel> imageModels = XtreamCodeService.ReadVodImages(username, password, vodStreams, progress, LoadAccountProgressBarValue);
+            // Extract Global Vod IDs...
 
             // SET the Variables to Global Vars...
             // SET the Categories into Global Vars...
@@ -102,6 +102,10 @@ namespace StrimoUI.Pages.ViewModels.Login
             GlobalVars.currentSerieStreams = serieStreams;
             GlobalVars.currentVodStreams = vodStreams;
             GlobalVars.currentRadioStreams = radioStreams;
+
+
+
+
 
             PrepareHomeView(progress, LoadAccountProgressBarValue);
 
@@ -158,6 +162,8 @@ namespace StrimoUI.Pages.ViewModels.Login
         {
             LoadAccountProgressBarValue = e;
         }
+
+        
     }
 
     
