@@ -87,5 +87,19 @@ namespace StrimoUI.Utilities
 
             return trimmed;
         }
+
+        public static string ExtractName(string name)
+        {
+            // Get last 6 chars from name....
+
+
+
+            return null;
+        }
+
+        public static int ExtractDate(string name)
+        {
+            return 0;
+        }
     }
 }
